@@ -10,14 +10,12 @@
 "tt0000010"|"La sortie de l'usine Lumière à Lyon"|6.90|
 "tt0000011"|"Akrobatisches Potpourri"|5.20|
 "tt0000012"|"L'arrivée d'un train à La Ciotat"|7.40|
-"tt0000013"|"Le débarquement du congrès de photographie à Lyon"|5.70|
 "tt0000014"|"L'arroseur arrosé"|7.10|
 "tt0000015"|"Autour d'une cabine"|6.20|
 "tt0000016"|"Barque sortant du port"|5.90|
 "tt0000017"|"Italienischer Bauerntanz"|4.60|
 "tt0000018"|"Das boxende Känguruh"|5.30|
 "tt0000020"|"The Derby 1895"|5.00|
-"tt0000013"|"Le débarquement du congrès de photographie à Lyon"|5.80|
 "tt0000022"|"Les forgerons"|5.10|
 "tt0000023"|"Baignade en mer"|5.70|
 "tt0000024"|"Opening of the Kiel Canal"|4.30|
@@ -107,12 +105,11 @@
 "tt0000114"|"French Regiment Going to the Parade"|5.50|
 "tt0000115"|"French Officers' Meeting"|5.30|
 "tt0000116"|"Sac au dos"|5.60|
-"tt0000117"|"Saída do Pessoal Operário da Fábrica Confiança"|5.20|
 "tt0000118"|"Salut malencontreux d'un déserteur"|5.80|
 "tt0000119"|"Sauvetage en rivière, 1er"|5.60|
 "tt0000120"|"Sauvetage en rivière, 2e"|5.50|
 "tt0000121"|"The Soldier's Courtship"|4.40|
-"tt0000122"|"Closing Hours at Vibert's Perfume Factory"|5.50|
+"tt0000122"|"Sortie des ateliers Vibert"|5.50|
 "tt0000123"|"Séance de prestidigitation"|5.70|
 "tt0000124"|"The Pier at Treport During a Storm"|5.60|
 "tt0000126"|"Tom Old Boot"|6.00|
@@ -271,3 +268,127 @@
 "tt0000584"|"El ciego de la aldea"|5.00|
 "tt0000591"|"L'enfant prodigue"|6.00|
 "tt0000598"|"Hamlet, Prince of Denmark"|5.40|
+"tt0000614"|"The Red Spectre"|6.50|
+"tt0000621"|"That Fatal Sneeze"|6.50|
+"tt0000628"|"The Adventures of Dollie"|5.70|
+"tt0000637"|"L'assassinat du duc de Guise"|5.50|
+"tt0000638"|"At the Crossroads of Life"|5.30|
+"tt0000639"|"At the French Ball"|5.30|
+"tt0000640"|"An Awful Moment"|4.30|
+"tt0000641"|"Balked at the Altar"|4.80|
+"tt0000645"|"Betrayed by a Handprint"|5.10|
+"tt0000648"|"The Black Viper"|4.70|
+"tt0000651"|"The Boy Detective, or The Abductors Foiled"|5.10|
+"tt0000653"|"A Calamitous Elopement"|4.60|
+"tt0000654"|"The Call of the Wild"|5.30|
+"tt0000658"|"The Puppet's Nightmare"|6.30|
+"tt0000659"|"Caught by Wireless"|5.20|
+"tt0000661"|"Humanity Through the Ages"|6.50|
+"tt0000668"|"The Count of Monte Cristo"|7.00|
+"tt0000669"|"Cupid's Pranks"|4.90|
+"tt0000679"|"The Fairylogue and Radio-Plays"|5.20|
+"tt0000682"|"A Fantasy"|6.90|
+"tt0000684"|"Father Gets in the Game"|5.20|
+"tt0000692"|"El fusilamiento de Dorrego"|0.00|
+"tt0000697"|"The Guerrilla"|5.10|
+"tt0000700"|"Her First Adventure"|5.30|
+"tt0000704"|"The Humpty Dumpty Circus"|5.50|
+"tt0000709"|"Julius Caesar"|5.60|
+"tt0000721"|"The Man in the Box"|5.60|
+"tt0000722"|"The Red Barn Mystery"|5.40|
+"tt0000728"|"Money Mad"|5.90|
+"tt0000730"|"Mr. Jones at the Ball"|5.80|
+"tt0000737"|"Over the Hill to the Poorhouse"|5.50|
+"tt0000749"|"Rescued from an Eagle's Nest"|5.70|
+"tt0000751"|"The Roman"|0.00|
+"tt0000752"|"Romance of a Jewess"|5.40|
+"tt0000754"|"Romeo and Juliet"|7.20|
+"tt0000755"|"The Dream of an Opium Fiend"|5.70|
+"tt0000756"|"The Sculptor's Nightmare"|5.50|
+"tt0000759"|"Sherlock Holmes II: Raffles Escaped from Prison"|7.90|
+"tt0000764"|"The Song of the Shirt"|5.70|
+"tt0000769"|"Knight of Black Art"|5.30|
+"tt0000770"|"The Taming of the Shrew"|5.40|
+"tt0000776"|"The Last Days of Pompeii"|5.80|
+"tt0000790"|"The Airship Destroyer"|6.20|
+"tt0000803"|"Barnet som Velgører"|0.00|
+"tt0000816"|"The Broken Locket"|4.70|
+"tt0000817"|"A Message to Napoleon"|3.90|
+"tt0000821"|"The Cardinal's Conspiracy"|4.70|
+"tt0000828"|"Confidence"|5.30|
+"tt0000831"|"The Cord of Life"|5.30|
+"tt0000832"|"A Corner in Wheat"|6.60|
+"tt0000833"|"The Country Doctor"|6.30|
+"tt0000835"|"The Cricket on the Hearth"|5.10|
+"tt0000836"|"Os Crimes de Diogo Alves"|4.80|
+"tt0000840"|"The Curtain Pole"|5.60|
+"tt0000852"|"A Drunkard's Reformation"|5.80|
+"tt0000854"|"Edgar Allan Poe"|6.00|
+"tt0000871"|"Fools of Fate"|5.70|
+"tt0000873"|"Bakchisarayskiy fontan"|5.80|
+"tt0000877"|"Getting Even"|4.80|
+"tt0000878"|"The Gibson Goddess"|5.00|
+"tt0000879"|"Gira política de Madero y Pino Suárez"|3.30|
+"tt0000882"|"The Golden Louis"|5.80|
+"tt0000883"|"The Grey Lady"|0.00|
+"tt0000884"|"The Red Domino"|4.40|
+"tt0000891"|"Cycle Rider and the Witch"|5.40|
+"tt0000892"|"Her First Biscuits"|5.60|
+"tt0000893"|"Her Indian Hero"|6.30|
+"tt0000895"|"The Hessian Renegades"|5.60|
+"tt0000898"|"His Lost Love"|5.60|
+"tt0000902"|"His Wife's Visitor"|4.70|
+"tt0000904"|"The House of Cards"|5.40|
+"tt0000912"|"The Indian Runner's Romance"|4.40|
+"tt0000922"|"The Joneses Have Amateur Theatricals"|5.60|
+"tt0000932"|"A Woman of the People"|3.90|
+"tt0000933"|"Lady Helen's Escapade"|5.00|
+"tt0000935"|"The Light That Came"|6.20|
+"tt0000936"|"Lines of White on a Sullen Sea"|6.70|
+"tt0000938"|"The Little Darling"|4.50|
+"tt0000941"|"Locura de amor"|3.40|
+"tt0000942"|"The Lonely Villa"|6.10|
+"tt0000945"|"Lucky Jim"|4.60|
+"tt0000946"|"The Lure of the Gown"|4.50|
+"tt0000951"|"Madame Sans-Gêne"|0.00|
+"tt0000960"|"The Mended Lute"|4.60|
+"tt0000966"|"A Midsummer Night's Dream"|5.70|
+"tt0000970"|"The Life of Moliere"|5.90|
+"tt0000971"|"The Mill"|6.30|
+"tt0000972"|"The Mountaineer's Honor"|5.80|
+"tt0000972"|"The Mountaineer's Honor"|5.70|
+"tt0000981"|"The Necklace"|5.50|
+"tt0000986"|"Nursing a Viper"|5.10|
+"tt0000989"|"Oh, Uncle!"|5.40|
+"tt0000991"|"On the Little Big Horn or Custer's Last Stand"|4.80|
+"tt0001001"|"Pippa Passes; or, The Song of Conscience"|5.50|
+"tt0001002"|"The Politician's Love Story"|5.00|
+"tt0001009"|"Princess Nicotine; or, The Smoke Fairy"|6.50|
+"tt0001013"|"The Redman's View"|5.90|
+"tt0001014"|"The Renunciation"|5.10|
+"tt0001016"|"Resurrection"|6.00|
+"tt0001032"|"The Sealed Room"|6.00|
+"tt0001035"|"She Would Be an Actress"|5.10|
+"tt0001044"|"The Son's Return"|5.60|
+"tt0001045"|"Le songe d'une nuit d'été"|5.60|
+"tt0001050"|"A Strange Meeting"|5.10|
+"tt0001058"|"Tender Hearts"|5.30|
+"tt0001061"|"They Would Elope"|6.40|
+"tt0001062"|"Those Awful Hats"|6.20|
+"tt0001072"|"A Trap for Santa Claus"|5.60|
+"tt0001083"|"The Violin Maker of Cremona"|5.00|
+"tt0001088"|"The Way of Man"|5.20|
+"tt0001091"|"What Drink Did"|5.50|
+"tt0001105"|"The Woman Always Pays"|6.40|
+"tt0001106"|"Alice's Adventures in Wonderland"|6.10|
+"tt0001107"|"All on Account of the Milk"|6.20|
+"tt0001118"|"An Arcadian Maid"|5.50|
+"tt0001120"|"As It Is in Life"|5.70|
+"tt0001123"|"Away Out West"|0.00|
+"tt0001135"|"The Broken Doll"|4.60|
+"tt0001143"|"The Call to Arms"|4.70|
+"tt0001150"|"A Child of the Ghetto"|5.40|
+"tt0001167"|"The Cowboy and the Squaw"|0.00|
+"tt0001175"|"La dame aux camélias"|5.70|
+"tt0001179"|"Desfile histórico del centenario"|0.00|
+"tt0001182"|"A Dixie Mother"|0.00|
