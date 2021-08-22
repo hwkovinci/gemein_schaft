@@ -44,8 +44,7 @@
 46|"Bois de Boulogne"|4.20|
 47|"Boulevard des Italiens"|3.60|
 48|"The Boxing Kangaroo"|4.80|
-49|"Boxing Match; or"|5.30|
-49|"Glove Contest"|5.30|
+49|"Boxing Match; or, Glove Contest"|5.30|
 50|"Bébé et fillettes"|4.20|
 51|"The Bohemian Encampment"|3.70|
 52|"Carga de rurales"|4.40|
@@ -69,8 +68,7 @@
 74|"Children Playing on the Beach"|4.60|
 75|"Escamotage d'une dame au théâtre Robert Houdin"|6.30|
 76|"Exit of Rip and the Dwarf"|4.50|
-77|"Le fakir"|4.80|
-77|"mystère indien"|4.80|
+77|"Le fakir, mystère indien"|4.80|
 78|"Feira de Gado na Corujeira"|3.90|
 79|"La gare Saint-Lazare"|4.40|
 80|"Manoeuvres of the French Army"|4.10|
@@ -79,10 +77,8 @@
 83|"The Peeping Toms"|4.50|
 84|"The Drunkards"|4.40|
 85|"Jardinier brûlant des herbes"|4.70|
-86|"Beach and Pier at Trouville"|4.20|
-86|"1st part"|4.20|
-87|"Beach and Pier at Trouville"|4.80|
-87|"2nd part"|4.80|
+86|"Beach and Pier at Trouville, 1st part"|4.20|
+87|"Beach and Pier at Trouville, 2nd part"|4.80|
 88|"Market Day"|4.70|
 89|"Départ de Jérusalem en chemin de fer"|6.20|
 90|"Libération des territoriaux"|4.00|
@@ -91,10 +87,8 @@
 94|"Miss de Vere"|4.30|
 95|"Le papier protée"|4.80|
 96|"Place Saint-Augustin"|4.50|
-97|"Place de l'Opéra"|4.90|
-97|"1er aspect"|4.90|
-98|"Place de l'Opéra"|5.50|
-98|"2e aspect"|5.50|
+97|"Place de l'Opéra, 1er aspect"|4.90|
+98|"Place de l'Opéra, 2e aspect"|5.50|
 99|"Place de la Bastille"|4.70|
 100|"Place de la Concorde"|5.00|
 101|"Place du théâtre français"|4.60|
@@ -115,10 +109,8 @@
 116|"Sac au dos"|5.60|
 117|"Saída do Pessoal Operário da Fábrica Confiança"|5.20|
 118|"Salut malencontreux d'un déserteur"|5.80|
-119|"Sauvetage en rivière"|5.60|
-119|"1er"|5.60|
-120|"Sauvetage en rivière"|5.50|
-120|"2e"|5.50|
+119|"Sauvetage en rivière, 1er"|5.60|
+120|"Sauvetage en rivière, 2e"|5.50|
 121|"The Soldier's Courtship"|4.40|
 122|"Closing Hours at Vibert's Perfume Factory"|5.50|
 123|"Séance de prestidigitation"|5.70|
@@ -132,6 +124,7 @@
 132|"Card Party"|5.10|
 133|"La voiture du potier"|6.50|
 135|"A Watermelon Feast"|6.80|
+14|"L'arroseur arrosé"|7.10|
 138|"The Bewitched Inn"|6.40|
 140|"Baignade dans le torrent"|5.00|
 141|"Ballet libella"|5.30|
@@ -158,13 +151,11 @@
 177|"The Burglar on the Roof"|4.60|
 178|"The Cavalier's Dream"|5.20|
 179|"La caverne maudite"|4.30|
-182|"Come Along"|4.90|
-182|"Do!"|4.90|
+182|"Come Along, Do!"|4.90|
 184|"Cripple Creek Bar-Room Scene"|4.80|
 186|"Le cuirassé Maine"|3.80|
 190|"Dostavenícko ve mlýnici"|5.10|
-192|"Ella Lola"|4.50|
-192|"a la Trilby"|4.50|
+192|"Ella Lola, a la Trilby"|4.50|
 196|"Faust and Mephistopheles"|5.10|
 205|"Leçons de boxe"|5.50|
 208|"The Miller and Chimney Sweep"|5.70|
@@ -280,5 +271,4 @@
 582|"Ben Hur"|5.00|
 584|"El ciego de la aldea"|5.00|
 591|"L'enfant prodigue"|6.00|
-598|"Hamlet"|5.40|
-598|"Prince of Denmark"|5.40|
+598|"Hamlet, Prince of Denmark"|5.40|
