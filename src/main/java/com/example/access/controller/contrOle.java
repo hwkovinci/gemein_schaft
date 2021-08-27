@@ -23,7 +23,9 @@ import java.util.HashSet;
 import com.example.access.service.servi;
 import com.example.access.dir.aFaire;
 import com.example.access.dir.titre;
+import com.example.access.dir.tirer;
 import com.example.access.dir.cle;
+import com.example.access.dir.carte;
 @Controller
 
 @RequestMapping("/")
@@ -43,8 +45,8 @@ model.addAttribute("coffees", aF);
 return "premiere";
 }
 */
-@GetMapping("/deuxieme")
-    public String imprimer (Model model){
+@GetMapping("/deuxieme_")
+    public String imprimer (Model model) throws Exception{
 int bas = 0;
 int count = sV.countGenre();
 Map<String, List<titre>> cart = new HashMap<>();
@@ -54,11 +56,59 @@ String unique = new String();
 unique = sV.nameExtract(bas);
 poster = sV.mapPoster(bas);
 cart.put(unique, poster);
-bas +=1;
+bas += 1;
+}
+List<carte> rankList  = new ArrayList<>();
+ 
+for (Map.Entry<String, List<titre>> element : cart.entrySet()){
+carte ct = new carte();
+ct.setGenre(element.getKey());
+ct.setRank(element.getValue());
+rankList.add(ct);
+
 }
 //horizontal
 model.addAttribute("poster", cart);
-return "deuxieme";
+//haute
+List<cle> contenir = new ArrayList<>();
+List<tirer> contenirT = new ArrayList<>();
+String insure = "";
+int cA = sV.countActor() + 20000000;
+int cD = sV.countDirector()+ 10000000;
+for(int i = 20000000;i < cA ;i++){
+cle key = new cle();
+String unique = new String();
+unique = sV.nameExtract(i);
+key.setKey(i);
+key.setValue(unique);
+contenir.add(key);
+}
+for(int j = 10000000; j<cD; j++){
+cle key = new cle();
+String unique = new String();
+unique = sV.nameExtract(j);
+key.setKey(j);
+key.setValue(unique);
+contenir.add(key);
+}
+HashSet<String> tousLesTitre = sV.extractTitle(insure);
+for(String ligne : tousLesTitre){
+   tirer tr = new tirer();
+   tr.setId(ligne);
+   HashSet<String> unique = sV.extractTitle(ligne);
+   String rst = (String)unique.toArray()[0];
+
+   tr.setName(rst);
+   contenirT.add(tr);
+}
+ObjectMapper objectMapper = new ObjectMapper();
+String convert = objectMapper.writeValueAsString(contenir);
+String converT = objectMapper.writeValueAsString(contenirT);
+model.addAttribute("LisT", converT);
+model.addAttribute("List", convert );
+//bas
+
+return "deuxieme_";
 }
 @GetMapping("/troisieme")
     public String recherche (Model model) throws Exception {

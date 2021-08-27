@@ -3,40 +3,32 @@ package com.example.access.dir;
 import java.util.HashSet;
 
 public class tirer {
-    private HashSet<String> titlePool ;
-    private HashSet<String> actorPool;
-    private HashSet<String> directorPool;
+    private String id;
+    private String name;
    
    
 
     public tirer() {
     }
 
-    public tirer(HashSet<String> titlePool,HashSet<String> actorPool,HashSet<String> directorPool) {
-        this.titlePool = titlePool;
-        this.actorPool = actorPool;
-        this.directorPool = directorPool;
+    public tirer(String id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
 
 
-public HashSet<String> getPooldeTitle(){
-return titlePool;
+public String getId(){
+return id;
 }
-public void setPooldeTitle(HashSet<String> titlePool){
-this.titlePool = titlePool;
+public void setId(String id){
+this.id = id;
 }
-public HashSet<String> getPooldeActor(){
-return actorPool;
+public String getName(){
+return name;
 }
-public void setPooldeActor(HashSet<String> actorPool){
-this.actorPool = actorPool;
-}
-public HashSet<String> getPooldeDirector(){
-return directorPool;
-}
-public void setPooldeDirector(HashSet<String> directorPool){
-this.directorPool = directorPool;
+public void setName(String name){
+this.name = name;
 }
 
 

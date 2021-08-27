@@ -158,7 +158,13 @@ return count;
 //fin
 }
 public List<titre>tranche (int compte){
-String dEcl = "SELECT tlst.title_name title_tranche, tlst.title_poster poster, kzgm.genre_id genre_tranche FROM title_list tlst, kreuz_gm kzgm WHERE tlst.title_id = kzgm.title_id ORDER BY tlst.title_rating DESC, kzgm.genre_id ASC";
+String dEcl = new String();
+StringBuilder sb = new StringBuilder();
+sb.append("SELECT tlst.title_name title_tranche, tlst.title_poster poster,");
+sb.append("kzgm.genre_id genre_tranche,tlst.title_rating rating, tlst.title_year year_tranche "); 
+sb.append("FROM title_list tlst, kreuz_gm kzgm WHERE tlst.title_id = kzgm.title_id ");
+sb.append("ORDER BY tlst.title_rating DESC, kzgm.genre_id ASC");
+dEcl = sb.toString();
 return jdbcTemplate.query(dEcl, new ResultSetExtractor <List<titre>>(){
 @Override
 public List<titre>extractData(ResultSet rs) throws SQLException, DataAccessException{
@@ -168,6 +174,8 @@ if(rs.getInt("genre_tranche") == compte){
       titre title = new titre();
       title.setName(rs.getString("title_tranche"));
       title.setPoster(rs.getString("poster"));
+      title.setRating(rs.getFloat("rating"));
+      title.setYear(rs.getDouble("year_tranche"));
       titleList.add(title);
       }
     }

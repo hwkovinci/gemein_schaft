@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
-<head>
+
+   <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 * {
@@ -66,7 +67,44 @@ input[type=submit] {
   color: #ffffff; 
 }
 </style>
-</head>     
+
+  </head>
+<body>
+
+<table>
+<div class="swiper mySwiper">
+<c:forEach items="${poster}" var="genre">
+<div class="swiper-wrapper">    
+<tbody> ${genre.key}
+<c:forEach items="${genre.value}" var = "tranche">
+<tr>
+<div class="swiper-slide">
+<td>
+<a href="#"><image src = ${tranche.getPoster()} alt = "image" sizes="(min-width: 600px) 200px, 50vw"> </a>
+</td>
+<td>${tranche.getName()}</td>
+<td>${tranche.getRating()}</td>
+<td>${tranche.getYear()}</td></tr>
+</div>
+</c:forEach>
+</tbody>
+</div><div class="swiper-button-next"></div>
+<div class="swiper-button-prev"></div>
+</c:forEach>
+</div>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
+</table>
+</body>
 <tbody>
 
 <h2>Autocomplete</h2>
@@ -190,7 +228,7 @@ let sub = val.substring(1, val.length -1);
 champ.push(sub);
 }
 for(var i = 0; i < lisT.length ; i++){
-let val = lisT[i]["poster"];
+let val = lisT[i]["name"];
 let sub = val.substring(1, val.length -1);
 champ.push(sub);
 }
@@ -200,4 +238,5 @@ autocomplete(document.getElementById("myInput"), champ);
 </script>
 
 </tbody>
+
 </html>
