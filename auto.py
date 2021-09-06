@@ -5,7 +5,7 @@ import conf
 import time
 
 schritt = conf.BATCH_SIZE
-qu_enz = 10000000/schritt
+qu_enz = 10000/schritt
 pro_zess = 0
 f_eld = list()
 while  pro_zess < qu_enz:
