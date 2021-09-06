@@ -279,7 +279,12 @@ def mo_glich(be_ginn, e_nd):
          be_ginn += 1
     
     return f_eld
-
+def pruf_fung(nicht):
+    try:
+      ja = json.loads(nicht)
+    except ValueError as e:
+       return False
+    return True
 def get_json(b_g):
     e_d = b_g + conf.BATCH_SIZE
     f_eld = []
@@ -288,16 +293,20 @@ def get_json(b_g):
     ant_wort = get_responses_from_urls(urls)
     for key in tqdm(ant_wort):
         a = ant_wort[key]
-        zu_tat = ast.literal_eval(a.content.decode('UTF-8'))
-        if zu_tat['Response']=='False' or zu_tat['Type']!='movie' or zu_tat['Poster'] == 'N/A' or len(bytes(zu_tat['Title'], 'utf-8'))>48:
-            continue
-        try:
-            f_eld.append(zu_tat) 
+        if a is not None:
+           ja = a.content.decode('UTF-8')
+           if pruf_fung(ja) == True:
+
+              zu_tat = ast.literal_eval(ja)
+              if zu_tat['Response']=='False' or zu_tat['Type']!='movie' or zu_tat['Poster'] == 'N/A' or len(bytes(zu_tat['Title'], 'utf-8'))>48:
+                  continue
+              try:
+                  f_eld.append(zu_tat) 
 
 
                  
-        except Exception as x:
-            f_eld.append(np.nan)
+              except Exception as x:
+                   f_eld.append(np.nan)
     or_dung = list()
     for in_diz in range(len(f_eld)):
         if in_diz == 0:

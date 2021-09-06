@@ -10,6 +10,7 @@ pro_zess = 0
 f_eld = list()
 while  pro_zess < qu_enz:
     f_eld = f_eld + fd.get_json(pro_zess*schritt)
+    print(len(f_eld), ' gross')
     fd.fur_oracle(pro_zess*schritt)
     print(pro_zess, '# batch complete')
     pro_zess += 1
