@@ -2,10 +2,13 @@ package com.example.access.service;
 
 import com.example.access.dir.aFaire;
 import com.example.access.dir.titre;
-import com.example.access.repo.cenTrale;
+import com.example.access.dir.tirer;
 import com.example.access.dir.plusTitre;
 import com.example.access.dir.cle;
 import com.example.access.dir.userFavor;
+
+import com.example.access.repo.cenTrale;
+
 
 import org.springframework.stereotype.Service;
 

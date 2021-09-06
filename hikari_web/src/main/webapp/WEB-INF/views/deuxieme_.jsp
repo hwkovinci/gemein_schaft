@@ -72,27 +72,25 @@ input[type=submit] {
 
 
 <body>
-
-<table>
 <c:forEach items="${poster}" var="genre">
-<div class="swiper-wrapper">    
-<tbody> ${genre.key}
-<c:forEach items="${genre.value}" var = "tranche">
-<tr>
-<td>
-<c:set value = "sixieme_?want=${tranche.getId().substring(1, 10)}" var = "href"/>
-<a href = ${href} >
-<image src = ${tranche.getPoster()} alt = "image" sizes="(min-width: 600px) 200px, 50vw">
-</a>
+<div class="content_wrapper">
 
-</td>
-<td>${tranche.getName()}</td>
-<td>${tranche.getRating()}</td>
-<td>${tranche.getYear()}</td></tr>
-</c:forEach>
-</tbody>
-</c:forEach>
-</table>
+<tr>${genre.key}#####################################################</tr>
+<c:forEach items="${genre.value}" var = "tranche">
+
+<br><c:set value = "sixieme_?want=${tranche.getId().substring(1, 10)}" var = "href"/>
+<a href = ${href}><image src = ${tranche.getPoster()} alt = "image" sizes="(min-width: 600px) 200px, 50vw" ></a>
+<br>${tranche.getName()}
+<br>${tranche.getRating()}
+<br>${tranche.getYear()}
+<br>
+
+</c:forEach> 
+</div>  
+</c:forEach>    
+
+
+
 </body>
 
 

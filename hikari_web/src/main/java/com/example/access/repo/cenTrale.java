@@ -170,7 +170,7 @@ sb.append("SELECT tlst.title_name title_tranche, tlst.title_poster poster,");
 sb.append("kzgm.genre_id genre_tranche,tlst.title_rating rating,");
 sb.append( " tlst.title_year year_tranche, tlst.title_id ttid"); 
 sb.append(" FROM title_list tlst, kreuz_gm kzgm WHERE tlst.title_id = kzgm.title_id ");
-sb.append("ORDER BY tlst.title_rating DESC, kzgm.genre_id ASC");
+sb.append("ORDER BY tlst.title_rating DESC, tlst.title_year DESC,  kzgm.genre_id ASC");
 dEcl = sb.toString();
 return jdbcTemplate.query(dEcl, new ResultSetExtractor <List<titre>>(){
 @Override

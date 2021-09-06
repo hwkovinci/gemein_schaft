@@ -92,6 +92,24 @@ input[type=submit] {
 
 </tr></c:forEach>
 </table>
+<p>you might also looking for
+<tr>
+<c:forEach items='${aC}' var = '${actCon}'>
+<c:set value = "${actCon.getValue()}" var="${valeur}">
+<c:set value = "${actCon.getKey()}" var="${cle}">
+<c:set value ="${pageContext.request.contextPath}/redirect?id=${valeur}.substring(1, ${valeur}.length()-1) actor ${cle}" var = "${href}">
+<a href = ${href}>${valuer}.substirng(1, ${valeur}.length -1)</a>
+</c:forEach></tr></p>
+<p2>who's in there
+<tr>
+<c:forEach items='${tC}' var = '${titCon}'>
+<c:set value = "${titCon.getName()}" var="${valeur}">
+<c:set value = "${titCon.getId()}" var="${cle}">
+<c:set value ="${pageContext.request.contextPath}/redirect?id=${valeur}.substring(1, ${valeur}.length()-1) title ${cle}.substring{1, ${cle}.length()-1}" var = "${href}"
+<a href = ${href}>${valuer}.substirng(1, ${valeur}.length -1)</a>
+</c:forEach></tr></p2>
+
+
 
 </body>
 

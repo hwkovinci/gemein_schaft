@@ -6,6 +6,7 @@ import java.util.HashSet;
 
 import com.example.access.dir.aFaire;
 import com.example.access.dir.titre;
+import com.example.access.dir.tirer;
 import com.example.access.dir.plusTitre;
 import com.example.access.dir.cle;
 import com.example.access.dir.userFavor;

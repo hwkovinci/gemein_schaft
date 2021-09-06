@@ -83,15 +83,25 @@ input[type=submit] {
 <tr>${movieInfo.getRuntime()}</tr>
 <tr>${movieInfo.getPlot()}</tr>
 <tr>${movieInfo.getCountry()}</tr>
-<tr>
-<c:forEach items = "${aC}" var = "ac"><td>${ac.getValue()}</td>
-</c:forEach>
-</tr>
-<tr>
-<c:forEach items = "${dC}" var = "dc"><td>${dc.getValue()}</td></c:forEach>
-</tr>
-</table>
-</body>
+<tr>++++++++++++++director
+<c:forEach items= "${dC}" var = "dirCon">
+<br>
+<c:set value = "${dirCon.getValue()}" var="valeur"/>
+<c:set value = "${dirCon.getKey()}" var="cle"/>
+<c:set value ="${pageContext.request.contextPath}/director/${cle}" var = "href"/>
+<a href = ${href}>${valeur}</a>
+</c:forEach></tr>
+<tr>+++++++++++++++actor
+<c:forEach items='${aC}' var = 'actCon'>
+<br>
+<c:set value = "${actCon.getValue()}" var="valeur"/>
+<c:set value = "${actCon.getKey()}" var="cle"/>
+<c:set value ="${pageContext.request.contextPath}/actor/${cle}" var = "href"/>
+<a href = ${href}>${valeur}</a>
+</c:forEach></tr>
+</table></body>
+
+
 <tbody>
 
 <h2>Autocomplete</h2>
@@ -105,7 +115,7 @@ input[type=submit] {
   </div>
   <input type="submit">
 </form>
-
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script>
 function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,
@@ -222,6 +232,34 @@ let key = lD[i]["key"];
 let sub = val.substring(1, val.length -1);
 champ.push(sub.concat(' ','director', ' ', key));
 }
+var champT = [];
+$.getJSON('${pageContext.request.contextPath}/titleJson', function(data){
+  for (var i = 0; i < data.length; i++) {
+    champT.push(data[i]);
+    
+}
+
+} );
+console.log(champT);
+var champA = [];
+$.getJSON('${pageContext.request.contextPath}/actorJson', function(data){
+  for (var i = 0; i < data.length; i++) {
+    champA.push(data[i]);
+    
+}
+
+} );
+console.log(champA);
+var champD = [];
+$.getJSON('${pageContext.request.contextPath}/directorJson', function(data){
+  for (var i = 0; i < data.length; i++) {
+    champD.push(data[i]);
+    
+}
+
+} );
+console.log(champD);
+
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 autocomplete(document.getElementById("myInput"), champ);

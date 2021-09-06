@@ -114,51 +114,62 @@ model.addAttribute("titleList", tC );
 
 return "deuxieme_";
 }
-@GetMapping("/troisieme")
-    public String recherche (Model model) throws Exception {
-List<cle> contenir = new ArrayList<>();
-List<titre> contenirT = new ArrayList<>();
+@GetMapping("/titleJson")
+@ResponseBody String tJ()throws Exception{
+List<tirer> titContainer = new ArrayList<>();
 String insure = "";
+HashSet<String> tousLesTitre = sV.extractTitle(insure);
+for(String ligne : tousLesTitre){
+   tirer tr = new tirer();
+   tr.setId(ligne);
+   HashSet<String> unique = sV.extractTitle(ligne);
+   String rst = (String)unique.toArray()[0];
+
+   tr.setName(rst);
+   titContainer.add(tr);
+}
+ObjectMapper objectMapper = new ObjectMapper();
+String tC = objectMapper.writeValueAsString(titContainer);
+return tC;
+
+}
+//tJ
+@GetMapping("/actorJson")
+@ResponseBody String aJ()throws Exception{
+List<cle> actContainer = new ArrayList<>();
 int cA = sV.countActor() + 20000000;
-int cD = sV.countDirector()+ 10000000;
 for(int i = 20000000;i < cA ;i++){
 cle key = new cle();
-String unique = new String();  
+String unique = new String();
 unique = sV.nameExtract(i);
 key.setKey(i);
 key.setValue(unique);
-contenir.add(key);
+actContainer.add(key);
 }
+ObjectMapper objectMapper = new ObjectMapper();
+String aC = objectMapper.writeValueAsString(actContainer);
+return aC;
+
+}
+//aJ
+@GetMapping("/directorJson")
+@ResponseBody String dJ()throws Exception{
+List<cle> dirContainer = new ArrayList<>();
+int cD = sV.countDirector()+ 10000000;
 for(int j = 10000000; j<cD; j++){
 cle key = new cle();
 String unique = new String();
 unique = sV.nameExtract(j);
 key.setKey(j);
 key.setValue(unique);
-contenir.add(key);
-}
-HashSet<String> tousLesTitre = sV.extractTitle(insure);
-for(String ligne : tousLesTitre){
-   titre tr = new titre();
-   tr.setName(ligne);
-   HashSet<String> unique = sV.extractTitle(ligne);
-   String rst = (String)unique.toArray()[0];
-    
-   tr.setPoster(rst);
-   contenirT.add(tr);
+dirContainer.add(key);
 }
 ObjectMapper objectMapper = new ObjectMapper();
-String convert = objectMapper.writeValueAsString(contenir);
-String converT = objectMapper.writeValueAsString(contenirT);
-model.addAttribute("LisT", converT);
-model.addAttribute("List", convert );
-return "troisieme";
+String dC = objectMapper.writeValueAsString(dirContainer);
+return dC;
+
 }
-//haute
-
-
-
-
+//dJ
 
 
 }
