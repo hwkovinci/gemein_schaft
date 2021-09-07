@@ -93,19 +93,19 @@ input[type=submit] {
 </table>
 <p>you might also looking for
 <tr>
-<c:forEach items='${dC}' var = 'dirCon'>
-<c:set value = "${dirCon.getValue()}" var="valeur"/>
-<c:set value = "${dirCon.getKey()}" var="cle"/>
-<c:set value ="${pageContext.request.contextPath}/director/${cle}" var = "href"/>
-<a href = ${href}>${valeur}</a>
+<c:forEach items='${dC}' var = '${dirCon}'>
+<c:set value = "${dirCon.getValue()}" var="${valeur}">
+<c:set value = "${dirCon.getKey()}" var="${cle}">
+<c:set value ="${pageContext.request.contextPath}/redirect?id=${valeur}.substring(1, ${valeur}.length()-1) director ${cle}" var = "${href}">
+<a href = ${href}>${valuer}.substirng(1, ${valeur}.length -1)</a>
 </c:forEach></tr></p>
 <p2>who's in there
 <tr>
-<c:forEach items='${tC}' var = 'titCon'>
-<c:set value = "${titCon.getName()}" var="valeur"/>
-<c:set value = "${titCon.getId().substring(1, 10)}" var="cle"/>
-<c:set value ="${pageContext.request.contextPath}/title/${cle}" var = "href"/>
-<a href = ${href}>${valeur}</a>
+<c:forEach items='${tC}' var = '${titCon}'>
+<c:set value = "${titCon.getName()}" var="${valeur}">
+<c:set value = "${titCon.getId()}" var="${cle}">
+<c:set value ="${pageContext.request.contextPath}/redirect?id=${valeur}.substring(1, ${valeur}.length()-1) title ${cle}.substring{1, ${cle}.length()-1}" var = "${href}"
+<a href = ${href}>${valuer}.substirng(1, ${valeur}.length -1)</a>
 </c:forEach></tr></p2>
 </body>
 
