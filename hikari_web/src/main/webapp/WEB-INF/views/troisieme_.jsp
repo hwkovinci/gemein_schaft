@@ -213,52 +213,34 @@ function autocomplete(inp, arr) {
       closeAllLists(e.target);
   });
 }
-
-const lA = ${listAct};
-const lD = ${listDir};
-console.log(lA);
-console.log(lD);
+const aL = ${listAct};
+const dL = ${listDir};
+const tL = ${listTit};
+console.log(aL);
+console.log(dL);
+console.log(tL);
 const champ = [];
-for(var i = 0; i < lA.length ;i++ ){
-let val = lA[i]["value"];
-let key = lA[i]["key"];
+for(var i = 0; i < aL.length ;i++ ){
+let val = aL[i]["value"];
+let key = aL[i]["key"];
 let sub = val.substring(1, val.length -1);
 
 champ.push(sub.concat(' ','actor', ' ', key));
 }
-for(var i = 0; i < lD.length ; i++){
-let val = lD[i]["value"];
-let key = lD[i]["key"];
+for(var i = 0; i < dL.length ;i++ ){
+let val = dL[i]["value"];
+let key = dL[i]["key"];
 let sub = val.substring(1, val.length -1);
+
 champ.push(sub.concat(' ','director', ' ', key));
 }
-var champT = [];
-$.getJSON('${pageContext.request.contextPath}/titleJson', function(data){
-  for (var i = 0; i < data.length; i++) {
-    champT.push(data[i]);
-    
+for(var i = 0; i < tL.length ; i++){
+let val = tL[i]["name"];
+let idw = tL[i]["id"];
+let id = idw.substring(1, idw.length -1);
+let sub = val.substring(1, val.length -1);
+champ.push(sub.concat(' ','title', ' ', id));
 }
-
-} );
-console.log(champT);
-var champA = [];
-$.getJSON('${pageContext.request.contextPath}/actorJson', function(data){
-  for (var i = 0; i < data.length; i++) {
-    champA.push(data[i]);
-    
-}
-
-} );
-console.log(champA);
-var champD = [];
-$.getJSON('${pageContext.request.contextPath}/directorJson', function(data){
-  for (var i = 0; i < data.length; i++) {
-    champD.push(data[i]);
-    
-}
-
-} );
-console.log(champD);
 
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
