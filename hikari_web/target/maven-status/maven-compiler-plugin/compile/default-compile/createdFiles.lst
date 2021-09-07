@@ -7,11 +7,13 @@ com/example/access/service/interne.class
 com/example/access/repo/cenTrale$9.class
 com/example/access/dir/plusTitre.class
 com/example/access/repo/cenTrale$12.class
+com/example/access/dir/userBasic.class
 com/example/access/repo/cenTrale$10.class
 com/example/access/repo/cenTrale$4.class
 com/example/access/dir/cle.class
 com/example/access/repo/cenTrale$5.class
 com/example/access/actorController.class
+com/example/access/repo/cenTrale$15.class
 com/example/access/ensemble/init.class
 com/example/access/repo/cenTrale$2.class
 com/example/access/dir/userFavor.class

@@ -15,10 +15,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.validation.BindingResult;
+import org.springframework.ui.ModelMap;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
 
+import javax.validation.Valid;
 
 import java.util.List;
 import java.util.Map;
@@ -36,6 +39,7 @@ import com.example.access.dir.cle;
 import com.example.access.dir.carte;
 import com.example.access.dir.plusTitre;
 import com.example.access.dir.userFavor;
+import com.example.access.dir.userBasic;
 
 @Controller
 
@@ -50,36 +54,34 @@ this.sV=sV;
 }
 @GetMapping("/sixieme_")
 
-   public String reponse (@RequestParam String want, RedirectAttributes rA, Model model){
+   public RedirectView reponse (@RequestParam String want, 
+                          @RequestParam(required = false)String req,
+                          RedirectAttributes rA, Model model){
   StringBuilder sb = new StringBuilder();
   sb.append("\"");
   sb.append(want);
   sb.append("\"");
   String imdbId = sb.toString(); 
+  if(req == null){
+  return new RedirectView("/hikari_web/login");
+  }
+  else{
   cle keyChain = new cle();
-  int userId = 57;
-  keyChain.setKey(userId);
+  keyChain.setKey(Integer.parseInt(req));
   keyChain.setValue(imdbId);
   String likeOrNot = new String();
   int result = sV.countFav(keyChain);
   if(result == 0){
-  likeOrNot = "neutral"; 
+  likeOrNot = "neutral";
   }
   else{
   likeOrNot = "like";
-  
   }
-  model.addAttribute("oui" , result); 
-  model.addAttribute("ouNon", result +1);
-  model.addAttribute("want", want);
-  model.addAttribute("userId", userId);
-  model.addAttribute("lon", likeOrNot);
-  plusTitre mD  = sV.movieDetail(imdbId);
-  model.addAttribute("movieInfo", mD);
- // rA.addAttribute("want", want );
- // rA.addAttribute("oui", result) ;
- // return new RedirectView("/hikari_web/septieme_");
-  return "premiere_";
+  rA.addAttribute("title", want);
+  rA.addAttribute("bool", result );
+  rA.addAttribute("user", req ); 
+  return new RedirectView("/hikari_web/septieme_");
+  }
 }
 @GetMapping("/septieme_")
  public String manipuler(@RequestParam String title,
@@ -125,53 +127,28 @@ public ModelAndView submit(@RequestParam String title,
  mav.addObject("user", user);
  return mav;
 }
+//loginscript
 
-
-/*
-@GetMapping("/sixieme_")
-
-   public String imprimer (@RequestParam String id, Model model) throws Exception{
-StringBuilder sb = new StringBuilder();
-sb.append("\"");
-sb.append(id);
-sb.append("\""); 
-String imdbId = sb.toString();
-List<HashSet<Integer>> actAndDir =  sV.doubleInt(imdbId);
-List<cle> actContainer = new ArrayList<>();
-Iterator<Integer> iterAct = actAndDir.get(0).iterator();
-while(iterAct.hasNext()){
-  cle key = new cle();
-  int actId =  iterAct.next();
-  String name = sV.nameExtract(actId);
-  key.setValue(name);
-  key.setKey(actId);
-  actContainer.add(key);
-}
-List<cle> dirContainer = new ArrayList<>();
-Iterator<Integer> iterDir = actAndDir.get(1).iterator();
-while(iterDir.hasNext()){
-  cle key = new cle();
-  int dirId =  iterDir.next();
-  String name = sV.nameExtract(dirId);
-  key.setValue(name);
-  key.setKey(dirId);
-  dirContainer.add(key);
+@PostMapping("/loginAuth")
+public ModelAndView subir(@Valid @ModelAttribute("userBasic") final userBasic uB, 
+                    final BindingResult result,
+                    ModelMap model) {
+ int verifier = sV.extractUser(uB);
+ if(verifier == 0){
+ return new ModelAndView("redirect:/login");
+ }
+ else{
+ ModelAndView mav = new ModelAndView("redirect:/deuxieme_");
+ 
+ mav.addObject("req", verifier);
+ return mav;
+ }
 
 }
-ObjectMapper objectMapper = new ObjectMapper();
-String actConvert = objectMapper.writeValueAsString(actContainer);
-String dirConvert = objectMapper.writeValueAsString(dirContainer);
-model.addAttribute("listAct", actConvert);
-model.addAttribute("listDir", dirConvert );
-//haute
-model.addAttribute("aC",actContainer );
-model.addAttribute("dC", dirContainer);
-plusTitre mD  = sV.movieDetail(imdbId);
-model.addAttribute("movieInfo", mD);
-//bas
-return "troisieme_";
-}
-*/
-
+@GetMapping("/login")
+  public ModelAndView deformation() {
+        userBasic uB = new userBasic();
+        return new ModelAndView("loginPage", "userBasic", uB);
+    }
 
 }

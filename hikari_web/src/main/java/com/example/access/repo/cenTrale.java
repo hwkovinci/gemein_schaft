@@ -26,6 +26,7 @@ import com.example.access.dir.titre;
 import com.example.access.dir.plusTitre;
 import com.example.access.dir.cle;
 import com.example.access.dir.userFavor;
+import com.example.access.dir.userBasic;
 
 public class cenTrale {
 private JdbcTemplate jdbcTemplate;
@@ -399,6 +400,33 @@ return jdbcTemplate.query(dEcl, new ResultSetExtractor <Integer>(){
 public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
 int count = 0;
 List<Integer> positive = new ArrayList<Integer>();
+while(rs.next()){
+count += rs.getInt("compte");
+//while
+}
+
+return count;
+//extractor
+     }
+//query
+  });
+//fin
+}
+public int verifier(userBasic uB){
+String dEcl = new String();
+StringBuilder sb = new StringBuilder();
+sb.append("SELECT user_id compte FROM user_list");
+sb.append(" where user_nick ='");
+sb.append(uB.getNick());
+sb.append("'");
+sb.append(" and user_passwd ='");
+sb.append(uB.getPassWd());
+sb.append("'");
+dEcl = sb.toString();
+return jdbcTemplate.query(dEcl, new ResultSetExtractor <Integer>(){
+@Override
+public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
+int count = 0;
 while(rs.next()){
 count += rs.getInt("compte");
 //while

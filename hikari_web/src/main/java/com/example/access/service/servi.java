@@ -6,6 +6,7 @@ import com.example.access.dir.tirer;
 import com.example.access.dir.plusTitre;
 import com.example.access.dir.cle;
 import com.example.access.dir.userFavor;
+import com.example.access.dir.userBasic;
 
 import com.example.access.repo.cenTrale;
 
@@ -45,6 +46,9 @@ return cT.compteDuDirecteurs();
 }
 public int countFav(cle fav){
 return cT.compteDuFavor(fav);
+}
+public int extractUser(userBasic uB){
+return cT.verifier(uB);
 }
 public HashSet<String> extractTitle(String ligne){
 return cT.uniqueByIdT(ligne);
