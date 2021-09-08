@@ -1,4 +1,4 @@
-package com.example.access;
+package com.example.access.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,13 +71,14 @@ while(iterTit.hasNext()){
 ObjectMapper objectMapper = new ObjectMapper();
 String actConvert = objectMapper.writeValueAsString(actContainer);
 String titConvert = objectMapper.writeValueAsString(titContainer);
-model.addAttribute("listAct", actConvert);
-model.addAttribute("listTit", titConvert );
+
 //haute
 
 model.addAttribute("aC", actContainer );
 model.addAttribute("tC", titContainer);
-
+model.addAttribute("listAct", sV.actorJason());
+model.addAttribute("listDir", sV.directorJason());
+model.addAttribute("listTit", sV.titleJason());
 
 List<plusTitre> chronologie  = sV.timeDetail(id);
 Map<String, List<plusTitre>> cart = new HashMap<>();

@@ -6,11 +6,13 @@ import java.util.HashSet;
 
 import com.example.access.dir.aFaire;
 import com.example.access.dir.titre;
+import com.example.access.dir.userBasic;
 import com.example.access.dir.tirer;
 import com.example.access.dir.plusTitre;
 import com.example.access.dir.cle;
 import com.example.access.dir.userFavor;
 import com.example.access.dir.userBasic;
+
 
 public interface interne {
 List<aFaire> aF();
@@ -26,6 +28,6 @@ List<HashSet<Integer>> doubleInt(String ligne);
 plusTitre movieDetail(String imdbId);
 List<plusTitre> timeDetail (int compte);
 int countFav(cle fav);
-int extractUser(userBasic uB);
 int favorUpdate (userFavor uF);
+int extractUser(userBasic uB);
 }

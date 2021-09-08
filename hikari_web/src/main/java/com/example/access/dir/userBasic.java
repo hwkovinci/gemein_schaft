@@ -40,6 +40,3 @@ this.passWd = passWd;
 
 //public
 }
-
-
-

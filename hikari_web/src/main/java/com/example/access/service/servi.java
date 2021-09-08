@@ -9,12 +9,13 @@ import com.example.access.dir.userFavor;
 import com.example.access.dir.userBasic;
 
 import com.example.access.repo.cenTrale;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 @Service
@@ -47,11 +48,11 @@ return cT.compteDuDirecteurs();
 public int countFav(cle fav){
 return cT.compteDuFavor(fav);
 }
-public int extractUser(userBasic uB){
-return cT.verifier(uB);
-}
 public HashSet<String> extractTitle(String ligne){
 return cT.uniqueByIdT(ligne);
+}
+public int extractUser(userBasic uB){
+return cT.verifier(uB);
 }
 public HashSet<Integer> retourInt (int compte){
 return cT.tupIntById(compte);
@@ -71,6 +72,56 @@ return cT.chronologie(compte);
 public int favorUpdate (userFavor uF){
 return cT.renouveler(uF);
 }
+public String titleJason() throws Exception {
+ List<tirer> titContainer = new ArrayList<>();
+ String insure = "";
+ HashSet<String> tousLesTitre = cT.uniqueByIdT(insure);
+ for(String ligne : tousLesTitre){
+    tirer tr = new tirer();
+    tr.setId(ligne);
+    HashSet<String> unique = cT.uniqueByIdT(ligne);
+    String rst = (String)unique.toArray()[0];
+
+    tr.setName(rst);
+    titContainer.add(tr);
+ }
+ ObjectMapper objectMapper = new ObjectMapper();
+ String tC = objectMapper.writeValueAsString(titContainer);
+return tC;	
+}
+public String actorJason() throws Exception{
+	List<cle> actContainer = new ArrayList<>();
+	int cA = cT.compteDesActeurs() + 20000000;
+    for(int i = 20000000;i < cA ;i++){
+	cle key = new cle();
+	String unique = new String();
+	unique = cT.uniqueById(i);
+	key.setKey(i);
+	key.setValue(unique);
+	actContainer.add(key);
+	}
+	ObjectMapper objectMapper = new ObjectMapper();
+	String aC = objectMapper.writeValueAsString(actContainer);
+	return aC;	
+}
+public String directorJason() throws Exception{
+	List<cle> dirContainer = new ArrayList<>();
+	int cA = cT.compteDuDirecteurs() + 20000000;
+    for(int i = 20000000;i < cA ;i++){
+	cle key = new cle();
+	String unique = new String();
+	unique = cT.uniqueById(i);
+	key.setKey(i);
+	key.setValue(unique);
+	dirContainer.add(key);
+	}
+	ObjectMapper objectMapper = new ObjectMapper();
+	String dC = objectMapper.writeValueAsString(dirContainer);
+	return dC;	
+}
+
+
+
 
 }
 

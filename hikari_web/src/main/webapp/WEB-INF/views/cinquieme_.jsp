@@ -94,19 +94,19 @@ input[type=submit] {
 </table>
 <p>you might also looking for
 <tr>
-<c:forEach items='${aC}' var = '${actCon}'>
-<c:set value = "${actCon.getValue()}" var="${valeur}">
-<c:set value = "${actCon.getKey()}" var="${cle}">
-<c:set value ="${pageContext.request.contextPath}/redirect?id=${valeur}.substring(1, ${valeur}.length()-1) actor ${cle}" var = "${href}">
-<a href = ${href}>${valuer}.substirng(1, ${valeur}.length -1)</a>
+<c:forEach items='${aC}' var = 'actCon'>
+<c:set value = "${actCon.getValue()}" var="valeur"/>
+<c:set value = "${actCon.getKey()}" var="cle"/>
+<c:set value ="${pageContext.request.contextPath}/actor/${cle}" var = "href"/>
+<a href = ${href}>${valeur}</a>
 </c:forEach></tr></p>
 <p2>who's in there
 <tr>
-<c:forEach items='${tC}' var = '${titCon}'>
-<c:set value = "${titCon.getName()}" var="${valeur}">
-<c:set value = "${titCon.getId()}" var="${cle}">
-<c:set value ="${pageContext.request.contextPath}/redirect?id=${valeur}.substring(1, ${valeur}.length()-1) title ${cle}.substring{1, ${cle}.length()-1}" var = "${href}"
-<a href = ${href}>${valuer}.substirng(1, ${valeur}.length -1)</a>
+<c:forEach items='${tC}' var = 'titCon'>
+<c:set value = "${titCon.getName()}" var="valeur"/>
+<c:set value = "${titCon.getId().substring(1, 10)}" var="cle"/>
+<c:set value ="${pageContext.request.contextPath}/title/${cle}" var = "href"/>
+<a href = ${href}>${valeur}</a>
 </c:forEach></tr></p2>
 
 
@@ -226,25 +226,35 @@ function autocomplete(inp, arr) {
 }
 
 /*An array containing all the country names in the world:*/
-const lA = ${listAct};
-const lT = ${listTit};
-console.log(lA);
-console.log(lT);
+const aL = ${listAct};
+const dL = ${listDir};
+const tL = ${listTit};
+console.log(aL);
+console.log(dL);
+console.log(tL);
 const champ = [];
-for(var i = 0; i < lA.length ;i++ ){
-let val = lA[i]["value"];
-let key = lA[i]["key"];
+for(var i = 0; i < aL.length ;i++ ){
+let val = aL[i]["value"];
+let key = aL[i]["key"];
 let sub = val.substring(1, val.length -1);
 
 champ.push(sub.concat(' ','actor', ' ', key));
 }
-for(var i = 0; i < lT.length ; i++){
-let val = lT[i]["name"];
-let idw = lT[i]["id"];
+for(var i = 0; i < dL.length ;i++ ){
+let val = dL[i]["value"];
+let key = dL[i]["key"];
+let sub = val.substring(1, val.length -1);
+
+champ.push(sub.concat(' ','director', ' ', key));
+}
+for(var i = 0; i < tL.length ; i++){
+let val = tL[i]["name"];
+let idw = tL[i]["id"];
 let id = idw.substring(1, idw.length -1);
 let sub = val.substring(1, val.length -1);
 champ.push(sub.concat(' ','title', ' ', id));
 }
+
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 autocomplete(document.getElementById("myInput"), champ);

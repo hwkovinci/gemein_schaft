@@ -1,4 +1,4 @@
-package com.example.access;
+package com.example.access.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,7 +43,7 @@ this.sV=sV;
 }
 
 @GetMapping("/deuxieme_")
-    public String imprimer (Model model) throws Exception{
+    public String imprimer (@RequestParam(required = false)String req, Model model) throws Exception{
 int bas = 0;
 int count = sV.countGenre();
 Map<String, List<titre>> cart = new HashMap<>();
@@ -68,108 +68,16 @@ rankList.add(ct);
 }
 //horizontal
 model.addAttribute("poster", sort);
+model.addAttribute("req", req );
 //haute
-List<cle> actContainer = new ArrayList<>();
-List<cle> dirContainer = new ArrayList<>();
-List<tirer> titContainer = new ArrayList<>();
-String insure = "";
-int cA = sV.countActor() + 20000000;
-int cD = sV.countDirector()+ 10000000;
-for(int i = 20000000;i < cA ;i++){
-cle key = new cle();
-String unique = new String();
-unique = sV.nameExtract(i);
-key.setKey(i);
-key.setValue(unique);
-actContainer.add(key);
-}
-for(int j = 10000000; j<cD; j++){
-cle key = new cle();
-String unique = new String();
-unique = sV.nameExtract(j);
-key.setKey(j);
-key.setValue(unique);
-dirContainer.add(key);
-}
-HashSet<String> tousLesTitre = sV.extractTitle(insure);
-for(String ligne : tousLesTitre){
-   tirer tr = new tirer();
-   tr.setId(ligne);
-   HashSet<String> unique = sV.extractTitle(ligne);
-   String rst = (String)unique.toArray()[0];
 
-   tr.setName(rst);
-   titContainer.add(tr);
-}
-model.addAttribute("aL", actContainer);
-model.addAttribute("dL", dirContainer);
-ObjectMapper objectMapper = new ObjectMapper();
-String aC = objectMapper.writeValueAsString(actContainer);
-String dC = objectMapper.writeValueAsString(dirContainer);
-String tC = objectMapper.writeValueAsString(titContainer);
-model.addAttribute("actorList", aC);
-model.addAttribute("directorList", dC);
-model.addAttribute("titleList", tC );
+model.addAttribute("actorList", sV.actorJason());
+model.addAttribute("directorList", sV.directorJason());
+model.addAttribute("titleList", sV.titleJason() );
 //bas
 
 return "deuxieme_";
 }
-@GetMapping("/titleJson")
-@ResponseBody String tJ()throws Exception{
-List<tirer> titContainer = new ArrayList<>();
-String insure = "";
-HashSet<String> tousLesTitre = sV.extractTitle(insure);
-for(String ligne : tousLesTitre){
-   tirer tr = new tirer();
-   tr.setId(ligne);
-   HashSet<String> unique = sV.extractTitle(ligne);
-   String rst = (String)unique.toArray()[0];
-
-   tr.setName(rst);
-   titContainer.add(tr);
-}
-ObjectMapper objectMapper = new ObjectMapper();
-String tC = objectMapper.writeValueAsString(titContainer);
-return tC;
-
-}
-//tJ
-@GetMapping("/actorJson")
-@ResponseBody String aJ()throws Exception{
-List<cle> actContainer = new ArrayList<>();
-int cA = sV.countActor() + 20000000;
-for(int i = 20000000;i < cA ;i++){
-cle key = new cle();
-String unique = new String();
-unique = sV.nameExtract(i);
-key.setKey(i);
-key.setValue(unique);
-actContainer.add(key);
-}
-ObjectMapper objectMapper = new ObjectMapper();
-String aC = objectMapper.writeValueAsString(actContainer);
-return aC;
-
-}
-//aJ
-@GetMapping("/directorJson")
-@ResponseBody String dJ()throws Exception{
-List<cle> dirContainer = new ArrayList<>();
-int cD = sV.countDirector()+ 10000000;
-for(int j = 10000000; j<cD; j++){
-cle key = new cle();
-String unique = new String();
-unique = sV.nameExtract(j);
-key.setKey(j);
-key.setValue(unique);
-dirContainer.add(key);
-}
-ObjectMapper objectMapper = new ObjectMapper();
-String dC = objectMapper.writeValueAsString(dirContainer);
-return dC;
-
-}
-//dJ
 
 
 }

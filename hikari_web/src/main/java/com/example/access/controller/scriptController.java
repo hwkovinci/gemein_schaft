@@ -1,4 +1,4 @@
-package com.example.access;
+package com.example.access.controller;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.stereotype.Controller;
