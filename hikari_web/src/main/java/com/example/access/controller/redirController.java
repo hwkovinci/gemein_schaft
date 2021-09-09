@@ -1,5 +1,7 @@
-package com.example.access.controller;
+package com.example.access;
 
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,8 +48,10 @@ private final servi sV;
 public redirController(servi sV){
 this.sV=sV;
 }
-@GetMapping("/redirect")
-    public RedirectView imprimer (@RequestParam String id) {
+@GetMapping("/redirect/{req}")
+    public RedirectView imprimer (@PathVariable("req") String req,
+                                  @RequestParam String id,
+                                  RedirectAttributes rA) {
 String[] bisect = id.split("\\s"); 
 String retour = new String();
 for(int i= 0; i < bisect.length ; i++){
@@ -70,9 +74,35 @@ sb.append(bisect[i+1]);
 retour = sb.toString();
  }
 }
-
+rA.addAttribute("req", req);
 return new RedirectView(retour);
 }
 
 //fin
+@GetMapping("/redirect")
+    public RedirectView dupliquer (@RequestParam String id) {
+String[] bisect = id.split("\\s");
+String retour = new String();
+for(int i= 0; i < bisect.length ; i++){
+if(bisect[i].equals("actor")){
+StringBuilder sb = new StringBuilder();
+sb.append("/hikari_web/actor/");
+sb.append(bisect[i+1]);
+retour = sb.toString();
+ }
+else if(bisect[i].equals("director")){
+StringBuilder sb = new StringBuilder();
+sb.append("/hikari_web/director/");
+sb.append(bisect[i+1]);
+retour = sb.toString();
+ }
+else if(bisect[i].equals("title")){
+StringBuilder sb = new StringBuilder();
+sb.append("/hikari_web/title/");
+sb.append(bisect[i+1]);
+retour = sb.toString();
+ }
+}
+return new RedirectView(retour);
+}
 }

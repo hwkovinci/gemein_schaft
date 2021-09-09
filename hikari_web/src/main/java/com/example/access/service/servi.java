@@ -7,6 +7,7 @@ import com.example.access.dir.plusTitre;
 import com.example.access.dir.cle;
 import com.example.access.dir.userFavor;
 import com.example.access.dir.userBasic;
+import com.example.access.dir.userPlus;
 
 import com.example.access.repo.cenTrale;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,8 +16,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.ArrayList;
 
 @Service
 public class servi implements interne{
@@ -48,11 +49,11 @@ return cT.compteDuDirecteurs();
 public int countFav(cle fav){
 return cT.compteDuFavor(fav);
 }
-public HashSet<String> extractTitle(String ligne){
-return cT.uniqueByIdT(ligne);
-}
 public int extractUser(userBasic uB){
 return cT.verifier(uB);
+}
+public HashSet<String> extractTitle(String ligne){
+return cT.uniqueByIdT(ligne);
 }
 public HashSet<Integer> retourInt (int compte){
 return cT.tupIntById(compte);
@@ -71,6 +72,12 @@ return cT.chronologie(compte);
 }
 public int favorUpdate (userFavor uF){
 return cT.renouveler(uF);
+}
+public int signUp (userPlus uP){
+return cT.abonner(uP);
+}
+public List<userPlus> userFind(userPlus uP){
+return cT.trouver(uP);
 }
 public String titleJason() throws Exception {
  List<tirer> titContainer = new ArrayList<>();
@@ -119,8 +126,6 @@ public String directorJason() throws Exception{
 	String dC = objectMapper.writeValueAsString(dirContainer);
 	return dC;	
 }
-
-
 
 
 }

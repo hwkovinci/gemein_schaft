@@ -78,7 +78,7 @@ input[type=submit] {
 <tr>${genre.key}#####################################################</tr>
 <c:forEach items="${genre.value}" var = "tranche">
 
-<br><c:set value = "sixieme_?want=${tranche.getId().substring(1, 10)}?req=${req}" var = "href"/>
+<br><c:set value = "sixieme_?want=${tranche.getId().substring(1, 10)}${req}" var = "href"/>
 <a href = ${href}><image src = ${tranche.getPoster()} alt = "image" sizes="(min-width: 600px) 200px, 50vw" ></a>
 <br>${tranche.getName()}
 <br>${tranche.getRating()}
@@ -101,7 +101,7 @@ input[type=submit] {
 <p>Start typing:</p>
 
 <!--Make sure the form has the autocomplete function switched off:-->
-<form autocomplete="off" action="${pageContext.request.contextPath}/redirect">
+<form autocomplete="off" action="${pageContext.request.contextPath}/redirect${rq}">
   <div class="autocomplete" style="width:300px;">
     <input id="myInput" type="text" name="id" placeholder="bien venu">
   </div>

@@ -43,7 +43,23 @@ this.sV=sV;
 }
 
 @GetMapping("/deuxieme_")
-    public String imprimer (@RequestParam(required = false)String req, Model model) throws Exception{
+    public String imprimer (@RequestParam(required = false) String req,Model model) throws Exception{
+String href = new String();
+String h_ref = new String();
+if(req == null){
+href = "";
+h_ref = "";
+}
+else{
+StringBuilder sb = new StringBuilder();
+sb.append("&req=");
+sb.append(req);
+href = sb.toString();
+StringBuilder sb_ = new StringBuilder();
+sb_.append("/");
+sb_.append(req);
+h_ref = sb_.toString();
+}
 int bas = 0;
 int count = sV.countGenre();
 Map<String, List<titre>> cart = new HashMap<>();
@@ -67,13 +83,13 @@ rankList.add(ct);
 
 }
 //horizontal
+model.addAttribute("rq", h_ref);
+model.addAttribute("req", href);
 model.addAttribute("poster", sort);
-model.addAttribute("req", req );
 //haute
-
 model.addAttribute("actorList", sV.actorJason());
 model.addAttribute("directorList", sV.directorJason());
-model.addAttribute("titleList", sV.titleJason() );
+model.addAttribute("titleList", sV.titleJason());
 //bas
 
 return "deuxieme_";

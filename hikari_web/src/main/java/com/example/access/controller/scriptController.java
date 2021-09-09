@@ -1,4 +1,4 @@
-package com.example.access.controller;
+package com.example.access;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.stereotype.Controller;
@@ -135,7 +135,9 @@ public ModelAndView subir(@Valid @ModelAttribute("userBasic") final userBasic uB
                     ModelMap model) {
  int verifier = sV.extractUser(uB);
  if(verifier == 0){
- return new ModelAndView("redirect:/login");
+ ModelAndView mav =   new ModelAndView("redirect:/response");
+ mav.addObject("log", 1);
+ return mav;
  }
  else{
  ModelAndView mav = new ModelAndView("redirect:/deuxieme_");
@@ -148,7 +150,8 @@ public ModelAndView subir(@Valid @ModelAttribute("userBasic") final userBasic uB
 @GetMapping("/login")
   public ModelAndView deformation() {
         userBasic uB = new userBasic();
-        return new ModelAndView("loginPage", "userBasic", uB);
+        return  new ModelAndView("loginPage", "userBasic", uB);
+       
     }
 
 }

@@ -72,7 +72,7 @@ input[type=submit] {
 <body>
 
 <table>
-<c:set value = "${pageContext.request.contextPath}/sixieme_?want=${movieInfo.getId().substring(1, 10)}" var = "href"/>
+<c:set value = "${pageContext.request.contextPath}/sixieme_?want=${movieInfo.getId().substring(1, 10)}${req}" var = "href"/>
 <a href = ${href} >
 <image src = ${movieInfo.getPoster()} alt = "image" sizes="(min-width: 600px) 200px, 50vw">
 </a>
@@ -88,7 +88,7 @@ input[type=submit] {
 <br>
 <c:set value = "${dirCon.getValue()}" var="valeur"/>
 <c:set value = "${dirCon.getKey()}" var="cle"/>
-<c:set value ="${pageContext.request.contextPath}/director/${cle}" var = "href"/>
+<c:set value ="${pageContext.request.contextPath}/director/${cle}${id}" var = "href"/>
 <a href = ${href}>${valeur}</a>
 </c:forEach></tr>
 <tr>+++++++++++++++actor
@@ -96,7 +96,7 @@ input[type=submit] {
 <br>
 <c:set value = "${actCon.getValue()}" var="valeur"/>
 <c:set value = "${actCon.getKey()}" var="cle"/>
-<c:set value ="${pageContext.request.contextPath}/actor/${cle}" var = "href"/>
+<c:set value ="${pageContext.request.contextPath}/actor/${cle}${id}" var = "href"/>
 <a href = ${href}>${valeur}</a>
 </c:forEach></tr>
 </table></body>
@@ -109,7 +109,7 @@ input[type=submit] {
 <p>Start typing:</p>
 
 <!--Make sure the form has the autocomplete function switched off:-->
-<form autocomplete="off" action="${pageContext.request.contextPath}/redirect">
+<form autocomplete="off" action="${pageContext.request.contextPath}/redirect${rq}">
   <div class="autocomplete" style="width:300px;">
     <input id="myInput" type="text" name="id" placeholder="bien venu">
   </div>
@@ -213,6 +213,7 @@ function autocomplete(inp, arr) {
       closeAllLists(e.target);
   });
 }
+
 const aL = ${listAct};
 const dL = ${listDir};
 const tL = ${listTit};
@@ -241,6 +242,7 @@ let id = idw.substring(1, idw.length -1);
 let sub = val.substring(1, val.length -1);
 champ.push(sub.concat(' ','title', ' ', id));
 }
+
 
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/

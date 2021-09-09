@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <body>
-   <form:form action="${pageContext.request.contextPath}/loginAuth" modelAttribute="userBasic" method='post'>
+   <form:form action="${pageContext.request.contextPath}/entryProcess" modelAttribute="userPlus" method='post'>
 <table>
                         <tr>
                                 <td><form:label path="nick">nick</form:label></td>
@@ -14,13 +14,19 @@
 				<td><form:label path="passWd">passWd</form:label></td>
 				<td><form:input path="passWd" /></td>
 			</tr>
+                        <tr>
+                                <td><form:label path="name">name</form:label></td>
+                                <td><form:input path="name" /></td>
+                        </tr>
+                        <tr>
+                                <td><form:label path="email">email</form:label></td>
+                                <td><form:input path="email" /></td>
+                        </tr>
 			<tr>
 				<td><input type="submit" value="Submit" /></td>
 			</tr>
 		</table>
 </form:form>
-<table><a href ="${pageContext.request.contextPath}/signup">signUp <a></table>
-<table><a href ="${pageContext.request.contextPath}/trouver">find<a></table>
 </body>
 
 </html>

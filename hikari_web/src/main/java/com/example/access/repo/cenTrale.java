@@ -19,6 +19,7 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.jdbc.core.PreparedStatementCallback;
+import org.springframework.jdbc.core.RowMapper; 
 
 
 import com.example.access.dir.aFaire;
@@ -27,6 +28,7 @@ import com.example.access.dir.plusTitre;
 import com.example.access.dir.cle;
 import com.example.access.dir.userFavor;
 import com.example.access.dir.userBasic;
+import com.example.access.dir.userPlus;
 
 public class cenTrale {
 private JdbcTemplate jdbcTemplate;
@@ -38,7 +40,91 @@ this.jdbcTemplate = jdbcTemplate;
 }
 
 
+/*
+@Override public int gesTion(maTrice mT)  {
+int inD = 0;
+matEriaux mt = (matEriaux) mT;
+String dEcl = "update COFFEES SET SALES = ? WHERE COF_NAME = ?";
+String dEc = "update COFFEES SET TOTAL = TOTAL + ? WHERE COF_NAME = ?";
+try(
+PreparedStatement dAvance = ceCi.prepareStatement(dEcl);
+PreparedStatement lAvance = ceCi.prepareStatement(dEc);
 
+){
+ceCi.setAutoCommit(false);
+for(Map.Entry<String, Integer>seuIl: mt.deCarte().entrySet()){
+dAvance.setInt(1, seuIl.getValue().intValue());
+dAvance.setString(2, seuIl.getKey());
+dAvance.executeUpdate();
+lAvance.setInt(1, seuIl.getValue().intValue());
+lAvance.setString(2, seuIl.getKey());
+lAvance.executeUpdate();
+ceCi.commit();
+} 
+}catch(SQLException x){
+}
+return inD;
+}//gestion
+
+@Override public int modiFier(maTrice mT){
+int inD = 0;
+matEriaux mt = (matEriaux) mT;
+try(
+Statement dEcl = ceCi.createStatement(
+ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE
+)){
+ResultSet quE = dEcl.executeQuery("select price from coffees");
+while(quE.next()){
+float vaLeur = quE.getFloat("PRICE");
+quE.updateFloat("PRICE", vaLeur* mt.deVirgule());
+quE.updateRow();
+
+}
+
+}catch(SQLException x){
+}
+return inD;
+
+
+}//modifier
+@Override public int eliMiner(maTrice mT){
+int inD = 0;
+matEriaux mt = (matEriaux) mT;
+String dEcl = "DELETE FROM COFFEES WHERE COF_NAME = ?";
+try(
+PreparedStatement dAvance = ceCi.prepareStatement(dEcl);
+){
+ceCi.setAutoCommit(false);
+dAvance.setString(1, mt.deChaine());
+dAvance.executeUpdate();
+
+}catch(SQLException x){
+}
+return inD;
+}//eliminer
+@Override public int insErer(maTrice mT){
+int inD = 0;
+matEriaux mt = (matEriaux) mT;
+ArrayList<String> dC = mt.deChamp();
+try(Statement dEcl = ceCi.createStatement()){
+ceCi.setAutoCommit(false);
+dEcl.addBatch("INSERT INTO COFFEES VALUES("
++"'"+dC.get(0)+"'"
++","+Integer.valueOf(dC.get(1))
++","+Float.parseFloat(dC.get(2))
++","+Integer.valueOf(dC.get(3))
++","+Integer.valueOf(dC.get(4))
++")"
+   );
+int[] updateCpimts = dEcl.executeBatch();
+ceCi.commit();
+ceCi.setAutoCommit(true);
+
+}catch(SQLException x){
+}
+return inD;
+}//inserer
+*/
 public List<aFaire>insTant(){
 String dEcl = "SELECT COF_NAME, SUP_ID, PRICE, SALES, TOTAL FROM COFFEES";
 return jdbcTemplate.query(dEcl, new ResultSetExtractor <List<aFaire>>(){
@@ -328,6 +414,33 @@ return count;
   });
 //fin
 }
+public int verifier(userBasic uB){
+String dEcl = new String();
+StringBuilder sb = new StringBuilder();
+sb.append("SELECT user_id compte FROM user_list");
+sb.append(" where user_nick ='");
+sb.append(uB.getNick());
+sb.append("'");
+sb.append(" and user_passwd ='");
+sb.append(uB.getPassWd());
+sb.append("'");
+dEcl = sb.toString();
+return jdbcTemplate.query(dEcl, new ResultSetExtractor <Integer>(){
+@Override
+public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
+int count = 0;
+while(rs.next()){
+count += rs.getInt("compte");
+//while
+}
+
+return count;
+//extractor
+     }
+//query
+  });
+//fin
+}
 public HashSet<Integer> tupIntById (int intId){
 String dEcl = new String();
 if(intId >= 20000000){
@@ -476,32 +589,59 @@ public int renouveler(userFavor uF){
     }  
     });  
 }  
-public int verifier(userBasic uB){
-String dEcl = new String();
-StringBuilder sb = new StringBuilder();
-sb.append("SELECT user_id compte FROM user_list");
-sb.append(" where user_nick ='");
-sb.append(uB.getNick());
-sb.append("'");
-sb.append(" and user_passwd ='");
-sb.append(uB.getPassWd());
-sb.append("'");
-dEcl = sb.toString();
-return jdbcTemplate.query(dEcl, new ResultSetExtractor <Integer>(){
-@Override
-public Integer extractData(ResultSet rs) throws SQLException, DataAccessException{
-int count = 0;
-while(rs.next()){
-count += rs.getInt("compte");
-//while
-}
 
-return count;
-//extractor
-     }
-//query
-  });
-//fin
+public int abonner(userPlus uP){
+    String dEcl= new String();
+    StringBuilder sb = new StringBuilder();
+    sb.append("insert into user_list");
+    sb.append(" values(qu_enz.nextval, ?, ?, ?, ?)");
+    dEcl = sb.toString();
+
+    return jdbcTemplate.execute(dEcl,new PreparedStatementCallback<Integer>(){
+    @Override
+    public Integer doInPreparedStatement(PreparedStatement ps)
+            throws SQLException, DataAccessException {
+        Connection conn = ps.getConnection();
+        conn.setAutoCommit(false);
+        ps.setString(1, uP.getName());
+        ps.setString(2, uP.getNick());
+        ps.setString(3, uP.getPassWd());
+        ps.setString(4, uP.getEmail());
+        ps.executeUpdate();
+        conn.commit();
+        conn.setAutoCommit(true);
+        return 0;
+
+    }
+    });
 }
+  
+public List<userPlus> trouver(userPlus uP){
+ String dEcl = new String();
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT *");
+        sb.append(" FROM user_list");
+        sb.append(" WHERE user_name='");
+        sb.append(uP.getName());
+        sb.append("'");
+        sb.append(" AND user_email='");
+        sb.append(uP.getEmail());
+        sb.append("'");
+        dEcl = sb.toString();
+
+  
+ return jdbcTemplate.query(dEcl,new RowMapper<userPlus>(){  
+    @Override  
+    public userPlus mapRow(ResultSet rs, int rownumber) throws SQLException {  
+        userPlus uP =new userPlus();  
+        uP.setName(rs.getString(2));  
+        uP.setNick(rs.getString(3));  
+        uP.setPassWd(rs.getString(4));
+        uP.setEmail(rs.getString(5));  
+        return uP;  
+    }  
+    });  
+} 
+
 
 }

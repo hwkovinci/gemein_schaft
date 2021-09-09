@@ -32,6 +32,7 @@
 <input type="submit" id="myButton" value = "${lon}">
 </form>
 
+<p1><a href = "${pageContext.request.contextPath}/deuxieme_?req=${userId}">return to search</a></p1>
 </tbody>
 
 </html>

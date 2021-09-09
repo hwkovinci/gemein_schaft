@@ -74,7 +74,7 @@ input[type=submit] {
 <tbody>${chronologie.key}</tbody><tr>
 <c:forEach items="${chronologie.value}" var ="cv">
 
-<c:set value = "${pageContext.request.contextPath}/sixieme_?want=${cv.getId().substring(1, 10)}" var = "href"/>
+<c:set value = "${pageContext.request.contextPath}/sixieme_?want=${cv.getId().substring(1, 10)}${req}" var = "href"/>
 <a href = ${href} >
 
 
@@ -97,7 +97,7 @@ input[type=submit] {
 <c:forEach items='${aC}' var = 'actCon'>
 <c:set value = "${actCon.getValue()}" var="valeur"/>
 <c:set value = "${actCon.getKey()}" var="cle"/>
-<c:set value ="${pageContext.request.contextPath}/actor/${cle}" var = "href"/>
+<c:set value ="${pageContext.request.contextPath}/actor/${cle}${id}" var = "href"/>
 <a href = ${href}>${valeur}</a>
 </c:forEach></tr></p>
 <p2>who's in there
@@ -105,7 +105,7 @@ input[type=submit] {
 <c:forEach items='${tC}' var = 'titCon'>
 <c:set value = "${titCon.getName()}" var="valeur"/>
 <c:set value = "${titCon.getId().substring(1, 10)}" var="cle"/>
-<c:set value ="${pageContext.request.contextPath}/title/${cle}" var = "href"/>
+<c:set value ="${pageContext.request.contextPath}/title/${cle}${id}" var = "href"/>
 <a href = ${href}>${valeur}</a>
 </c:forEach></tr></p2>
 
@@ -120,7 +120,7 @@ input[type=submit] {
 <p>Start typing:</p>
 
 <!--Make sure the form has the autocomplete function switched off:-->
-<form autocomplete="off" action="${pageContext.request.contextPath}/redirect">
+<form autocomplete="off" action="${pageContext.request.contextPath}/redirect${rq}">
   <div class="autocomplete" style="width:300px;">
     <input id="myInput" type="text" name="id" placeholder="bien venu">
   </div>
@@ -225,7 +225,6 @@ function autocomplete(inp, arr) {
   });
 }
 
-/*An array containing all the country names in the world:*/
 const aL = ${listAct};
 const dL = ${listDir};
 const tL = ${listTit};
@@ -254,7 +253,6 @@ let id = idw.substring(1, idw.length -1);
 let sub = val.substring(1, val.length -1);
 champ.push(sub.concat(' ','title', ' ', id));
 }
-
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 autocomplete(document.getElementById("myInput"), champ);

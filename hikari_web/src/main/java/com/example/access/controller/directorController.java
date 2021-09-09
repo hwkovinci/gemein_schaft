@@ -1,4 +1,4 @@
-package com.example.access.controller;
+package com.example.access;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,8 +42,31 @@ public directorController(servi sV){
 this.sV=sV;
 }
 @GetMapping("/director/{id}")
-    public String imprimer (@PathVariable("id") int id,  Model model) throws Exception{
-
+    public String imprimer (@PathVariable("id") int id,  
+                            @RequestParam(required = false) String req,
+                               Model model) throws Exception{
+String href = new String();
+String h_ref = new String();
+String h_rel = new String();
+if(req == null){
+href = "";
+h_ref = "";
+h_rel = "";
+}
+else{
+StringBuilder sb = new StringBuilder();
+sb.append("&req=");
+sb.append(req);
+href = sb.toString();
+StringBuilder sb_ = new StringBuilder();
+sb_.append("/");
+sb_.append(req);
+h_ref = sb_.toString();
+StringBuilder sb__ = new StringBuilder();
+sb__.append("?req=");
+sb__.append(req);
+h_rel = sb__.toString();
+}
 HashSet<Integer> actor =   sV.retourInt(id);
 List<cle> actContainer = new ArrayList<>();
 Iterator<Integer> iterAct = actor.iterator();
@@ -68,12 +91,10 @@ while(iterTit.hasNext()){
   titContainer.add(tir);
      }
 
-ObjectMapper objectMapper = new ObjectMapper();
-String actConvert = objectMapper.writeValueAsString(actContainer);
-String titConvert = objectMapper.writeValueAsString(titContainer);
-
 //haute
-
+model.addAttribute("id", h_rel);
+model.addAttribute("rq", h_ref);
+model.addAttribute("req", href);
 model.addAttribute("aC", actContainer );
 model.addAttribute("tC", titContainer);
 model.addAttribute("listAct", sV.actorJason());

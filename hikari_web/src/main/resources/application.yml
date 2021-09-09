@@ -1,0 +1,13 @@
+
+spring:
+  application:
+    name: Spring Boot Starter E-mail
+server:
+  port: 8080
+debug: true
+email:
+  host: smtp.gmail.com
+  port: 587
+  username: hwvinci
+  password: Euthyphro!7
+  debug: true
