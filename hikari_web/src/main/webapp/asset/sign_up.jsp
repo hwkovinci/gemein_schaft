@@ -233,7 +233,7 @@ h3 {
         <div id="btn_already" style="display: inline-block;">
             <label for="already">Already have an account?</label>
             <span class="login_here">
-                <a>LOG IN HERE</a>
+                <a href="http://localhost:8080/ehr/asset_chaelynn_folder/log_in.jsp">LOG IN HERE</a>
             </span>
         </div> 
         </div>

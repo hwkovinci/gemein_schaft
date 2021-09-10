@@ -71,17 +71,22 @@ poster = sV.mapPoster(bas);
 cart.put(unique, poster);
 bas += 1;
 }
-TreeMap<String, List<titre>> sort = new TreeMap<>(cart);
 
-List<carte> rankList  = new ArrayList<>();
- 
+
+
+Map<String, List<titre>> li = new HashMap<>(); 
 for (Map.Entry<String, List<titre>> element : cart.entrySet()){
-carte ct = new carte();
-ct.setGenre(element.getKey());
-ct.setRank(element.getValue());
-rankList.add(ct);
+	int majeur =  element.getValue().size();
+	int mineur = Math.min(5, majeur);
+	List<titre> tr = new ArrayList<>();
+	for(int i = 0; i< mineur ; i++) {
+		tr.add(element.getValue().get(i));
+	}
+	li.put(element.getKey(), tr);
 
 }
+TreeMap<String, List<titre>> sort = new TreeMap<>(li);
+
 //horizontal
 model.addAttribute("rq", h_ref);
 model.addAttribute("req", href);

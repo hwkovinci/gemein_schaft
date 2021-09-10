@@ -1,41 +1,36 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <html>
-<head>
+   <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 * {
   box-sizing: border-box;
 }
-
 body {
   font: 16px Arial;  
 }
-
 /*the container must be positioned relative:*/
 .autocomplete {
   position: relative;
   display: inline-block;
 }
-
 input {
   border: 1px solid transparent;
   background-color: #f1f1f1;
   padding: 10px;
   font-size: 16px;
 }
-
 input[type=text] {
   background-color: #f1f1f1;
   width: 100%;
 }
-
 input[type=submit] {
   background-color: DodgerBlue;
   color: #fff;
   cursor: pointer;
 }
-
 .autocomplete-items {
   position: absolute;
   border: 1px solid #d4d4d4;
@@ -47,40 +42,62 @@ input[type=submit] {
   left: 0;
   right: 0;
 }
-
 .autocomplete-items div {
   padding: 10px;
   cursor: pointer;
   background-color: #fff; 
   border-bottom: 1px solid #d4d4d4; 
 }
-
 /*when hovering an item:*/
 .autocomplete-items div:hover {
   background-color: #e9e9e9; 
 }
-
 /*when navigating through the items using the arrow keys:*/
 .autocomplete-active {
   background-color: DodgerBlue !important; 
   color: #ffffff; 
 }
 </style>
-</head>     
-<tbody>
 
+  </head>
+
+
+<body>
+<c:forEach items="${poster}" var="genre">
+<div class="content_wrapper">
+
+<tr>${genre.key}#####################################################</tr>
+<c:forEach items="${genre.value}" var = "tranche">
+
+<br><c:set value = "sixieme_?want=${tranche.getId().substring(1, 10)}${req}" var = "href"/>
+<a href = ${href}><image src = ${tranche.getPoster()} alt = "image" sizes="(min-width: 600px) 200px, 50vw" ></a>
+<br>${tranche.getName()}
+<br>${tranche.getRating()}
+<br>${tranche.getYear()}
+<br>
+
+</c:forEach> 
+</div>  
+</c:forEach>    
+
+
+
+</body>
+
+
+
+<tbody>
 <h2>Autocomplete</h2>
 
 <p>Start typing:</p>
 
 <!--Make sure the form has the autocomplete function switched off:-->
-<form autocomplete="off" action="/action_page.php">
+<form autocomplete="off" action="${pageContext.request.contextPath}/redirect${rq}">
   <div class="autocomplete" style="width:300px;">
-    <input id="myInput" type="text" name="myCountry" placeholder="Country">
+    <input id="myInput" type="text" name="id" placeholder="bien venu">
   </div>
   <input type="submit">
 </form>
-
 <script>
 function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,
@@ -178,26 +195,36 @@ function autocomplete(inp, arr) {
       closeAllLists(e.target);
   });
 }
-
-/*An array containing all the country names in the world:*/
-const list = ${List};
-const lisT = ${LisT};
-console.log(lisT);
+const aL = ${actorList};
+const dL = ${directorList};
+const tL = ${titleList};
+console.log(aL);
+console.log(dL);
+console.log(tL);
 const champ = [];
-for(var i = 0; i < list.length ;i++ ){
-let val = list[i]["value"];
+for(var i = 0; i < aL.length ;i++ ){
+let val = aL[i]["value"];
+let key = aL[i]["key"];
 let sub = val.substring(1, val.length -1);
-champ.push(sub);
+champ.push(sub.concat(' ','actor', ' ', key));
 }
-for(var i = 0; i < lisT.length ; i++){
-let val = lisT[i]["poster"];
+for(var i = 0; i < dL.length ;i++ ){
+let val = dL[i]["value"];
+let key = dL[i]["key"];
 let sub = val.substring(1, val.length -1);
-champ.push(sub);
+champ.push(sub.concat(' ','director', ' ', key));
 }
-
+for(var i = 0; i < tL.length ; i++){
+let val = tL[i]["name"];
+let idw = tL[i]["id"];
+let id = idw.substring(1, idw.length -1);
+let sub = val.substring(1, val.length -1);
+champ.push(sub.concat(' ','title', ' ', id));
+}
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 autocomplete(document.getElementById("myInput"), champ);
 </script>
 
 </tbody>
+
 </html>

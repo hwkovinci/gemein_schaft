@@ -1,4 +1,4 @@
-package com.example.access;
+package com.example.access.controller;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.stereotype.Controller;
@@ -116,7 +116,7 @@ if(log == 1){
 alert = "no record";
 }
 if(log == 2){
-alert = "your passwd has been sent to your resistered email";
+alert = "your passwd has been sent to your registered email";
 }
 return alert;
 }
