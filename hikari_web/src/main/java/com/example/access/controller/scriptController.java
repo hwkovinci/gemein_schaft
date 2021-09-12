@@ -1,4 +1,4 @@
-package com.example.access.controller;
+package com.example.access;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.stereotype.Controller;
@@ -113,7 +113,44 @@ model.addAttribute("ouNon", result+1);
 model.addAttribute("want", uF.getTitle().substring(1,10));
 model.addAttribute("userId", uF.getUser());
 model.addAttribute("lon", likeOrNot);
-plusTitre mD  = sV.movieDetail(build.toString());
+String imdbId = build.toString();
+plusTitre mD  = sV.movieDetail(imdbId);
+List<HashSet<Integer>> actAndDir =  sV.doubleInt(imdbId);
+List<cle> actContainer = new ArrayList<>();
+Iterator<Integer> iterAct = actAndDir.get(0).iterator();
+while(iterAct.hasNext()){
+  cle key = new cle();
+  int actId =  iterAct.next();
+  String name = sV.nameExtract(actId);
+  key.setValue(name);
+  key.setKey(actId);
+  actContainer.add(key);
+}
+List<cle> dirContainer = new ArrayList<>();
+Iterator<Integer> iterDir = actAndDir.get(1).iterator();
+while(iterDir.hasNext()){
+  cle key = new cle();
+  int dirId =  iterDir.next();
+  String name = sV.nameExtract(dirId);
+  key.setValue(name);
+  key.setKey(dirId);
+  dirContainer.add(key);
+
+}
+List<cle> genContainer = new ArrayList<>();
+HashSet<Integer> genre = sV.singleInt(imdbId);
+Iterator<Integer> iterGenre = genre.iterator();
+while(iterGenre.hasNext()){
+cle key = new cle();
+int genreId = iterGenre.next();
+String name  = sV.nameExtract(genreId);
+key.setValue(name);
+key.setKey(genreId);
+genContainer.add(key);
+}
+model.addAttribute("gC", genContainer );
+model.addAttribute("aC", actContainer );
+model.addAttribute("dC", dirContainer );
 model.addAttribute("movieInfo", mD);
 return "premiere_";
 }

@@ -64,6 +64,9 @@ return cT.tupStById(compte);
 public List<HashSet<Integer>> doubleInt(String ligne){
 return cT.tupIntBySt(ligne);
 }
+public HashSet<Integer> singleInt(String ligne){
+return cT.tupIntBySt_(ligne);
+}
 public plusTitre movieDetail(String imdbId){
 return cT.nonTranche(imdbId);
 }
@@ -76,8 +79,11 @@ return cT.renouveler(uF);
 public int signUp (userPlus uP){
 return cT.abonner(uP);
 }
-public List<userPlus> userFind(userPlus uP){
-return cT.trouver(uP);
+public List<userPlus> pwFind(userPlus uP){
+return cT.trouverPw(uP);
+}
+public List<userPlus> nickFind(userPlus uP){
+return cT.trouverNk(uP);
 }
 public String titleJason() throws Exception {
  List<tirer> titContainer = new ArrayList<>();

@@ -1,4 +1,4 @@
-package com.example.access.controller;
+package com.example.access;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.stereotype.Controller;
@@ -33,6 +33,7 @@ import java.util.Iterator;
 
 import com.example.access.service.servi;
 
+import com.example.access.dir.userPrelude;
 import com.example.access.dir.userPlus;
 import com.example.access.dir.aFaire;
 import com.example.access.dir.titre;
@@ -56,25 +57,59 @@ public entryController(servi sV){
 this.sV=sV;
 }
 
-@PostMapping("/findProcess")
+@PostMapping("/findProcess/{quel}")
 public ModelAndView subir(@Valid @ModelAttribute("userPlus") final userPlus uP,
+                    @PathVariable("quel") String ql,
                     final BindingResult result) {
- String log = new String();
- List<userPlus> verifier = sV.userFind(uP);
- if(verifier.isEmpty()){
- ModelAndView mav = new ModelAndView("redirect:/response");
- mav.addObject("log", 1);
- return mav;
- }
- else{
- ModelAndView mav = new ModelAndView("redirect:/response");
-// for(Userplus info : verifier){
-// sV.sendEmail(info.getEmail(), info.getPassWd());
-// }
- mav.addObject("log", 2);
- return mav;
- }
+ if(ql.equals("nick")){
+   List<userPlus> verifier = sV.nickFind(uP);
+   if(verifier.isEmpty()){
+     ModelAndView mav = new ModelAndView("redirect:/response");
+     mav.addObject("log", "1");
+     return mav;
 
+     }
+   else{
+      ModelAndView mav = new ModelAndView("redirect:/finder");
+      StringBuilder sb = new StringBuilder();
+      for(userPlus info : verifier){
+ 
+      sb.append("nick ");
+      sb.append(info.getNick());
+ 
+       }
+      mav.addObject("log", sb.toString());
+      return mav;
+     //else  
+     }
+   //nick
+   }
+ else if(ql.equals("pw")){
+    List<userPlus> verifier = sV.pwFind(uP);
+    if(verifier.isEmpty()){ 
+     ModelAndView mav = new ModelAndView("redirect:/response");
+     mav.addObject("log", "1");
+     return mav;
+
+     }
+    else{
+      ModelAndView mav = new ModelAndView("redirect:/finder");
+      StringBuilder sb = new StringBuilder();
+      for(userPlus info : verifier){
+ 
+      sb.append("pw ");
+      sb.append(info.getPassWd());
+      sb.append(" ");
+      sb.append(info.getEmail());
+ 
+       }
+      mav.addObject("log", sb.toString());
+      return mav;
+  //else
+  }
+ //pw
+ }
+ return new ModelAndView("redirect:/login");
 }
 @GetMapping("/trouver")
   public ModelAndView deformation() {
@@ -82,44 +117,116 @@ public ModelAndView subir(@Valid @ModelAttribute("userPlus") final userPlus uP,
         return new ModelAndView("findPage", "userPlus", uP);
     }
 @PostMapping("/entryProcess")
-public ModelAndView subir_(@Valid @ModelAttribute("userPlus") final userPlus uP,
-                    final BindingResult result) {
- String log = new String();
- int verifier = sV.signUp(uP);
- if(verifier == 0){
- ModelAndView mav = new ModelAndView("redirect:/login");
- return mav;
- }
- else{
- ModelAndView mav = new ModelAndView("redirect:/response");
-// for(Userplus info : verifier){
-// sV.sendEmail(info.getEmail(), info.getPassWd());
-// }
- mav.addObject("log", 0);
- return mav;
- }
+public ModelAndView subir_(@Valid @ModelAttribute("userPrelude") final userPrelude pld) {
+if(pld.getNick().length() == 0 ||
+   pld.getPassWd().length() == 0 || 
+   pld.getPwVrf().length() == 0 || 
+   pld.getName().length() == 0 || 
+   pld.getPref().length() == 0 ||
+   pld.getSuf().length() == 0    ){
+ModelAndView mav = new ModelAndView("redirect:/response");
+mav.addObject("log",  0 );
+return mav;
+}
 
+
+
+else if(!pld.getPassWd().equals(pld.getPwVrf()) ){
+ ModelAndView mav = new ModelAndView("redirect:/response");
+ mav.addObject("log", 4 );
+ return mav;
+ }
+ 
+else{
+ userBasic uB = new userBasic();
+ uB.setNick(pld.getNick() );
+ uB.setPassWd(pld.getPassWd());
+ int verifier = sV.extractUser(uB);
+
+
+
+      if(verifier == 0){
+      ModelAndView mav = new ModelAndView("redirect:/response");
+      userPlus uP = new userPlus();
+      StringBuilder sb = new StringBuilder();
+      sb.append(pld.getPref());
+      sb.append("@");
+      sb.append(pld.getSuf());
+      uP.setNick(pld.getNick());
+      uP.setPassWd(pld.getPassWd());
+      uP.setName(pld.getName());
+      uP.setEmail(sb.toString());
+      int signup = sV.signUp(uP);
+      if(signup == 0 ){
+         mav.addObject("log", 3);
+         return mav;
+         }
+      }
+     else {
+     ModelAndView mav = new ModelAndView("redirect:/response");
+     mav.addObject("log", 5);
+     return mav; 
+     }
+   
+
+  }
+ ModelAndView mav = new ModelAndView("redirect:/response");
+ mav.addObject("log",  0 );
+ return mav;
 }
 @GetMapping("/signup")
   public ModelAndView deformation_() {
-        userPlus uP = new userPlus();
-        return new ModelAndView("signupPage", "userPlus", uP);
+        userPrelude pld = new userPrelude();
+        return new ModelAndView("signupPage", "userPrelude", pld);
     }
 
 @GetMapping("/response")
-@ResponseBody String repondre(@RequestParam int log){
+String repondre(@RequestParam int log, Model model){
 String alert = new String();
-if(log == 0 ){
-alert = "something went wrong";
+if(log == 0){
+alert = "all of form must be filled";
+model.addAttribute("alert", alert);
+return "messageHandler";
 }
-if(log == 1){
+else if(log == 1){
 alert = "no record";
-}
-if(log == 2){
-alert = "your passwd has been sent to your registered email";
-}
-return alert;
+model.addAttribute("alert", alert );
+return "messageHandler";
 }
 
+else if(log == 3 ){
+alert = "form successfully submitted";
+model.addAttribute("alert", alert);
+return "messageHandler";
+
+}
+else if(log  == 4){
+alert = "passwd not correspond";
+model.addAttribute("alert", alert);
+return "messageHandler";
+  }
+else if(log == 5){
+alert = "use another passwd";
+model.addAttribute("alert", alert);
+return "messageHandler";
+}
+return "deuxieme_";
+}
+@GetMapping("/finder")
+String logArray(@RequestParam String log, Model model){
+      String [] bisect = log.split("\\s");
+      if(bisect[0].equals("nick")){
+      model.addAttribute("nick", bisect[1]);
+      return "nickResult";
+
+      }
+      else{
+      model.addAttribute("pw", bisect[1]);
+      model.addAttribute("email", bisect[2]);
+      return "pwResult";
+      }
+
+
+   }
 
 }

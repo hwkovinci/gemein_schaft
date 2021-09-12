@@ -556,7 +556,33 @@ return assymetrie;
 });
 //fin
 }
+public HashSet<Integer> tupIntBySt_ (String imdbId){
+ String dEcl = new String();
+ StringBuilder sb = new StringBuilder();
+ sb.append("select kzgm.genre_id genre");
+ sb.append(" from kreuz_gm kzgm");
+ sb.append(" where kzgm.title_id ='");
+ sb.append(imdbId);
+ sb.append("'");
+ dEcl = sb.toString();
+return jdbcTemplate.query(dEcl, new ResultSetExtractor <HashSet<Integer>>(){
+@Override
+public HashSet<Integer> extractData(ResultSet rs) throws SQLException, DataAccessException{
 
+HashSet<Integer> uniqueG = new HashSet<>();
+while(rs.next()){
+int rst = rs.getInt("genre");
+uniqueG.add(rst);;
+//while
+}
+
+return uniqueG;
+//extractor
+}
+//query
+});
+//fin
+}
 public int renouveler(userFavor uF){  
     String dEcl= new String();
     if(uF.getFavor()%2 == 0){
@@ -616,7 +642,7 @@ public int abonner(userPlus uP){
     });
 }
   
-public List<userPlus> trouver(userPlus uP){
+public List<userPlus> trouverNk(userPlus uP){
  String dEcl = new String();
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT *");
@@ -641,6 +667,32 @@ public List<userPlus> trouver(userPlus uP){
         return uP;  
     }  
     });  
+}
+public List<userPlus> trouverPw(userPlus uP){
+ String dEcl = new String();
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT *");
+        sb.append(" FROM user_list");
+        sb.append(" WHERE user_nick='");
+        sb.append(uP.getNick());
+        sb.append("'");
+        sb.append(" AND user_email='");
+        sb.append(uP.getEmail());
+        sb.append("'");
+        dEcl = sb.toString();
+
+
+ return jdbcTemplate.query(dEcl,new RowMapper<userPlus>(){
+    @Override
+    public userPlus mapRow(ResultSet rs, int rownumber) throws SQLException {
+        userPlus uP =new userPlus();
+        uP.setName(rs.getString(2));
+        uP.setNick(rs.getString(3));
+        uP.setPassWd(rs.getString(4));
+        uP.setEmail(rs.getString(5));
+        return uP;
+    }
+    });
 } 
 
 

@@ -16,12 +16,15 @@
 <tr>${movieInfo.getRuntime()}</tr>
 <tr>${movieInfo.getPlot()}</tr>
 <tr>${movieInfo.getCountry()}</tr>
-<tr>
+<tr>Actors:
 <c:forEach items = "${aC}" var = "ac"><td>${ac.getValue()}</td>
 </c:forEach>
 </tr>
-<tr>
-<c:forEach items = "${dC}" var = "dc"><td>${dc.getValue()}</td></c:forEach>
+<tr>Directors:
+<c:forEach items = "${dC}" var = "dc"><td> ${dc.getValue()}</td></c:forEach>
+</tr>
+<tr>Genre:
+<c:forEach items = "${gC}" var = "gc"><td>${gc.getValue()}</td></c:forEach>
 </tr>
 </table>
 </body>

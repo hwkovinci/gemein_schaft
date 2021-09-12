@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <body>
-   <form:form action="${pageContext.request.contextPath}/findProcess" modelAttribute="userPlus" method='post'>
+   <form:form action="${pageContext.request.contextPath}/findProcess/nick" modelAttribute="userPlus" method='post'>
 <table>
                         <tr>
                                 <td><form:label path="name">name</form:label></td>
@@ -17,6 +17,22 @@
 				<td><input type="submit" value="Submit" /></td>
 			</tr>
 		</table>
+</form:form>
+   <form:form action="${pageContext.request.contextPath}/findProcess/pw" 
+modelAttribute="userPlus" method='post'>
+<table>
+                        <tr>
+                                <td><form:label path="nick">nick</form:label></td>
+                                <td><form:input path="nick" /></td>
+                        </tr>
+                        <tr>
+                                <td><form:label path="email">email</form:label></td>
+                                <td><form:input path="email" /></td>
+                        </tr>
+                        <tr>
+                                <td><input type="submit" value="Submit" /></td>
+                        </tr>
+                </table>
 </form:form>
 </body>
 
