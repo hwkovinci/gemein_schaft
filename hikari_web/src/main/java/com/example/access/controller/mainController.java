@@ -66,7 +66,8 @@ Map<String, List<titre>> cart = new HashMap<>();
 while(bas< count){
 List<titre> poster = new ArrayList<>();
 String unique = new String();
-unique = sV.nameExtract(bas);
+String genrename = sV.nameExtract(bas);
+unique = genrename.substring(1, genrename.length()-1);
 poster = sV.mapPoster(bas);
 cart.put(unique, poster);
 bas += 1;
