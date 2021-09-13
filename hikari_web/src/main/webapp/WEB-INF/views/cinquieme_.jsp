@@ -1,132 +1,197 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <html>
+<head>
+<!-- ===================================== CSS ===================================== -->
+  <style type="text/css">
 
-   <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-* {
-  box-sizing: border-box;
-}
+/*────────────────────────────────────header────────────────────────────────────*/
+  
+  html, body {margin: 0; padding: 0; width: 100%; height: 100%; font-family: HelveticaNeueLT Std;}
+  body{font-size:1.125em; line-height: 1.6;}
+  * {margin: 0; padding: 0; border: 0; vertical-align: baseline; box-sizing: border-box;
+     background: transparent; font-style: normal;}
+  li{list-style: none;}
+  a{text-decoration: none;}
+  .wrapper{display: flex; height: 100%; min-height: 100vh; flex-direction: column; margin: 0 auto;}
+  
+	
+  .header-wrapper{width: 100%; height: 110px; background-color: #0A0A0A; position: fixed;
+                  padding: 20px 80px 20px 80px; display: flex; z-index: 99999; border-top: 6px solid white;}
 
-body {
-  font: 16px Arial;  
-}
+  .logo{padding-right: 200px; padding-top: 2px; flex: 1;}
 
-/*the container must be positioned relative:*/
-.autocomplete {
+
+  ::-webkit-input-placeholder{color: gray;}
+  ::-moz-placeholder{color: gray;}
+  ::-ms-input-placeholder{color: gray;}
+
+  .autocomplete{padding-top: 12px; justify-content: center; align-items: center; width: 70%;}
+  .search-bar{width: 90%; position: relative; min-width: 200px; border: 2px solid #3A3D42; border-radius: 11px;}
+  
+  .search-bar input[type="text"]{width: 100%; padding: 10px; padding-right: 60px; box-sizing: border-box; color: white;
+                                 background-color: #3A3D42; border: 2px solid #3A3D42; border-radius: 8px; outline: none;}      
+                                     
+  .search-bar input[type="submit"]{background-color: #0A0A0A; color: #0A0A0A; cursor: pointer; 
+                                   width: 80px; height: 39px; border-radius: 0 8px 8px 0; position: absolute; right: 0; font-size: 18px;}
+                                   
+  .fa-search{position: absolute; top: 25%; color: white; right: 30px; font-size: 18px;}
+
+
+  
+  .login-area{float: right; text-align: center;}
+  .login-area a:hover{cursor: pointer; color: white;}
+  .login-area a{color: #B6B6B6; font-size: 14px; padding-right: 35px; padding-left: 35px;
+                display: block; border-right: 2px solid #B6B6B6; white-space: nowrap; margin-top: 22px;}
+  
+  .signup-area{float: right; text-align: center;}
+  .signup-area a:hover{cursor: pointer; color: white;}
+  .signup-area a{color: #B6B6B6; font-size: 14px; padding-left: 35px; 
+                 display: block; padding-right: 60px; white-space: nowrap; margin-top: 22px;}
+
+/*────────────────────────────────────header────────────────────────────────────*/
+  
+/*────────────────────────────────────content─────────────────────────────*/
+  
+  .content_body { 
+     margin-top: 120px;
+	 margin-bottom: 100px; 
+	 
+	 }
+  .sub_body{
+	display: flex;
+  }	 
+  .search_result {
+     font-size: 30px;
+     padding-top: 80px;
+   	 padding-bottom: 50px;
+  	 margin-left: 100px;
+     font-family: 'Oswald',sans-serif;
+     
+     }
+  .movie_info {
+  	 display:flex;
+  	 margin-bottom: 50px;
+  }
+  .poster_box{
+  
+  }
+  .poster_img {
+  	margin-left: 100px;
+  	display: block; 
+  	line-height: 300px; 
+  	left:0; 
+  	right:0;
+    width:320px; 
+    height: 450px;  
+    
+  }   		
+  .content_wrapper{
+  	display:inline-block;
+  }     
+  .info_detail{
+  	font-size: 20px;
+    margin-left: 150px;
+    
+  }
+  .mov_title{
+  }
+  .mov_year{
+  }
+  .ratings{
+  }
+  
+  .staricon {width:15px;}
+  .related_terms{
+  text-align: center;
+  padding:10px;
+  width: 350px;
+  height: 600px;
+  border-radius:10px;
+  left: 500px;
   position: relative;
-  display: inline-block;
-}
+  border: 1px solid black;
+  }
+  .side_title{
+  font-weight: bold;
+  margin-bottom: 10px;
+  }
 
-input {
-  border: 1px solid transparent;
-  background-color: #f1f1f1;
-  padding: 10px;
-  font-size: 16px;
-}
+/*────────────────────────────────────content─────────────────────────────*/
+  
+/*────────────────────────────────────footer────────────────────────────────────*/
 
-input[type=text] {
-  background-color: #f1f1f1;
-  width: 100%;
-}
+  .footer-wrapper{color: #EDEDED; width: 100%; display: flex; bottom: 0; position: relative;
+                  background-color: #0A0A0A; padding: 35px 80px 35px 80px; margin-top: auto;}
+  
+  .lnb{padding-bottom: 20px;}
+  
+  .btb{line-height: 25px;}
+  
+  .project{width: 260px; float: left; white-space: nowrap; padding-right: 60px;}
+  
+  .front-end{width: 240px; float: left; white-space: nowrap; padding-right: 60px;}
 
-input[type=submit] {
-  background-color: DodgerBlue;
-  color: #fff;
-  cursor: pointer;
-}
+  .was-data{width: 310px; float: left; white-space: nowrap; padding-right: 60px;}
+  
+  .back-end{width: 260px; float: left; white-space: nowrap; padding-right: 60px;}
+  
+  .contact-line{width: 510px; float: left; border-left: 2px solid #B6B6B6; 
+                padding: 0 0 0 50px; white-space: nowrap; padding-right: 60px;}
 
-.autocomplete-items {
-  position: absolute;
-  border: 1px solid #d4d4d4;
-  border-bottom: none;
-  border-top: none;
-  z-index: 99;
-  /*position the autocomplete items to be the same width as the container:*/
-  top: 100%;
-  left: 0;
-  right: 0;
-}
+/*────────────────────────────────────footer────────────────────────────────────*/
 
-.autocomplete-items div {
-  padding: 10px;
-  cursor: pointer;
-  background-color: #fff; 
-  border-bottom: 1px solid #d4d4d4; 
-}
+  </style>
+<!-- ===================================== CSS ===================================== -->
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="https://github.com/notlelis/img-url/blob/main/favicon1.png?raw=true">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
 
-/*when hovering an item:*/
-.autocomplete-items div:hover {
-  background-color: #e9e9e9; 
-}
-
-/*when navigating through the items using the arrow keys:*/
-.autocomplete-active {
-  background-color: DodgerBlue !important; 
-  color: #ffffff; 
-}
-</style>
-
-  </head>
+<title>NORAJO</title>
+</head>
 <body>
-<table><c:forEach items="${timeInfo}" var = "chronologie">
-<tbody>${chronologie.key}</tbody><tr>
-<c:forEach items="${chronologie.value}" var ="cv">
-
-<c:set value = "${pageContext.request.contextPath}/sixieme_?want=${cv.getId().substring(1, 10)}${req}" var = "href"/>
-<a href = ${href} >
-
-
-<image src = ${cv.getPoster()} alt = "image" sizes="(min-width: 600px) 200px, 50vw">
-</a>
-<td>${cv.getName()}</td>
-<td>${cv.getRating()}</td>
-<td>${cv.getYear()}</td>
-<td>${cv.getReleased()}</td>
-<td>${cv.getRuntime()}</td>
-<td>${cv.getPlot()}</td>
-<td>${cv.getCountry()}</td>
-
-</c:forEach>
-
-</tr></c:forEach>
-</table>
-<p>you might also looking for
-<tr>
-<c:forEach items='${aC}' var = 'actCon'>
-<c:set value = "${actCon.getValue()}" var="valeur"/>
-<c:set value = "${actCon.getKey()}" var="cle"/>
-<c:set value ="${pageContext.request.contextPath}/actor/${cle}${id}" var = "href"/>
-<a href = ${href}>${valeur}</a>
-</c:forEach></tr></p>
-<p2>who's in there
-<tr>
-<c:forEach items='${tC}' var = 'titCon'>
-<c:set value = "${titCon.getName()}" var="valeur"/>
-<c:set value = "${titCon.getId().substring(1, 10)}" var="cle"/>
-<c:set value ="${pageContext.request.contextPath}/title/${cle}${id}" var = "href"/>
-<a href = ${href}>${valeur}</a>
-</c:forEach></tr></p2>
 
 
 
-</body>
+<!-- ===================================== header ===================================== -->
+<div class="wrapper">
 
-<tbody>
-
-<h2>Autocomplete</h2>
-
-<p>Start typing:</p>
-
-<!--Make sure the form has the autocomplete function switched off:-->
-<form autocomplete="off" action="${pageContext.request.contextPath}/redirect${rq}">
-  <div class="autocomplete" style="width:300px;">
-    <input id="myInput" type="text" name="id" placeholder="bien venu">
-  </div>
-  <input type="submit">
-</form>
-
+	<header>
+		<div class="header-wrapper">
+		  <div class="logo">
+		    <a href="https://google.com">
+		      <img src="https://github.com/notlelis/img-url/blob/main/norajologo.png?raw=true" width="190px"></a>
+		  </div>
+   
+		  <div class="autocomplete">
+		    <form class="search-bar" autocomplete = "off" action= "${pageContext.request.contextPath}/redirect${rq}">
+		      <input  id ="myInput" name = "id" class="form-search" type="text" placeholder="Search" >
+		      <input class="btn_search" type="submit">
+		      <i class="fa fa-search"></i>
+		    </form> 
+		  </div> 
+		
+	    <div class="login-area">
+	      <nav>
+	        <ul>
+	          <li><a href="https://google.com">LOGIN</a></li>
+	        </ul>
+	      </nav>
+	    </div>
+	    
+	    <div class="signup-area">
+	      <nav>
+	        <ul>
+	          <li><a href="https://google.com">SIGN UP</a></li>
+	        </ul>
+	      </nav>
+	    </div>
+		</div>
+	
+	
 <script>
 function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,
@@ -258,6 +323,112 @@ champ.push(sub.concat(' ','title', ' ', id));
 autocomplete(document.getElementById("myInput"), champ);
 </script>
 
-</tbody>
+<!--==========================================content==============-->
+  <div class="content_body">
+	<div>
+ 	 <c:forEach items="${timeInfo}" var = "chronologie" >
+	   	 <div class="search_result">
+	   	 Search result for director : ${chronologie.key}</div> 
+   	 </c:forEach>
+    </div>
+  <div class="sub_body">
+    <div class="content_wrapper">
+        <c:forEach items="${timeInfo}" var = "chronologie" >
+       <div>
+	     <c:forEach items="${chronologie.value}" var ="cv" >  
+		  <div class="movie_info">
+			<c:set value = "${pageContext.request.contextPath}/sixieme_?want=${cv.getId().substring(1, 10)}${req}" var = "href"/>
+			<div class="poster_box">	
+				<a href = ${href} ><img src = ${cv.getPoster()} alt = "image" class="poster_img"></a>
+	      	</div>
+	       <div class="info_detail">
+		      <div class="mov_title">Title : ${cv.getName()}<br></div>
+		        
+		      <div class="mov_year">Year : ${cv.getYear()}<br></div>
+		      
+		      <div class="ratings">Ratings : <img class="staricon" src ="https://github.com/hykim-king/NORAJO/blob/main/NORAJO/src/main/webapp/resources/img/redstar.png?raw=true"  alt="Red Star">${cv.getRating()}<br> </div>
+		    </div>
+		   </div> 
+	      </c:forEach>
+	      </div>
+	     </c:forEach>
+	    </div>
+	   
+	   
 
+
+
+<!-- related search terms -->
+<div class="related_terms">
+<c:forEach items="${timeInfo}" var = "chronologie">
+<c:forEach items="${chronologie.value}" var ="cv">
+
+<c:set value = "${pageContext.request.contextPath}/sixieme_?want=${cv.getId().substring(1, 10)}${req}" var = "href"/>
+
+
+</c:forEach>
+
+</c:forEach>
+
+<p class="side_title">Related Search Terms</p>
+<div>
+<c:forEach items='${aC}' var = 'actCon'>
+<c:set value = "${actCon.getValue()}" var="valeur"/>
+<c:set value = "${actCon.getKey()}" var="cle"/>
+<c:set value ="${pageContext.request.contextPath}/actor/${cle}${id}" var = "href"/>
+<div>
+<a href = ${href}>${valeur}<br></a></div>
+</c:forEach></div>
+</div>
+</div>
+</div>
+<!-- related search terms -->
+
+<!-- ===================================== contents ===================================== -->
+  
+  <!-- ===================================== footer ===================================== -->
+	<footer>
+	  <div class="footer-wrapper">
+	    <div class="project">
+	      <p class="lnb" style="font-size: 18px">PROJECT NORAJO</p>
+	        <p class="btb" style="font-size: 12px">Jin Seo Kim</p>
+	        <p class="btb" style="font-size: 12px">Hyun Woo Ko</p>
+	        <p class="btb" style="font-size: 12px">Bo Seong Gwon</p>
+	        <p class="btb" style="font-size: 12px">Bo Sun Kim</p>
+	        <p class="btb" style="font-size: 12px">Chae Lynn Yoo</p>
+	    </div>
+	  
+	    <div class="front-end">
+	      <p class="lnb" style="font-size: 18px">FRONT END</p>
+	        <p class="btb" style="font-size: 12px">JAVASCRIPT</p>
+	        <p class="btb" style="font-size: 12px">HTML</p>
+	        <p class="btb" style="font-size: 12px">CSS</p>
+	        <p class="btb" style="font-size: 12px">JQEURY</p>
+	    </div>
+	    
+	    <div class="was-data">
+	      <p class="lnb" style="font-size: 18px">WAS/DATABASE</p>
+	        <p class="btb" style="font-size: 12px">Apache Tomcat</p>
+	        <p class="btb" style="font-size: 12px">ORACLE SQL DEVELOPER</p>
+	    </div>  
+	    
+	    <div class="back-end">
+	      <p class="lnb" style="font-size: 18px">BACK END</p>
+	        <p class="btb" style="font-size: 12px">SPRING</p>
+	        <p class="btb" style="font-size: 12px">JAVA</p>
+	    </div>  
+	    
+	    <div class="contact-line">
+	      <p class="lnb" style="font-size: 18px">CONTACT</p>
+	        <p class="btb" style="font-size: 12px">E-Mail : korea@norajo.com</p>
+	        <p class="btb" style="font-size: 12px">Address : 53, Yangsan-ro, Yeongdeungpo-gu, Seoul, Republic of Korea</p>
+	        <p class="btb" style="font-size: 12px">Copyright © 2021 NORAJO Corp. All rights reserved.</p>
+	    </div>  
+	  </div>
+	</footer>
+	
+</div>
+  <!-- ===================================== footer ===================================== -->
+
+</body>
 </html>
