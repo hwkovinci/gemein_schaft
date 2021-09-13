@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,7 @@ html {
 body {
 	margin: 0;
     height: 100%;
-	background: black;
+	background: white;
 	text-decoration: none;
 	font-size: 14px;
 	color: white;
@@ -54,13 +55,13 @@ h3 {
     display: block;
     width: 100%;
     height: 40px;
-    border: solid 2px #363636;
+    border: solid 2px #FFA800;
     border-radius: 4px;
     padding: 10px 14px 10px 14px;
     box-sizing: border-box;
-    background: white;
+    background: #363636;
     position: relative;
-    color: black;    
+    color: white;    
 }
 
 .email_box {
@@ -71,27 +72,27 @@ h3 {
     display: table-cell;
     width: 217px;
     height: 40px;
-    border: solid 2px #363636;
+    border: solid 2px #FFA800;
     border-radius: 4px;
     padding: 10px 14px 10px 14px; 
     box-sizing: border-box;
-    background: white;
+    background: #363636;
     position: relative;
-    color: black;    
+    color: white;    
 }
 
 #domain {
     display: table-cell;
     width: 217px;
     height: 40px;
-    border: solid 2px #363636;
+    border: solid 2px #FFA800;
     border-radius: 4px;
     padding: 10px 14px 10px 14px; 
     padding-left : 10px;
     box-sizing: border-box;
-    background: white;
+    background: #363636;
     position: relative;
-    color: black; 
+    color: white; 
     
 }
 
@@ -105,15 +106,11 @@ h3 {
     width: 100%;
     height: 50px;
     border: 0;
-    color: white;
+    color: black;
     font-size: 15px;
     cursor: pointer;
-    background-color: #363636;
+    background-color: #FFA800;
     font-size: 400;
-}
-
-#btn_join:hover {
-    background: red;
 }
 
 .under_btn {
@@ -136,13 +133,14 @@ h3 {
 <title>회원가입 페이지</title>
 </head>
 <body>
+<form:form action="${pageContext.request.contextPath}/entryProcess" modelAttribute="userPlus" method='post'>
+
+
 
     <!-- header -->
     <!-- !!로고 이미지 안나옴 -->
     <div id = "header">
-        <a href="main_page_url" title="메인 페이지로 돌아가기">
-            <img class="logo" src="${pageContext.request.contextPath}/resources/img/logowhite.png" alt="logo">
-        </a>    
+        <a href="main_page_url" title="메인 페이지로 돌아가기"></a>    
     </div>
     
     
@@ -161,7 +159,7 @@ h3 {
                 <label for="id">ID</label>
             </h3>
             <span class="box_id">
-                <input type="text" id="id" class="box" maxlength="30" required="required">
+                <input type="text" id="id"class="box" maxlength="30" required="required">
             </span>
             <span class="error_next_box"></span>
         </div>
@@ -224,11 +222,8 @@ h3 {
         
         <!-- Join Button -->
         <div class="btn_join">
-            <button type="submit" id="btn_join" onclick="location.href='http://localhost:8080/ehr/asset_member_folder/02_sign_up_result.jsp'">
-                <span>
-                CREATE YOUR ACCOUNT
-                </span>
-                
+            <button type="submit" id="btn_join">
+                <span>CREATE YOUR ACCOUNT</span>
             </button>
         </div>
         
@@ -238,15 +233,15 @@ h3 {
         <div id="btn_already" style="display: inline-block;">
             <label for="already">Already have an account?</label>
             <span class="login_here">
-                <a href="http://localhost:8080/ehr/asset_chaelynn_folder/log_in.jsp">LOG IN HERE</a>
+                <a>LOG IN HERE</a>
             </span>
         </div> 
         </div>
              
-    </form>
+	</form>
     </div>           
     </div>
 
- 
+</form:form>   
 </body>
 </html>

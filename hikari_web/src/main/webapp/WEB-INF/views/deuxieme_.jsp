@@ -182,7 +182,7 @@
 	    <div class="login-area">
 	      <nav>
 	        <ul>
-	          <li><a href="https://google.com">LOGIN</a></li>
+	          <li><a href="${pageContext.request.contextPath}/${log}">${log_i}</a></li>
 	        </ul>
 	      </nav>
 	    </div>
@@ -190,7 +190,7 @@
 	    <div class="signup-area">
 	      <nav>
 	        <ul>
-	          <li><a href="https://google.com">SIGN UP</a></li>
+	          <li><a href="${pageContext.request.contextPath}/${sign}">${sign_i}</a></li>
 	        </ul>
 	      </nav>
 	    </div>

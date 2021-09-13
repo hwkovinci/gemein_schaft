@@ -335,9 +335,6 @@ autocomplete(document.getElementById("myInput"), champ);
       <tr>
       <c:forEach items = "${dC}" var = "dc"><td>${dc.getValue()}</td></c:forEach>
       </tr>
-       <tr>
-      <c:forEach items = "${gC}" var = "dc"><td>${gc.getValue()}</td></c:forEach>
-      </tr>
       </table>
       </body>
       
@@ -404,28 +401,16 @@ autocomplete(document.getElementById("myInput"), champ);
           <td>${movieInfo.getReleased()}</td>
         </tr>
         <tr class="director">
-        
-          <c:forEach items = "${dC}" var = "dc">
-          <td>${dc.getValue()}</td>  </c:forEach>
-        </tr>
-
+          <td>-</td>
         </tr>
         <tr class="actor">
-          
-          <c:forEach items = "${aC}" var = "ac">
-          <td>${ac.getValue()}</td>  </c:forEach>
-        </tr>
-
+          <td>-</td>
         </tr>
         <tr class="ratings">
           <td><img class="staricon" src ="https://github.com/hykim-king/NORAJO/blob/main/NORAJO/src/main/webapp/resources/img/redstar.png?raw=true"  alt="Red Star">${movieInfo.getRating()}</td>
         </tr>
         <tr class="genre">
-            
-          <c:forEach items = "${gC}" var = "gc">
-          <td>${gc.getValue()}</td>  </c:forEach>
-        </tr>
-
+          <td>-</td>
         </tr>
         <tr class="country">
           <td>${movieInfo.getCountry()}</td>

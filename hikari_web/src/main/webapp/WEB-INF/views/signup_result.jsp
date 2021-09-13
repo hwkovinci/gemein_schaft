@@ -45,12 +45,21 @@ body {
 }
 
 .text_id {
-    font-size: 18px;
+    font-size: 20px;
     margin-bottom: 15px;
 }
 
+hr {
+    border: none;
+    height: 0;
+}
+
+#Thanks {
+    font-size: 18px;
+}
+
 .text {
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .link {
@@ -58,13 +67,13 @@ body {
 }
 
 .link:hover {
-	color: red;
+    color: red;
 }
 
 
 </style>
 <meta charset="UTF-8">
-<title>아이디 찾기 결과 성공 페이지</title>
+<title>회원가입 결과 페이지</title>
 </head>
 <body>
     <div class="inner">        
@@ -72,24 +81,20 @@ body {
        
         <div class="text_box">
             <div class="text_id">
-                <span>Your ID is </span>
-                <!-- !!!!!!!!!!!!!!!!!이 부분 확인하기!!!!!!!!!!!!!! -->
-                <span>${nick}.</span>
+                <span>Welcome!</span>
+                <hr>
+                <span id="Thanks">
+                Thank you for signing up.</span>               
             </div>
             
             <div class="text">
-                <span>Do you want to log in?</span>
+                <span>Click </span>
                 <span class="link">
-                    <a href="http://localhost:8080/hikari_web/login">Log in here</a>
+                    <a href="http://localhost:8080/hikari_web/login">here</a>
                 </span>
+                <span> to log in.</span>
             </div> 
-            
-            <div class="text">
-                <span>Did you forget your password?</span>
-                <span class="link">
-                    <a href="http://localhost:8080/hikari_web/trouver">Find Password</a>
-                </span>
-            </div> 
+         
             
          </div>              
        </div>            

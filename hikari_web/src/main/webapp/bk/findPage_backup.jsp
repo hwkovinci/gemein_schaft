@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -155,9 +153,9 @@ h3 {
                 
                 <!-- Find Id Button -->         
                 <div class="btn_find">
-                       <input type="submit" id="btn_join" value = "Find ID" />
-                        
-                   
+                    <button type="submit" value="submit" class="btn_find" id="btn_find" onclick="location.href='https://yeoninim.tistory.com/26'">
+                         <span>Find ID</span>
+                    </button>
                 </div>
 </form:form>                
                 </div>
@@ -197,8 +195,8 @@ h3 {
                 
                 <!-- Find pw Button -->       
                 <div class="btn_find">
-                     <input type="submit" id="btn_join" value = "Find Password" />
-                    
+                    <button type="submit" value="Submit" class="btn_find" onclick="location.href='https://yeoninim.tistory.com/26'">
+                         <span>Find Password</span>
                     </button>
                 </div>
                 <!-- Find pw Button End ---------------------------------------------->

@@ -1,4 +1,4 @@
-package com.example.access;
+package com.example.access.controller;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.stereotype.Controller;
@@ -86,7 +86,7 @@ this.sV=sV;
 @GetMapping("/septieme_")
  public String manipuler(@RequestParam String title,
                            @RequestParam int bool,
-                           @RequestParam int user, Model model){
+                           @RequestParam int user, Model model)throws Exception{
 userFavor uF = new userFavor();
 StringBuilder build = new StringBuilder();
 build.append("\"");
@@ -151,6 +151,9 @@ genContainer.add(key);
 model.addAttribute("gC", genContainer );
 model.addAttribute("aC", actContainer );
 model.addAttribute("dC", dirContainer );
+model.addAttribute("actorList", sV.actorJason());
+model.addAttribute("directorList", sV.directorJason());
+model.addAttribute("titleList", sV.titleJason());
 model.addAttribute("movieInfo", mD);
 return "premiere_";
 }

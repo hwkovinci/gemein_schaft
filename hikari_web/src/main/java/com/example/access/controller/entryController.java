@@ -1,4 +1,4 @@
-package com.example.access;
+package com.example.access.controller;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.stereotype.Controller;
@@ -58,11 +58,19 @@ this.sV=sV;
 }
 
 @PostMapping("/findProcess/{quel}")
-public ModelAndView subir(@Valid @ModelAttribute("userPlus") final userPlus uP,
+public ModelAndView subir(@Valid @ModelAttribute("userPrelude") final userPrelude uP,
                     @PathVariable("quel") String ql,
                     final BindingResult result) {
  if(ql.equals("nick")){
-   List<userPlus> verifier = sV.nickFind(uP);
+   userPlus uP_ = new userPlus();
+   StringBuilder sb_ = new StringBuilder();
+   sb_.append(uP.getPref());
+   sb_.append("@");
+   sb_.append(uP.getSuf());
+   uP_.setName(uP.getName());
+   uP_.setEmail(sb_.toString());
+   
+   List<userPlus> verifier = sV.nickFind(uP_);
    if(verifier.isEmpty()){
      ModelAndView mav = new ModelAndView("redirect:/response");
      mav.addObject("log", "1");
@@ -85,7 +93,16 @@ public ModelAndView subir(@Valid @ModelAttribute("userPlus") final userPlus uP,
    //nick
    }
  else if(ql.equals("pw")){
-    List<userPlus> verifier = sV.pwFind(uP);
+	  userPlus uP_ = new userPlus();
+	   StringBuilder sb_ = new StringBuilder();
+	   sb_.append(uP.getPref());
+	   sb_.append("@");
+	   sb_.append(uP.getSuf());
+	   uP_.setNick(uP.getNick());
+	   uP_.setEmail(sb_.toString());
+	   
+	List<userPlus> verifier = sV.pwFind(uP_); 
+
     if(verifier.isEmpty()){ 
      ModelAndView mav = new ModelAndView("redirect:/response");
      mav.addObject("log", "1");
@@ -113,8 +130,8 @@ public ModelAndView subir(@Valid @ModelAttribute("userPlus") final userPlus uP,
 }
 @GetMapping("/trouver")
   public ModelAndView deformation() {
-        userPlus uP = new userPlus();
-        return new ModelAndView("findPage", "userPlus", uP);
+        userPrelude uP = new userPrelude();
+        return new ModelAndView("findPage", "userPrelude", uP);
     }
 @PostMapping("/entryProcess")
 public ModelAndView subir_(@Valid @ModelAttribute("userPrelude") final userPrelude pld) {
@@ -184,20 +201,19 @@ else{
 String repondre(@RequestParam int log, Model model){
 String alert = new String();
 if(log == 0){
-alert = "all of form must be filled";
+alert = "all of forms must be filled";
 model.addAttribute("alert", alert);
 return "messageHandler";
 }
 else if(log == 1){
-alert = "no record";
+alert = "There is no matching information";
 model.addAttribute("alert", alert );
 return "messageHandler";
 }
 
 else if(log == 3 ){
-alert = "form successfully submitted";
-model.addAttribute("alert", alert);
-return "messageHandler";
+
+return "signup_result";
 
 }
 else if(log  == 4){

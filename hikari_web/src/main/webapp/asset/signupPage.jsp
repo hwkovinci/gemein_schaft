@@ -1,8 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style type="text/css">
 /* 레이아웃 */
 html {
@@ -51,6 +53,19 @@ h3 {
 }
 
 .box {
+    display: block;
+    width: 100%;
+    height: 40px;
+    border: solid 2px #363636;
+    border-radius: 4px;
+    padding: 10px 14px 10px 14px;
+    box-sizing: border-box;
+    background: white;
+    position: relative;
+    color: black;    
+}
+
+.pw {
     display: block;
     width: 100%;
     height: 40px;
@@ -137,11 +152,12 @@ h3 {
 </head>
 <body>
 
+
     <!-- header -->
     <!-- !!로고 이미지 안나옴 -->
     <div id = "header">
         <a href="main_page_url" title="메인 페이지로 돌아가기">
-            <img class="logo" src="${pageContext.request.contextPath}/resources/img/logowhite.png" alt="logo">
+        	<img class="logo" src="https://github.com/chaelynn1028/PCWK_MARKDOWN/blob/main/logowhite.png?raw=true" alt="logo">
         </a>    
     </div>
     
@@ -153,51 +169,78 @@ h3 {
     <div id="content">
     
     <!-- !! action에 회원 정보가 보내질 url 또는 서버 입력하기 --> 
-    <form name="registerForm" method="post" enctype="multipart/form-data" action="./register">
+   <form:form action="${pageContext.request.contextPath}/entryProcess" modelAttribute="userPrelude" method='post'>
         
         <!-- ID -->
         <div>
             <h3 class="title">
-                <label for="id">ID</label>
+                <form:label path="nick">ID</form:label>
             </h3>
             <span class="box_id">
-                <input type="text" id="id" class="box" maxlength="30" required="required">
+                <form:input type="text" path="nick"  class="box" maxlength="30" required="required"/>
             </span>
             <span class="error_next_box"></span>
         </div>
+
         
         
-        <!-- Password 01 -->
+       <!-- Password 01 -->
         <div>
             <h3 class="title">
-                <label for="pw01">Password</label>
+                <form:label path="passWd">Password</form:label>
             </h3>
             <span class="box_pw01">
-                <input type="password" id="pw01" class="box" maxlength="20" required="required">
+                <form:input type="password" path="passWd" id="password_1"  class="box" maxlength="30" required="required"/>
             </span>
-            <span class="error_next_box"></span>
         </div>
         
         
         <!-- Password 02 -->
         <div>
             <h3 class="title">
-                <label for="pw02">Re-enter password</label>
+                
+                 <form:label path="pwVrf">Re-enter password</form:label>
             </h3>
             <span class="box_pw02">
-                <input type="password" id="pw02" class="box" maxlength="20" required="required">
-            </span>
-            <span class="error_next_box"></span>
+              <form:input type="password" path="pwVrf" id="password_2"  class="pw" maxlength="20" required="required"/>
+             
+                <span class="match" id="alert-success" style="display: none; color: white;">Passwords match.</span>
+                <span class="match" id="alert-danger" style="display: none; color: red; font-weight: bold; ">
+                Passwords do not match.</span>
+                </span>
         </div>
         
+        <script>
+		//비밀번호 재확인 일치 불일치 확인
+    $('.pw').focusout(function () {
+        var pwd1 = $("#password_1").val();
+        var pwd2 = $("#password_2").val();
+  
+        if ( pwd1 != '' && pwd2 == '' ) {
+            null;
+        } else if (pwd1 != "" || pwd2 != "") {
+            if (pwd1 == pwd2) {
+                $("#alert-success").css('display', 'inline-block');
+                $("#alert-danger").css('display', 'none');
+            } else {
+                alert("Passwords do not match. Please reconfirm your password.");
+                $("#alert-success").css('display', 'none');
+                $("#alert-danger").css('display', 'inline-block');
+            }
+        }
+    });
+
+</script>
         
         <!-- Name -->
         <div>
             <h3 class="title">
-                <label for="name">Name</label>       
+               
+                <form:label path="name">Name</form:label>      
             </h3>
             <span class="box_name">
-                <input type="text" id="name" class="box" maxlength="20" required="required">
+           
+                  <form:input type="text" path="name"  class="box" maxlength="20" required="required"/>
             </span>
             <span class="error_next_box"></span>
         </div>
@@ -206,11 +249,14 @@ h3 {
         <!-- Email -->
         <div>
             <h3 class="title">
-                <label for="email">Email</label>
+                
+                <form:label path="pref">Email</form:label> 
             </h3>
             <span class="email_box">
-                <input type="text" id="email" class="box" maxlength="48" required="required">
+              <form:input type="text" path="pref"  class="box" maxlength="48" required="required"/>
+              
                 <span>@</span>
+                  <form:input  path="suf"  id="domain" name="domain" list="domains" placeholder="Enter/select domain" required="required"/>
                 <input id="domain" name="domain" list="domains" placeholder="Enter/select domain" required="required">
                     <datalist id="domains">
                         <option value="gmail.com">
@@ -224,7 +270,7 @@ h3 {
         
         <!-- Join Button -->
         <div class="btn_join">
-            <button type="submit" id="btn_join" onclick="location.href='http://localhost:8080/ehr/asset_member_folder/02_sign_up_result.jsp'">
+            <button type="submit" id="btn_join" onclick="location.href='http://localhost:8080/hikari_web/signup_result'">
                 <span>
                 CREATE YOUR ACCOUNT
                 </span>
@@ -238,15 +284,14 @@ h3 {
         <div id="btn_already" style="display: inline-block;">
             <label for="already">Already have an account?</label>
             <span class="login_here">
-                <a href="http://localhost:8080/ehr/asset_chaelynn_folder/log_in.jsp">LOG IN HERE</a>
+                <a href="http://localhost:8080/hikari_web/login">LOG IN HERE</a>
             </span>
         </div> 
         </div>
              
-    </form>
+	</form:form>  
     </div>           
     </div>
 
- 
 </body>
 </html>
