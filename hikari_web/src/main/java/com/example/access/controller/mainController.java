@@ -46,23 +46,11 @@ this.sV=sV;
     public String imprimer (@RequestParam(required = false) String req,Model model) throws Exception{
 String href = new String();
 String h_ref = new String();
-String log_ref = new String();
-String log_id = new String();
-String sign_ref = new String();
-String sign_id = new String();
 if(req == null){
 href = "";
 h_ref = "";
-log_ref = "login";
-log_id = "LOGIN";
-sign_ref = "signup";
-sign_id = "SIGN UP";
 }
 else{
-	log_ref = "deuxieme_";
-	log_id = "LOGOUT";	
-	sign_ref = "";
-	sign_id = "ACCOUNT";
 StringBuilder sb = new StringBuilder();
 sb.append("&req=");
 sb.append(req);
@@ -78,8 +66,7 @@ Map<String, List<titre>> cart = new HashMap<>();
 while(bas< count){
 List<titre> poster = new ArrayList<>();
 String unique = new String();
-String uq = sV.nameExtract(bas);
-unique = uq.substring(1, uq.length()-1);
+unique = sV.nameExtract(bas);
 poster = sV.mapPoster(bas);
 cart.put(unique, poster);
 bas += 1;
@@ -96,10 +83,6 @@ rankList.add(ct);
 
 }
 //horizontal
-model.addAttribute("sign_i", sign_id);
-model.addAttribute("sign", sign_ref);
-model.addAttribute("log_i", log_id);
-model.addAttribute("log", log_ref);
 model.addAttribute("rq", h_ref);
 model.addAttribute("req", href);
 model.addAttribute("poster", sort);
@@ -110,6 +93,11 @@ model.addAttribute("titleList", sV.titleJason());
 //bas
 
 return "deuxieme_";
+}
+@GetMapping("/instant")
+@ResponseBody List<String> communiquer(@RequestParam  String term) throws Exception{
+List<String> result =  sV.melanger(term);
+return result;
 }
 
 

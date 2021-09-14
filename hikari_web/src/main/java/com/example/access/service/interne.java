@@ -36,5 +36,5 @@ List<userPlus> pwFind(userPlus uP);
 String titleJason() throws Exception;
 String actorJason() throws Exception;
 String directorJason() throws Exception;
-
+List<String> melanger(String pref) throws Exception;
 }

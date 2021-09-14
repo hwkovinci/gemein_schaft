@@ -132,6 +132,53 @@ public String directorJason() throws Exception{
 	String dC = objectMapper.writeValueAsString(dirContainer);
 	return dC;	
 }
+public List<String> melanger(String pref)  {
+    List<cle> actContainer = cT.assimileAct(pref);
+    List<cle> dirContainer = cT.assimileDir(pref);
+    List<tirer> titContainer = cT.assimileTit(pref);
+    List<String> micro = new ArrayList<>();
+    for(cle morceaux : actContainer ){
+       StringBuilder sb = new StringBuilder();
+       String mx = morceaux.getValue();
+       int mxL = mx.length();
+       sb.append(mx.substring(1, mxL-1 ));
+       sb.append(" actor");
+       sb.append(" ");
+       sb.append(morceaux.getKey());
+       micro.add(sb.toString());
+       
+       }
+     for(cle morceaux : dirContainer ){
+        
+       StringBuilder sb = new StringBuilder();
+       String mx = morceaux.getValue();
+       int mxL = mx.length();
+       sb.append(mx.substring(1, mxL-1 ));
+       sb.append(" actor");
+       sb.append(" ");
+       sb.append(morceaux.getKey());
+       micro.add(sb.toString());
+ 
+       }
+     for(tirer morceaux : titContainer ){
+        
+       StringBuilder sb = new StringBuilder();
+       String mx = morceaux.getName();
+       int mxL = mx.length();
+       String mc = morceaux.getId();
+       int mcL = mc.length();
+       sb.append(mx.substring(1, mxL-1 ));
+       sb.append(" title");
+       sb.append(" ");
+       sb.append(mc.substring(1, mcL-1));
+       micro.add(sb.toString());
+ 
+       }
+    //   ObjectMapper objectMapper = new ObjectMapper();
+     //  String vitesse = objectMapper.writeValueAsString(micro);
+      return micro;
+
+    }
 
 
 }

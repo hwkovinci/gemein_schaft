@@ -24,6 +24,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.example.access.dir.aFaire;
 import com.example.access.dir.titre;
+import com.example.access.dir.tirer;
 import com.example.access.dir.plusTitre;
 import com.example.access.dir.cle;
 import com.example.access.dir.userFavor;
@@ -694,6 +695,90 @@ public List<userPlus> trouverPw(userPlus uP){
     }
     });
 } 
+
+public List<cle> assimileAct(String pref){
+ StringBuilder sb = new StringBuilder();
+ sb.append("\"");
+ sb.append(pref.substring(0,1).toUpperCase());
+ sb.append(pref.substring(1, pref.length()));
+ sb.append("%");
+ String dEcl = new String();
+        StringBuilder sb_ = new StringBuilder();
+        sb_.append("SELECT actor_id, actor_name");
+        sb_.append(" FROM actor_list");
+        sb_.append(" WHERE actor_name like '");
+        sb_.append(sb.toString());
+        sb_.append("'");
+        dEcl = sb_.toString();
+
+
+ return jdbcTemplate.query(dEcl,new RowMapper<cle>(){
+    @Override
+    public cle mapRow(ResultSet rs, int rownumber) throws SQLException {
+        cle chaine  =new cle();
+        chaine.setKey(rs.getInt(1));
+        chaine.setValue(rs.getString(2));
+        return chaine;
+    }
+    });
+}
+public List<cle> assimileDir(String pref){
+ StringBuilder sb = new StringBuilder();
+ sb.append("\"");
+ sb.append(pref.substring(0,1).toUpperCase());
+ sb.append(pref.substring(1, pref.length()));
+ sb.append("%");
+ String dEcl = new String();
+        StringBuilder sb_ = new StringBuilder();
+        sb_.append("SELECT director_id, director_name");
+        sb_.append(" FROM director_list");
+        sb_.append(" WHERE director_name like '");
+        sb_.append(sb.toString());
+        sb_.append("'");
+        dEcl = sb_.toString();
+
+
+ return jdbcTemplate.query(dEcl,new RowMapper<cle>(){
+    @Override
+    public cle mapRow(ResultSet rs, int rownumber) throws SQLException {
+        cle chaine  =new cle();
+        chaine.setKey(rs.getInt(1));
+        chaine.setValue(rs.getString(2));
+        return chaine;
+    }
+    });
+}
+
+public List<tirer> assimileTit(String pref){
+ StringBuilder sb = new StringBuilder();
+ sb.append("\"");
+ sb.append(pref.substring(0,1).toUpperCase());
+ sb.append(pref.substring(1, pref.length()));
+ sb.append("%");
+ String dEcl = new String();
+        StringBuilder sb_ = new StringBuilder();
+        sb_.append("SELECT title_id, title_name");
+        sb_.append(" FROM title_list");
+        sb_.append(" WHERE title_name like '");
+        sb_.append(sb.toString());
+        sb_.append("'");
+        dEcl = sb_.toString();
+
+
+ return jdbcTemplate.query(dEcl,new RowMapper<tirer>(){
+    @Override
+    public tirer mapRow(ResultSet rs, int rownumber) throws SQLException {
+        tirer chaine  =new tirer();
+        chaine.setId(rs.getString(1));
+        chaine.setName(rs.getString(2));
+        return chaine;
+    }
+    });
+}
+
+
+
+
 
 
 }

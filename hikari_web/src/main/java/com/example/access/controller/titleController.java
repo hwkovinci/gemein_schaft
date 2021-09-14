@@ -1,4 +1,4 @@
-package com.example.access.controller;
+package com.example.access;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
