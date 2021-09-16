@@ -775,7 +775,38 @@ public List<tirer> assimileTit(String pref){
     }
     });
 }
+public String couper (String imdbId){
+ String dEcl = new String();
+ StringBuilder sb = new StringBuilder();
+ sb.append("select json_value(po_document, '$.Plot') plot");
+ sb.append(" from an_schaffung where");
+ sb.append(" json_value(po_document, '$.imdbID') ='");
+ sb.append(imdbId);
+ sb.append("'");
+ dEcl = sb.toString();
+return jdbcTemplate.query(dEcl, new ResultSetExtractor <String>(){
+@Override
+public String extractData(ResultSet rs) throws SQLException, DataAccessException{
 
+List<String> plt = new ArrayList<>();
+while(rs.next()){
+String rst = rs.getString("plot");
+plt.add(rst);;
+//while
+}
+	if(plt.isEmpty()==true){
+	return "";
+	}
+	else{
+	return plt.get(0);
+	}
+
+//extractor
+}
+//query
+});
+//fin
+}
 
 
 

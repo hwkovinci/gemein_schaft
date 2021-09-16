@@ -87,9 +87,6 @@ model.addAttribute("rq", h_ref);
 model.addAttribute("req", href);
 model.addAttribute("poster", sort);
 //haute
-model.addAttribute("actorList", sV.actorJason());
-model.addAttribute("directorList", sV.directorJason());
-model.addAttribute("titleList", sV.titleJason());
 //bas
 
 return "deuxieme_";

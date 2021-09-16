@@ -101,9 +101,6 @@ model.addAttribute("rq", h_ref);
 model.addAttribute("req", href);
 model.addAttribute("dC",dirContainer );
 model.addAttribute("tC", titContainer);
-model.addAttribute("listAct", sV.actorJason());
-model.addAttribute("listDir", sV.directorJason());
-model.addAttribute("listTit", sV.titleJason());
 
 
 

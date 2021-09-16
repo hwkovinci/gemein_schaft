@@ -68,7 +68,20 @@ public HashSet<Integer> singleInt(String ligne){
 return cT.tupIntBySt_(ligne);
 }
 public plusTitre movieDetail(String imdbId){
-return cT.nonTranche(imdbId);
+plusTitre pT = new plusTitre();
+String conte = cT.couper(imdbId.substring(1, imdbId.length()-1));
+plusTitre faute = cT.nonTranche(imdbId);
+pT.setId(faute.getId());
+pT.setName(faute.getName());
+pT.setRating(faute.getRating());
+pT.setYear(faute.getYear());
+pT.setReleased(faute.getReleased());
+pT.setRuntime(faute.getRuntime());
+pT.setPlot(conte);
+pT.setCountry(faute.getCountry());
+pT.setPoster(faute.getPoster());
+
+return pT;
 }
 public List<plusTitre> timeDetail (int compte){
 return cT.chronologie(compte);

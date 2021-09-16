@@ -363,13 +363,15 @@ def file_created_today(path_to_file='output.csv'):
         return datetime.fromtimestamp(result).date() == datetime.now().date()
     else:
         return False
-def fur_oracle(i):
-    aus_geben = open('a_g.dmp', "a")
-    for f_eld in get_json(i):
+def fur_oracle():
+    aus_geben = open('a_g.json').read()
+    dump = open('a_g.dmp', 'w')
+    ag = json.loads(aus_geben)
+    for f_eld in ag:
        
        sa_ite = str(f_eld)
-       aus_geben.writelines("%s\n" % sa_ite )
-    aus_geben.close()
+       dump.writelines("%s\n" % sa_ite )
+    dump.close()
 
 def fur_dump(f_eld):
      aus_geben = open('a_g.json', 'w')
