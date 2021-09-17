@@ -171,25 +171,28 @@ public List<titre>tranche (int compte){
 String dEcl = new String();
 StringBuilder sb = new StringBuilder();
 sb.append("SELECT tlst.title_name title_tranche, tlst.title_poster poster,");
-sb.append("kzgm.genre_id genre_tranche,tlst.title_rating rating,");
+sb.append("tlst.title_rating rating,");
 sb.append( " tlst.title_year year_tranche, tlst.title_id ttid"); 
-sb.append(" FROM title_list tlst, kreuz_gm kzgm WHERE tlst.title_id = kzgm.title_id ");
-sb.append("ORDER BY tlst.title_rating DESC, tlst.title_year DESC,  kzgm.genre_id ASC");
+sb.append(" FROM title_list tlst, kreuz_gm kzgm WHERE tlst.title_id = kzgm.title_id");
+sb.append(" AND kzgm.genre_id =");
+sb.append(compte);
+sb.append(" ORDER BY tlst.title_rating DESC, tlst.title_year DESC");
+sb.append(" fetch first 25 rows only");
 dEcl = sb.toString();
 return jdbcTemplate.query(dEcl, new ResultSetExtractor <List<titre>>(){
 @Override
 public List<titre>extractData(ResultSet rs) throws SQLException, DataAccessException{
 List<titre> titleList = new ArrayList<>();
 while(rs.next()){ 
-if(rs.getInt("genre_tranche") == compte){
+
       titre title = new titre();
       title.setId(rs.getString("ttid"));
       title.setName(rs.getString("title_tranche"));
       title.setPoster(rs.getString("poster"));
       title.setRating(rs.getFloat("rating"));
-      title.setYear(rs.getDouble("year_tranche"));
+      title.setYear(rs.getInt("year_tranche"));
       titleList.add(title);
-      }
+      
     }
 //while next
 return titleList;

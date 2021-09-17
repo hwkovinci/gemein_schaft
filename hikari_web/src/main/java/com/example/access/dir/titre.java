@@ -5,13 +5,13 @@ public class titre {
     private String id;
     private String name;
     private float rating;
-    private Double year;
+    private int year;
    
 
     public titre() {
     }
 
-    public titre(String poster, String id, String name, float rating, Double year) {
+    public titre(String poster, String id, String name, float rating, int year) {
         this.poster = poster;
         this.id = id;
         this.name = name;
@@ -19,10 +19,10 @@ public class titre {
         this.year = year;
     }
 
-//    @Override
+ // @Override
  //   public String toString() {
- //       return String.format(
- //           "titre[poster='%s', name='%s']",
+ //      return String.format(
+ //          "titre[poster='%s', id='%s', name= '%']",
  //           poster, name);
  //   }
 
@@ -51,10 +51,10 @@ return rating;
 public void setRating(float rating){
 this.rating = rating;
   }
-public Double getYear(){
+public int getYear(){
 return year;
 }
-public void setYear(Double year){
+public void setYear(int year){
 this.year = year;
   }
 //public

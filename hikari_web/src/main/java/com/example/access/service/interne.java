@@ -15,7 +15,7 @@ import com.example.access.dir.userPlus;
 
 public interface interne {
 List<aFaire> aF();
-List<titre> mapPoster(int compt);
+String mapPoster(int compte ) throws Exception;
 int countGenre();
 int countActor();
 int countDirector();

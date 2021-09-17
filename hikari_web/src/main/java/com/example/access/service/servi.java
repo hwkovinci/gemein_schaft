@@ -31,8 +31,11 @@ this.cT = cT;
 public List<aFaire> aF(){
 return cT.insTant();
 }
-public List<titre> mapPoster(int compte ){
-return cT.tranche(compte);
+public String mapPoster(int compte ) throws Exception{
+List<titre> movieInfo = cT.tranche(compte);
+ObjectMapper objectMapper = new ObjectMapper();
+String mI = objectMapper.writeValueAsString(movieInfo);
+return mI;
 }
 public int countGenre(){
 return cT.compte();

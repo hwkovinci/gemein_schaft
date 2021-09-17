@@ -170,14 +170,14 @@
 		    <a href="https://google.com">
 		      <img src="https://github.com/notlelis/img-url/blob/main/norajologo.png?raw=true" width="190px"></a>
 		  </div>
-   
-		  <div class="autocomplete">
+  <div class="autocomplete">
 		    <form class="search-bar" autocomplete = "off" action= "${pageContext.request.contextPath}/redirect${rq}">
 		      <input  id ="myInput" name = "id" class="form-search" type="text" placeholder="Search" >
 		      <input class="btn_search" type="submit">
 		      <i class="fa fa-search"></i>
 		    </form> 
 		  </div> 
+   
 		
 	    <div class="login-area">
 	      <nav>
@@ -197,8 +197,9 @@
 		</div>
  	
 	 <script src = "<c:url value = "/js/jquery-1.9.1.js"/>"></script>
-     <script src = "<c:url value = "/js/jquery-ui.min.js"/>"></script>
      <script src = "<c:url value = "/js/jquery-ui.js"/>"></script>
+<script src = "<c:url value = "/js/jquery-ui.min.js"/>"></script>
+
 	 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#myInput').autocomplete({
@@ -206,7 +207,6 @@
 		});
 	});
 </script>
-
 		
 		
 	</header>
@@ -216,30 +216,73 @@
 	
 	<!-- ===================================== contents ===================================== -->
 	<!-- main genre -->
-	<div id="main_skel">
-		<c:forEach items="${poster}" var="genre">
-			<div class="genre_block">
-				<div class="genre_title" >
-					${genre.key}
-				</div>
-				<div class="genre_movie_info">
-				<c:forEach items="${genre.value}" var="tranche" varStatus="i">
-					<div class="movie_info_block">
-						<c:set value="sixieme_?want=${tranche.getId().substring(1, 10)}${req}" var="href" /> 
-	                    <p class="ranking">${i.count}</P>					
-						<a href=${href}><image src=${tranche.getPoster() } alt="desk" class="post_img"></a> 
-						   <div class = "movie_info">
-						    <div class = "movie_title"> ${tranche.getName()}</div>
-							<div class = "movie_rating"><br><img class="staricon" src ="https://github.com/hykim-king/NORAJO/blob/main/NORAJO/target/redstar.png?raw=true"  alt="Red Star">${tranche.getRating()}</div> 
-							<div class = "movie_year">${tranche.getYear()}</div>
-						   </div>
-						</p>
-					</div>							
-				</c:forEach>
-				</div>
-			</div>
-		</c:forEach>
-	</div>
+
+    
+<div id= "main_skel">
+<c:forEach items = "${poster}" var= "peint">
+<div class="genre_block" >
+<button id = "${peint.key}B"  class = "genre_title">${peint.key}</button>
+<div class = "genre_movie_info" id = "${peint.key}" ><div></div> </div>
+</div>
+</c:forEach>
+</div>     
+<c:forEach items = "${poster}" var= "peint">
+<script>
+function htmlentities(str){
+ return $("div").text(str).html();
+}
+</script>
+<script type = "text/javascript">
+$(document).ready(function(){
+let preuve = 1;
+$('${peint.value.getValue()}B').click(function(){
+ $.getJSON("${pageContext.request.contextPath }/genre/${peint.value.getKey()}", function(donne){
+if(preuve % 2  != 0){
+   $('${peint.value.getValue()}').empty();
+   for(var i = 0; i < donne.length ; i ++){
+      
+      console.log(donne[i]);
+      console.log( preuve);
+      trouver = false;
+      
+      trouver = true;
+       $('${peint.value.getValue()}').append('<div class= "genre_movie_info">'
+      +'<p class = "ranking">'
+      + i+1
+      +'</p>'
+      +'<a href="${pageContext.request.contextPath}/sixieme_?want='
+       +donne[i]['id'].substring(1, donne[i]['id'].length-1)
+       +'${req}">'
+      +'<image src =' 
+      + donne[i]['poster']
+      +' alt = "dest", class = "post_img"></a>'
+      +'<div class = "movie_info">'
+      +'<div class = "movie_title">'
+      + donne[i]['name']
+      +'</div>'
+      +'<div class = "movie_rating">'
+      +'<br><img class = "staricon" src = "https://github.com/hykim-king/NORAJO/blob/main/NORAJO/src/main/webapp/resources/img/redstar.png?raw=tre" alt = "Red Star">'
+      + donne[i]['rating']
+      +'</div>'
+      +'<div class = "movie_year">'
+      + donne[i]['year']
+      +'</div></div></div>');
+      }
+     }
+else{
+console.log(preuve);
+$('${peint.value.getValue()}').empty();
+
+} 
+preuve = preuve +1;
+
+    });
+});
+
+});
+
+</script>
+</c:forEach>
 	<!-- main genre end -->
 	
 
