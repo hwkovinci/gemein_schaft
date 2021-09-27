@@ -1,9 +1,9 @@
 import json
 
-def parse_actor():
-    schlu_ssel = list_actor().items()
-    da_ten = open('a_g.json')
-    in_nen = json.loads(da_ten.read())
+def parse_actor(data):
+    schlu_ssel = list_actor(data).items()
+    
+    in_nen = json.loads(data)
     f_eld = list()
     for qu_enz in range(len(in_nen)):
        id = in_nen[qu_enz]['imdbID']
@@ -16,17 +16,17 @@ def parse_actor():
                  continue
            else:
               f_eld.append(pa_ar)
-    o_ffen = open('insert_actor.dat',"w")
+    o_ffen = open('insert_actor.dat',"w", encoding = 'utf-8')
     for  set in f_eld:
          o_ffen.writelines('''"%s"|%d|\n''' % (set[0],int(set[1])) )
     o_ffen.close()
     return open('insert_actor.dat')
 
 
-def parse_director():
-    schlu_ssel = list_director().items()
-    da_ten = open('a_g.json')
-    in_nen = json.loads(da_ten.read())
+def parse_director(data):
+    schlu_ssel = list_director(data).items()
+    
+    in_nen = json.loads(data)
     f_eld = list()
     for qu_enz in range(len(in_nen)):
        id = in_nen[qu_enz]['imdbID']
@@ -39,7 +39,7 @@ def parse_director():
                 continue
              else:
                 f_eld.append(pa_ar)
-    o_ffen = open('insert_director.dat',"w")
+    o_ffen = open('insert_director.dat',"w", encoding = 'utf-8')
     for  set in f_eld:
          o_ffen.writelines('''"%s"|%d|\n''' % (set[0],int(set[1])) )
     o_ffen.close()
@@ -47,9 +47,9 @@ def parse_director():
 
 
 
-def parse_title():
-    da_ten = open('a_g.json')
-    in_nen = json.loads(da_ten.read())
+def parse_title(data):
+    
+    in_nen = json.loads(data)
     f_eld = list()
     for qu_enz in range(len(in_nen)):
        id = in_nen[qu_enz]['imdbID']
@@ -65,23 +65,24 @@ def parse_title():
        else:
           released = str(vor[0])+'-'+vor[1].upper()+'-'+str(vor[2])
        runtime = in_nen[qu_enz]['Runtime']
-       plot = in_nen[qu_enz]['Plot']
+       plot =str()
+       
        country = in_nen[qu_enz]['Country']
-       poster = in_nen[qu_enz]['Poster']       
+       poster = in_nen[qu_enz]['Poster']
        na_men = in_nen[qu_enz]['Title'].strip()
        pa_ar = (id, rating, na_men, year, released, runtime, plot, country, poster)
        f_eld.append(pa_ar)
-    o_ffen = open('insert_title.dat',"w")
+    o_ffen = open('insert_title.dat',"w", encoding = 'utf-8')
     for  set in f_eld:
          o_ffen.writelines('''"%s"|"%s"|%2.2f|%d|%s|"%s"|"%s"|"%s"|"%s"|\n''' % (set[0],set[2],float(set[1]), int(set[3]), set[4], set[5], set[6], set[7], set[8]) )
     o_ffen.close()
     return open('insert_title.dat')
 
 
-def parse_genre():
-    schlu_ssel = list_genre().items()
-    da_ten = open('a_g.json')
-    in_nen = json.loads(da_ten.read())
+def parse_genre(data):
+    schlu_ssel = list_genre(data).items()
+    
+    in_nen = json.loads(data)
     f_eld = list()
     for qu_enz in range(len(in_nen)):
        id = in_nen[qu_enz]['imdbID']
@@ -93,7 +94,7 @@ def parse_genre():
                 continue
            else:
               f_eld.append(pa_ar)
-    o_ffen = open('insert_genre.dat',"w")
+    o_ffen = open('insert_genre.dat',"w", encoding = 'utf-8')
     for  set in f_eld:
          o_ffen.writelines('''"%s"|%d|\n''' % (set[0],int(set[1])) )
     o_ffen.close()
@@ -103,9 +104,9 @@ def parse_genre():
 
 
 
-def list_actor():
-    da_ten = open('a_g.json')
-    in_nen = json.loads(da_ten.read())
+def list_actor(data):
+    
+    in_nen = json.loads(data)
     f_eld = list()
     for qu_enz in range(len(in_nen)):
        
@@ -119,15 +120,15 @@ def list_actor():
     for in_diz in range(len(f_eld)):
       schlu_ssel[str(in_diz+20000000)] = f_eld[in_diz]
     
-    o_ffen = open('list_actor.dat',"w")
+    o_ffen = open('list_actor.dat',"w", encoding ='utf-8')
     for  key, value in schlu_ssel.items():
          o_ffen.writelines('''%d|"%s"|\n''' % (int(key), value) )
     o_ffen.close()
     return schlu_ssel
 
-def list_director():
-    da_ten = open('a_g.json')
-    in_nen = json.loads(da_ten.read())
+def list_director(data):
+    
+    in_nen = json.loads(data)
     f_eld = list()
     
     for qu_enz in range(len(in_nen)):
@@ -142,7 +143,7 @@ def list_director():
     for in_diz in range(len(f_eld)):
       schlu_ssel[str(in_diz+10000000)] = f_eld[in_diz]
     
-    o_ffen = open('list_director.dat',"w")
+    o_ffen = open('list_director.dat',"w", encoding = 'utf-8')
     for  key, value in schlu_ssel.items():
 
          o_ffen.writelines('''%d|"%s"|\n''' % (int(key), value) )
@@ -150,9 +151,9 @@ def list_director():
     o_ffen.close()
     return schlu_ssel
 
-def list_genre():
-    da_ten = open('a_g.json')
-    in_nen = json.loads(da_ten.read())
+def list_genre(data):
+    
+    in_nen = json.loads(data)
     f_eld = list()
     for qu_enz in range(len(in_nen)):
        
@@ -166,7 +167,7 @@ def list_genre():
     for in_diz in range(len(f_eld)):
       schlu_ssel[str(in_diz)] = f_eld[in_diz]
     
-    o_ffen = open('list_genre.dat',"w")
+    o_ffen = open('list_genre.dat',"w", encoding = "utf-8")
     for  key, value in schlu_ssel.items():
          o_ffen.writelines('''%d|"%s"|\n''' % (int(key), value) )
 

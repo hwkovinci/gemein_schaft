@@ -323,7 +323,6 @@ def pruf_fung_(data):
     
     or_dung = list()
     zwei = json.loads(data)
-    print('vor ', len(zwei))
     for in_diz in range(len(zwei)):
        if in_diz == 0:
           or_dung.append(zwei[in_diz])
@@ -332,7 +331,6 @@ def pruf_fung_(data):
              continue
           else:
              or_dung.append(zwei[in_diz])
-    print('nach ', len(or_dung))
     return or_dung
 
 def get_omdb_attributes_from_movies_urls(movies, url_omdbapi):
@@ -378,26 +376,67 @@ def file_created_today(path_to_file='output.csv'):
         return datetime.fromtimestamp(result).date() == datetime.now().date()
     else:
         return False
-def fur_oracle():
-    aus_geben = open('a_g.json').read()
-    dump = open('a_g.dmp', 'w', encoding ='utf-8')
-    ag = json.loads(aus_geben)
-    for f_eld in ag:
+def fur_oracle(i):
+    aus_geben = open('a_g.dmp', "a", encoding='UTF-8')
+    for f_eld in get_json(i):
        
        sa_ite = str(f_eld)
-       dump.writelines("%s\n" % sa_ite )
-    dump.close()
+       aus_geben.writelines("%s\n" % sa_ite )
+    aus_geben.close()
 
-def fur_dump(f_eld):
-     aus_geben = open('a_g.json',  encoding='UTF-8')
-     ag = json.loads(aus_geben.read())
-     print(len(ag), ' im gross')
-     aus_geben.close()
-     ag.extend(f_eld)
-     aus_geben = open('a_g.json' , 'w', encoding ='utf-8')
-     json.dump(ag, aus_geben, indent = 6)
-     aus_geben.close()
-     
+
+def fur_dump():
+  aus_geben = open('a_g.json', encoding = 'UTF-8')
+  ag = json.loads(aus_geben.read())
+  for teil in ag:
+
+    if teil['Year'] != 'N/A':
+      grenz = int(teil['Year'])
+      if 1997 < grenz:
+        aus_geben = open('ag_zhen.json', encoding = 'utf-8')
+        ag = json.loads(aus_geben.read())
+        print('fur zhen ',len(ag), ' im gross')
+        ag.append(teil)
+        aus_geben = open('ag_zhen.json', 'w', encoding = 'utf-8')
+        json.dump(ag, aus_geben, indent = 6)
+        aus_geben.close()
+      elif 1997 >= grenz > 1972:
+        aus_geben = open('ag_neuen.json', encoding = 'utf-8')
+        ag = json.loads(aus_geben.read())
+        print('fur neuen ',len(ag), ' im gross')
+        ag.append(teil)
+        aus_geben = open('ag_neuen.json', 'w', encoding = 'utf-8')
+        json.dump(ag, aus_geben, indent = 6)
+        aus_geben.close()
+
+      elif 1972 >= grenz > 1945:
+        aus_geben = open('ag_sieb.json', encoding = 'utf-8')
+        ag = json.loads(aus_geben.read())
+        print('fur sieb ',len(ag), ' im gross')
+        ag.append(teil)
+        aus_geben = open('ag_sieb.json', 'w', encoding = 'utf-8')
+        json.dump(ag, aus_geben, indent = 6)
+        aus_geben.close()
+
+      elif 1945 >= grenz > 1917:
+        aus_geben = open('ag_vier.json', encoding = 'utf-8')
+        ag = json.loads(aus_geben.read())
+        print('fur vier ',len(ag), ' im gross')
+        ag.append(teil)
+        aus_geben = open('ag_vier.json', 'w', encoding = 'utf-8')
+        json.dump(ag, aus_geben, indent = 6)
+        aus_geben.close()
+
+      elif grenz <= 1917:
+        aus_geben = open('ag_ein.json', encoding = 'utf-8')
+        ag = json.loads(aus_geben.read())
+        print('fur ein ',len(ag), ' im gross')
+        ag.append(teil)
+        aus_geben = open('ag_ein.json', 'w', encoding = 'utf-8')
+        json.dump(ag, aus_geben, indent = 6)
+        aus_geben.close()
+
+
 
 def get_top_movies_data(url_rotten_tomatoes=conf.TOMATO_BEST_MOVIES, url_omdbapi=conf.OMDB_API_URL):
     """this function receives no input and:
