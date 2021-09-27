@@ -1,4 +1,4 @@
-package com.example.access;
+package com.example.access.controller;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.stereotype.Controller;
@@ -72,10 +72,10 @@ this.sV=sV;
   String likeOrNot = new String();
   int result = sV.countFav(keyChain);
   if(result == 0){
-  likeOrNot = "neutral";
+  likeOrNot = "neutral"; 
   }
   else{
-  likeOrNot = "like";
+  likeOrNot = "like";  
   }
   rA.addAttribute("title", want);
   rA.addAttribute("bool", result );
@@ -86,7 +86,26 @@ this.sV=sV;
 @GetMapping("/septieme_")
  public String manipuler(@RequestParam String title,
                            @RequestParam int bool,
-                           @RequestParam int user, Model model){
+                           @RequestParam int user, Model model)throws Exception{
+String a_key = new String();
+String a_ref = new String();
+String c_key = new String();
+String c_ref = new String();
+String n_ref = new String();
+a_key = "LOGOUT";
+a_ref = "deuxieme_";
+c_key = "ACCOUNT";
+c_ref = "account";
+StringBuilder sb___ = new StringBuilder();
+sb___.append("deuxieme_?req=");
+sb___.append(user);
+n_ref = sb___.toString();
+
+String h_ref = new String();
+StringBuilder sb_ = new StringBuilder();
+sb_.append("/");
+sb_.append(user);
+h_ref = sb_.toString();
 userFavor uF = new userFavor();
 StringBuilder build = new StringBuilder();
 build.append("\"");
@@ -102,12 +121,20 @@ keychain.setValue(uF.getTitle());
 String likeOrNot = new String();
 int result = sV.countFav(keychain);
   if(result == 0){ 
-  likeOrNot = "neutral";
+  likeOrNot = "https://github.com/notlelis/img-url/blob/main/likeheartbutton/heartwhite.png?raw=true";
   }
   else{ 
-  likeOrNot = "like";
+  likeOrNot = "https://github.com/notlelis/img-url/blob/main/likeheartbutton/heartred.png?raw=true";
   
   }
+ 
+  model.addAttribute("nr", n_ref);
+  model.addAttribute("ak", a_key);
+  model.addAttribute("ar", a_ref);
+  model.addAttribute("ck", c_key);
+  model.addAttribute("cr", c_ref);  
+
+model.addAttribute("rq" , h_ref);  
 model.addAttribute("oui" , result);
 model.addAttribute("ouNon", result+1);
 model.addAttribute("want", uF.getTitle().substring(1,10));
@@ -151,6 +178,7 @@ genContainer.add(key);
 model.addAttribute("gC", genContainer );
 model.addAttribute("aC", actContainer );
 model.addAttribute("dC", dirContainer );
+
 model.addAttribute("movieInfo", mD);
 return "premiere_";
 }

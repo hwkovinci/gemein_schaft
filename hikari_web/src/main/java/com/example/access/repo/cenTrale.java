@@ -170,14 +170,14 @@ return count;
 public List<titre>tranche (int compte){
 String dEcl = new String();
 StringBuilder sb = new StringBuilder();
-sb.append("SELECT tlst.title_name title_tranche, tlst.title_poster poster,");
-sb.append("tlst.title_rating rating,");
-sb.append( " tlst.title_year year_tranche, tlst.title_id ttid"); 
-sb.append(" FROM title_list tlst, kreuz_gm kzgm WHERE tlst.title_id = kzgm.title_id");
-sb.append(" AND kzgm.genre_id =");
-sb.append(compte);
-sb.append(" ORDER BY tlst.title_rating DESC, tlst.title_year DESC");
-sb.append(" fetch first 25 rows only");
+sb.append("SELECT tlst.title_name title_tranche, tlst.title_poster poster,"          );
+sb.append("tlst.title_rating rating,"												 );
+sb.append( " tlst.title_year year_tranche, tlst.title_id ttid"                       ); 
+sb.append(" FROM title_list tlst, kreuz_gm kzgm WHERE tlst.title_id = kzgm.title_id" );
+sb.append(" AND kzgm.genre_id ="      											     );
+sb.append(compte																	 );
+sb.append(" ORDER BY tlst.title_rating DESC, tlst.title_year DESC"					 );
+sb.append(" fetch first 5 rows only"												 );
 dEcl = sb.toString();
 return jdbcTemplate.query(dEcl, new ResultSetExtractor <List<titre>>(){
 @Override

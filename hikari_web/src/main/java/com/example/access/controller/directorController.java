@@ -1,4 +1,4 @@
-package com.example.access;
+package com.example.access.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,10 +48,20 @@ this.sV=sV;
 String href = new String();
 String h_ref = new String();
 String h_rel = new String();
+String a_key = new String();
+String a_ref = new String();
+String c_key = new String();
+String c_ref = new String();
+String n_ref = new String();
 if(req == null){
 href = "";
 h_ref = "";
 h_rel = "";
+a_key = "LOGIN";
+a_ref = "login";
+c_key = "SIGN UP";
+c_ref = "signup";
+n_ref = "deuxieme_";
 }
 else{
 StringBuilder sb = new StringBuilder();
@@ -66,6 +76,14 @@ StringBuilder sb__ = new StringBuilder();
 sb__.append("?req=");
 sb__.append(req);
 h_rel = sb__.toString();
+a_key = "LOGOUT";
+a_ref = "deuxieme_";
+c_key = "ACCOUNT";
+c_ref = "account";
+StringBuilder sb___ = new StringBuilder();
+sb___.append("deuxieme_?req=");
+sb___.append(req);
+n_ref = sb___.toString();
 }
 HashSet<Integer> actor =   sV.retourInt(id);
 List<cle> actContainer = new ArrayList<>();
@@ -92,14 +110,18 @@ while(iterTit.hasNext()){
      }
 
 //haute
+model.addAttribute("nr", n_ref);
+model.addAttribute("ak", a_key);
+model.addAttribute("ar", a_ref);
+model.addAttribute("ck", c_key);
+model.addAttribute("cr", c_ref);
+
 model.addAttribute("id", h_rel);
 model.addAttribute("rq", h_ref);
 model.addAttribute("req", href);
 model.addAttribute("aC", actContainer );
 model.addAttribute("tC", titContainer);
-model.addAttribute("listAct", sV.actorJason());
-model.addAttribute("listDir", sV.directorJason());
-model.addAttribute("listTit", sV.titleJason());
+
 
 List<plusTitre> chronologie  = sV.timeDetail(id);
 Map<String, List<plusTitre>> cart = new HashMap<>();

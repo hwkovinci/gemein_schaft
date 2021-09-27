@@ -1,263 +1,336 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <html>
+<head>
+<!-- ===================================== CSS ===================================== -->
+  <style type="text/css">
 
-   <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-* {
-  box-sizing: border-box;
-}
+  *{margin: 0; padding: 0;}
+  body{background: no-repeat center center fixed; -webkit-background-size: cover; 
+       -moz-background-size: cover; -o-background-size: cover; background-size: cover; overflow-x: hidden; }
+  a{text-decoration: none;}
+  ul{list-style: none; height: 300px; overflow-x: hidden; overflow-y: scroll hidden; width: 100%; min-width: 450px;}
+  li{list-style: none; color: white; background-color: rgb(58, 61, 66, 0.8); width: 49%;
+     min-width: 450px; cursor: pointer; height: 30px; padding-left: 20px; padding-top: 20px;}
 
-body {
-  font: 16px Arial;  
-}
 
-/*the container must be positioned relative:*/
-.autocomplete {
+.bg1  {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/1.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+.bg2  {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/2.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+.bg3  {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/3.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+.bg4  {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/4.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+.bg5  {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/5.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+.bg6  {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/6.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+.bg7  {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/7.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+.bg8  {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/8.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+.bg9  {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/9.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+.bg10 {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/10.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+.bg11 {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/11.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+.bg12 {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/12.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+.bg13 {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/13.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+.bg14 {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/14.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+.bg15 {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/15.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+.bg16 {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/16.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+.bg17 {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/17.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+.bg18 {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/18.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+.bg19 {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/19.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+.bg20 {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/20.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+.bg21 {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/21.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+.bg22 {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/22.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+.bg23 {background-image: url("https://github.com/notlelis/img-url/blob/main/new%20hd%20mov%20pos/23.jpg?raw=true"); image-rendering: -webkit-optimize-contrast;}
+/*────────────────────────────────────header────────────────────────────────────*/
+
+  .header_wrapper{color: #EDEDED; width: 100%; display: flex; position: relative;
+                  background-color: #0A0A0A; padding: 10px 80px 10px 80px;}
+  
+  .logo_wrapper{width: 300px; float: left; white-space: nowrap; margin-right: 60px;}
+  .logo{margin: 23px; image-rendering: -webkit-optimize-contrast;}   
+  
+  
+  ::-webkit-input-placeholder{color: gray;}
+  ::-moz-placeholder{color: gray;}
+  ::-ms-input-placeholder{color: gray;}
+
+  .autocomplete{width: 50%; min-width: 100px; margin: 27px; white-space: nowrap; float: left; padding-right: 60px;}
+  .search-bar input[type="text"]{width: 100%; padding: 12px; padding-right: 60px; box-sizing: border-box;
+                                 background-color: rgb(58, 61, 66, 0.5); outline: none; 
+                                 font-size: 14px; outline: none; border: 2.4px solid gray; color: white; font-family: 'Roboto', sans-serif;}    
+                                 
+  .search-bar{position: relative;}                    
+  .search-bar input:hover{border: 2.4px solid white; transition: 1s;}
+                                       
+  .search-bar input[type="submit"]{background: transparent; cursor: pointer; border: 0; text-indent: -9999em;
+                                   width: 70px; height: 39px; position: absolute; right: 0; font-size: 16px;}     
+                                   
+  .fa-search{position: absolute; top: 28%; right: 26px; font-size: 21px; color: #C9C9C9; pointer-events: none;}
+
+  .ui-helper-hidden-accessible{text-indent: -9999em;}
+  
+  
+  .log_sign_wrapper{width: 260px; float: right; white-space: nowrap; margin-left: 60px; padding-top: 40px;}
+  
+  .login-area{float: right; text-align: center;}
+  .login-area a{color: #B6B6B6; font-size: 12px; display: block; padding-right: 40px;}
+  .login-area a:hover{cursor: pointer; color: white;}
+  
+  .signup-area{float: right; text-align: center;}
+  .signup-area a{color: #B6B6B6; font-size: 12px; display: block; padding-right: 40px;}
+  .signup-area a:hover{cursor: pointer; color: white;}
+  
+/*────────────────────────────────────header────────────────────────────────────*/
+/*────────────────────────────────────content────────────────────────────────────*/
+  
+  .content_body { 
+     margin-top: 120px;
+   margin-bottom: 100px; 
+   
+   }
+  .sub_body{
+  display: flex;
+  }  
+  .search_result {
+     font-size: 35px;
+     font-family: 'Oswald',sans-serif;
+     line-height: 27px;
+     color: white;
+     padding-bottom: 80px;
+     margin-left: 100px;
+     }
+  .movie_info {
+     display:flex;
+     margin-bottom: 50px;
+  }
+  .poster_box{
+  
+  }
+  .poster_img {
+    margin-left: 100px;
+    display: block; 
+    line-height: 300px; 
+    left:0; 
+    right:0;
+    width:320px; 
+    height: 450px;  
+    
+  }       
+  .content_wrapper{
+    display:inline-block;
+  }     
+  .info_detail{
+    font-size: 20px;
+    margin-left: 47px;
+    color: white;
+    
+  }
+  .mov_title{
+  }
+  .mov_year{
+  }
+  .ratings{
+  }
+  
+  .staricon {width:15px;}
+  
+  .related_terms{
+  text-align: center;
+  padding:10px;
+  width: 300px;
+  height: auto;
+  border-radius:10px;
+  left: 500px;
   position: relative;
-  display: inline-block;
-}
+  background-color: rgb(255,255,255,0.5);
+  }
+  .side_title{border-bottom: 2px solid black;
+              font-weight: bold;
+              margin-bottom:20px;
+              font-size: 20px;
+              padding: 0px 10px 10px 10px;
+              }   
 
-input {
-  border: 1px solid transparent;
-  background-color: #f1f1f1;
-  padding: 10px;
-  font-size: 16px;
-}
+/*────────────────────────────────────content────────────────────────────────────*/
+/*────────────────────────────────────footer────────────────────────────────────*/
 
-input[type=text] {
-  background-color: #f1f1f1;
-  width: 100%;
-}
+  .footer-wrapper{color: #EDEDED; width: 100%; display: flex; bottom: 0; position: relative;
+                  background-color: #0A0A0A; padding: 35px 80px 35px 80px; margin-top: auto;}
+  
+  .lnb{padding-bottom: 20px;}
+  
+  .btb{line-height: 25px;}
+  
+  .project{width: 260px; float: left; white-space: nowrap; padding-right: 60px;}
+  
+  .front-end{width: 240px; float: left; white-space: nowrap; padding-right: 60px;}
 
-input[type=submit] {
-  background-color: DodgerBlue;
-  color: #fff;
-  cursor: pointer;
-}
+  .was-data{width: 310px; float: left; white-space: nowrap; padding-right: 60px;}
+  
+  .back-end{width: 260px; float: left; white-space: nowrap; padding-right: 60px;}
+  
+  .contact-line{width: 510px; float: left; border-left: 2px solid #B6B6B6; 
+                padding: 0 0 0 50px; white-space: nowrap; padding-right: 60px;}
 
-.autocomplete-items {
-  position: absolute;
-  border: 1px solid #d4d4d4;
-  border-bottom: none;
-  border-top: none;
-  z-index: 99;
-  /*position the autocomplete items to be the same width as the container:*/
-  top: 100%;
-  left: 0;
-  right: 0;
-}
+/*────────────────────────────────────footer────────────────────────────────────*/
 
-.autocomplete-items div {
-  padding: 10px;
-  cursor: pointer;
-  background-color: #fff; 
-  border-bottom: 1px solid #d4d4d4; 
-}
+  </style>
+<!-- ===================================== CSS ===================================== -->
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="https://github.com/notlelis/img-url/blob/main/favicon1.png?raw=true">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
 
-/*when hovering an item:*/
-.autocomplete-items div:hover {
-  background-color: #e9e9e9; 
-}
+<title>NORAJO</title>
+</head>
+<body id="bod" onload="backgr()">
 
-/*when navigating through the items using the arrow keys:*/
-.autocomplete-active {
-  background-color: DodgerBlue !important; 
-  color: #ffffff; 
-}
-</style>
-
-  </head>
-<body>
-<table><c:forEach items="${timeInfo}" var = "chronologie">
-<tbody>${chronologie.key}</tbody><tr>
+  <script src = "<c:url value = "/js/background.js"/>"></script>
+  
+<!-- ===================================== header ===================================== -->
+  <header>
+    <div class="header_wrapper">
+       
+      <div class="logo_wrapper"> 
+        <a href="${pageContext.request.contextPath}/${nr}">
+        <img class="logo" src="https://github.com/notlelis/img-url/blob/main/NlogoWhite.png?raw=true" width="180px"></a>
+      </div>
+    
+    
+      <div class="autocomplete">
+        <form class="search-bar" autocomplete = "off" action= "${pageContext.request.contextPath}/redirect${rq}">
+          <input  id ="myInput" name = "id" class="form-search" type="text" placeholder="Type to search.." >
+          <input class="btn_search" type="submit"><i class="fa fa-search"></i>
+        </form> 
+      </div>
+      
+      <div class="blank"></div>
+    
+      <div class="log_sign_wrapper">
+        <div class="signup-area">
+          <!-- 연결이 안되서 일단 꼼수 -->
+           <a href="${pageContext.request.contextPath}/${cr}">${ck}</a>
+        </div>
+        <div class="login-area">
+          <!-- 연결이 안되서 일단 꼼수 -->
+          <a href="${pageContext.request.contextPath}/${ar}">${ak}</a>
+        </div>
+      </div>
+    </div>
+    
+   <script src = "<c:url value = "/js/jquery-1.9.1.js"/>"></script>
+       <script src = "<c:url value = "/js/jquery-ui.min.js"/>"></script>
+       <script src = "<c:url value = "/js/jquery-ui.js"/>"></script>
+     <script type="text/javascript">
+    $(document).ready(function() {
+      $('#myInput').autocomplete({
+        source : '${pageContext.request.contextPath }/instant'
+      });
+    });
+  </script>
+    
+  </header>
+  
+<!-- ===================================== header ===================================== -->
+<!-- ===================================== contents ===================================== -->
+  <div class="content_body">
+  <div>
+   <c:forEach items="${timeInfo}" var = "chronologie" >
+       <div class="search_result">
+       Search result for director : ${chronologie.key}</div> 
+     </c:forEach>
+    </div>
+  <div class="sub_body">
+    <div class="content_wrapper">
+        <c:forEach items="${timeInfo}" var = "chronologie" >
+       <div>
+       <c:forEach items="${chronologie.value}" var ="cv" >  
+      <div class="movie_info">
+      <c:set value = "${pageContext.request.contextPath}/sixieme_?want=${cv.getId().substring(1, 10)}${req}" var = "href"/>
+      <div class="poster_box">  
+        <a href = ${href} ><img src = ${cv.getPoster()} alt = "image" class="poster_img"></a>
+          </div>
+         <div class="info_detail">
+          <div class="mov_title">Title : ${cv.getName()}<br></div>
+            
+          <div class="mov_year">Year : ${cv.getYear()}<br></div>
+          
+          <div class="ratings">Ratings : <img class="staricon" src ="https://github.com/hykim-king/NORAJO/blob/main/NORAJO/target/redstar.png?raw=true"  alt="Red Star">${cv.getRating()}<br> </div>
+        </div>
+       </div> 
+        </c:forEach>
+        </div>
+       </c:forEach>
+      </div>
+     
+<!-- related search terms -->
+<div class="related_terms">
+<c:forEach items="${timeInfo}" var = "chronologie">
 <c:forEach items="${chronologie.value}" var ="cv">
 
 <c:set value = "${pageContext.request.contextPath}/sixieme_?want=${cv.getId().substring(1, 10)}${req}" var = "href"/>
-<a href = ${href} >
 
-
-<image src = ${cv.getPoster()} alt = "image" sizes="(min-width: 600px) 200px, 50vw">
-</a>
-<td>${cv.getName()}</td>
-<td>${cv.getRating()}</td>
-<td>${cv.getYear()}</td>
-<td>${cv.getReleased()}</td>
-<td>${cv.getRuntime()}</td>
-<td>${cv.getPlot()}</td>
-<td>${cv.getCountry()}</td>
 
 </c:forEach>
 
-</tr></c:forEach>
-</table>
-<p>you might also looking for
-<tr>
+</c:forEach>
+
+<p class="side_title">Related Search Terms</p>
+<div>
 <c:forEach items='${aC}' var = 'actCon'>
 <c:set value = "${actCon.getValue()}" var="valeur"/>
 <c:set value = "${actCon.getKey()}" var="cle"/>
 <c:set value ="${pageContext.request.contextPath}/actor/${cle}${id}" var = "href"/>
-<a href = ${href}>${valeur}</a>
-</c:forEach></tr></p>
-<p2>who's in there
-<tr>
-<c:forEach items='${tC}' var = 'titCon'>
-<c:set value = "${titCon.getName()}" var="valeur"/>
-<c:set value = "${titCon.getId().substring(1, 10)}" var="cle"/>
-<c:set value ="${pageContext.request.contextPath}/title/${cle}${id}" var = "href"/>
-<a href = ${href}>${valeur}</a>
-</c:forEach></tr></p2>
+<div>
+<a href = ${href}>${valeur}<br></a></div>
+</c:forEach></div>
+</div>
+</div>
+</div>
+<!-- related search terms -->
 
+<!-- ===================================== contents ===================================== -->
+<!-- ===================================== footer ===================================== -->
 
+  <footer>
+    <div class="footer-wrapper">
+      <div class="project">
+        <p class="lnb" style="font-size: 18px">PROJECT NORAJO</p>
+          <p class="btb" style="font-size: 12px">Jin Seo Kim</p>
+          <p class="btb" style="font-size: 12px">Hyun Woo Ko</p>
+          <p class="btb" style="font-size: 12px">Bo Seong Gwon</p>
+          <p class="btb" style="font-size: 12px">Bo Sun Kim</p>
+          <p class="btb" style="font-size: 12px">Chae Lynn Yoo</p>
+      </div>
+    
+      <div class="front-end">
+        <p class="lnb" style="font-size: 18px">FRONT END</p>
+          <p class="btb" style="font-size: 12px">JAVASCRIPT</p>
+          <p class="btb" style="font-size: 12px">HTML</p>
+          <p class="btb" style="font-size: 12px">CSS</p>
+          <p class="btb" style="font-size: 12px">JQEURY</p>
+      </div>
+      
+      <div class="was-data">
+        <p class="lnb" style="font-size: 18px">WAS/DATABASE</p>
+          <p class="btb" style="font-size: 12px">Apache Tomcat</p>
+          <p class="btb" style="font-size: 12px">ORACLE SQL DEVELOPER</p>
+      </div>  
+      
+      <div class="back-end">
+        <p class="lnb" style="font-size: 18px">BACK END</p>
+          <p class="btb" style="font-size: 12px">SPRING</p>
+          <p class="btb" style="font-size: 12px">JAVA</p>
+      </div>  
+      
+      <div class="contact-line">
+        <p class="lnb" style="font-size: 18px">CONTACT</p>
+          <p class="btb" style="font-size: 12px">E-Mail : korea@norajo.com</p>
+          <p class="btb" style="font-size: 12px">Address : 53, Yangsan-ro, Yeongdeungpo-gu, Seoul, Republic of Korea</p>
+          <p class="btb" style="font-size: 12px">Copyright © 2021 NORAJO Corp. All rights reserved.</p>
+      </div>  
+    </div>
+  </footer>
+  
+<!-- ===================================== footer ===================================== -->
 
 </body>
-
-<tbody>
-
-<h2>Autocomplete</h2>
-
-<p>Start typing:</p>
-
-<!--Make sure the form has the autocomplete function switched off:-->
-<form autocomplete="off" action="${pageContext.request.contextPath}/redirect${rq}">
-  <div class="autocomplete" style="width:300px;">
-    <input id="myInput" type="text" name="id" placeholder="bien venu">
-  </div>
-  <input type="submit">
-</form>
-
-<script>
-function autocomplete(inp, arr) {
-  /*the autocomplete function takes two arguments,
-  the text field element and an array of possible autocompleted values:*/
-  var currentFocus;
-  /*execute a function when someone writes in the text field:*/
-  inp.addEventListener("input", function(e) {
-      var a, b, i, val = this.value;
-      /*close any already open lists of autocompleted values*/
-      closeAllLists();
-      if (!val) { return false;}
-      currentFocus = -1;
-      /*create a DIV element that will contain the items (values):*/
-      a = document.createElement("DIV");
-      a.setAttribute("id", this.id + "autocomplete-list");
-      a.setAttribute("class", "autocomplete-items");
-      /*append the DIV element as a child of the autocomplete container:*/
-      this.parentNode.appendChild(a);
-      /*for each item in the array...*/
-      for (i = 0; i < arr.length; i++) {
-        /*check if the item starts with the same letters as the text field value:*/
-        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-          /*create a DIV element for each matching element:*/
-          b = document.createElement("DIV");
-          /*make the matching letters bold:*/
-          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-          b.innerHTML += arr[i].substr(val.length);
-          /*insert a input field that will hold the current array item's value:*/
-          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-          /*execute a function when someone clicks on the item value (DIV element):*/
-          b.addEventListener("click", function(e) {
-              /*insert the value for the autocomplete text field:*/
-              inp.value = this.getElementsByTagName("input")[0].value;
-              /*close the list of autocompleted values,
-              (or any other open lists of autocompleted values:*/
-              closeAllLists();
-          });
-          a.appendChild(b);
-        }
-      }
-  });
-  /*execute a function presses a key on the keyboard:*/
-  inp.addEventListener("keydown", function(e) {
-      var x = document.getElementById(this.id + "autocomplete-list");
-      if (x) x = x.getElementsByTagName("div");
-      if (e.keyCode == 40) {
-        /*If the arrow DOWN key is pressed,
-        increase the currentFocus variable:*/
-        currentFocus++;
-        /*and and make the current item more visible:*/
-        addActive(x);
-      } else if (e.keyCode == 38) { //up
-        /*If the arrow UP key is pressed,
-        decrease the currentFocus variable:*/
-        currentFocus--;
-        /*and and make the current item more visible:*/
-        addActive(x);
-      } else if (e.keyCode == 13) {
-        /*If the ENTER key is pressed, prevent the form from being submitted,*/
-        e.preventDefault();
-        if (currentFocus > -1) {
-          /*and simulate a click on the "active" item:*/
-          if (x) x[currentFocus].click();
-        }
-      }
-  });
-  function addActive(x) {
-    /*a function to classify an item as "active":*/
-    if (!x) return false;
-    /*start by removing the "active" class on all items:*/
-    removeActive(x);
-    if (currentFocus >= x.length) currentFocus = 0;
-    if (currentFocus < 0) currentFocus = (x.length - 1);
-    /*add class "autocomplete-active":*/
-    x[currentFocus].classList.add("autocomplete-active");
-  }
-  function removeActive(x) {
-    /*a function to remove the "active" class from all autocomplete items:*/
-    for (var i = 0; i < x.length; i++) {
-      x[i].classList.remove("autocomplete-active");
-    }
-  }
-  function closeAllLists(elmnt) {
-    /*close all autocomplete lists in the document,
-    except the one passed as an argument:*/
-    var x = document.getElementsByClassName("autocomplete-items");
-    for (var i = 0; i < x.length; i++) {
-      if (elmnt != x[i] && elmnt != inp) {
-        x[i].parentNode.removeChild(x[i]);
-      }
-    }
-  }
-  /*execute a function when someone clicks in the document:*/
-  document.addEventListener("click", function (e) {
-      closeAllLists(e.target);
-  });
-}
-
-const aL = ${listAct};
-const dL = ${listDir};
-const tL = ${listTit};
-console.log(aL);
-console.log(dL);
-console.log(tL);
-const champ = [];
-for(var i = 0; i < aL.length ;i++ ){
-let val = aL[i]["value"];
-let key = aL[i]["key"];
-let sub = val.substring(1, val.length -1);
-
-champ.push(sub.concat(' ','actor', ' ', key));
-}
-for(var i = 0; i < dL.length ;i++ ){
-let val = dL[i]["value"];
-let key = dL[i]["key"];
-let sub = val.substring(1, val.length -1);
-
-champ.push(sub.concat(' ','director', ' ', key));
-}
-for(var i = 0; i < tL.length ; i++){
-let val = tL[i]["name"];
-let idw = tL[i]["id"];
-let id = idw.substring(1, idw.length -1);
-let sub = val.substring(1, val.length -1);
-champ.push(sub.concat(' ','title', ' ', id));
-}
-
-/*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-autocomplete(document.getElementById("myInput"), champ);
-</script>
-
-</tbody>
-
 </html>

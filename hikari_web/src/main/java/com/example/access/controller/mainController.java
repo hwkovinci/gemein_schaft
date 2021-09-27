@@ -47,9 +47,18 @@ this.sV=sV;
     public String imprimer (@RequestParam(required = false) String req,Model model) throws Exception{
 String href = new String();
 String h_ref = new String();
+String a_key = new String();
+String a_ref = new String();
+String c_key = new String();
+String c_ref = new String();
 if(req == null){
 href = "";
 h_ref = "";
+a_key = "LOGIN";
+a_ref = "login";
+c_key = "SIGN UP";
+c_ref = "signup";
+
 }
 else{
 StringBuilder sb = new StringBuilder();
@@ -60,6 +69,11 @@ StringBuilder sb_ = new StringBuilder();
 sb_.append("/");
 sb_.append(req);
 h_ref = sb_.toString();
+a_key = "LOGOUT";
+a_ref = "deuxieme_";
+c_key = "ACCOUNT";
+c_ref = "account";
+
 }
 int bas = 0;
 int count = sV.countGenre();
@@ -94,6 +108,11 @@ List<carte> rankList  = new ArrayList<>();
 
 //}
 //horizontal
+model.addAttribute("ak", a_key);
+model.addAttribute("ar", a_ref);
+model.addAttribute("ck", c_key);
+model.addAttribute("cr", c_ref);
+
 model.addAttribute("rq", h_ref);
 model.addAttribute("req", href);
 model.addAttribute("poster", sort);
@@ -110,6 +129,11 @@ return result;
 @GetMapping("/genre/{id}")
 @ResponseBody String avec(@PathVariable("id") int id)throws Exception{
 return sV.mapPoster(id);
+}
+@GetMapping("/account")
+@ResponseBody String mesInfo(){
+String result =  "we are reparing this service at a moment";
+return result;
 }
 
 }

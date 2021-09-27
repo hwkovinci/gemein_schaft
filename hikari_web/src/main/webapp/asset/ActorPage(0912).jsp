@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
-<html lang = "en">
+<html>
 <head>
 <!-- ===================================== CSS ===================================== -->
   <style type="text/css">
@@ -8,7 +8,7 @@
 /*────────────────────────────────────header────────────────────────────────────*/
   
   html, body {margin: 0; padding: 0; width: 100%; height: 100%; font-family: HelveticaNeueLT Std;}
-  body{font-size:1.125em; line-height: 1.6; background-image:url('https://source.unsplash.com/user/notlelis/1600x900');}
+  body{font-size:1.125em; line-height: 1.6;}
   * {margin: 0; padding: 0; border: 0; vertical-align: baseline; box-sizing: border-box;
      background: transparent; font-style: normal;}
   li{list-style: none;}
@@ -16,9 +16,8 @@
   .wrapper{display: flex; height: 100%; min-height: 100vh; flex-direction: column; margin: 0 auto;}
   
 	
-	
-  .header-wrapper{width: 100%; height: 110px; background-color: (rgb 10, 10, 10, 0.8);
-                  padding: 30px 80px 20px 80px; display: flex; z-index: 99999;}
+  .header-wrapper{width: 100%; height: 110px; background-color: #0A0A0A; position: fixed;
+                  padding: 20px 80px 20px 80px; display: flex; z-index: 99999; border-top: 6px solid white;}
 
   .logo{padding-right: 200px; padding-top: 2px; flex: 1;}
 
@@ -39,14 +38,11 @@
   .fa-search{position: absolute; top: 25%; color: white; right: 30px; font-size: 18px;}
 
 
-
-  .login_signup_wrapper{width: 100%; height: 24px; padding: 20px; z-index: 99999; float: right; 
-                        font-family: HelveticaNeueLT Std;}
-     
+  
   .login-area{float: right; text-align: center;}
   .login-area a:hover{cursor: pointer; color: white;}
   .login-area a{color: #B6B6B6; font-size: 14px; padding-right: 35px; padding-left: 35px;
-                display: block; white-space: nowrap; margin-top: 22px;}
+                display: block; border-right: 2px solid #B6B6B6; white-space: nowrap; margin-top: 22px;}
   
   .signup-area{float: right; text-align: center;}
   .signup-area a:hover{cursor: pointer; color: white;}
@@ -54,47 +50,81 @@
                  display: block; padding-right: 60px; white-space: nowrap; margin-top: 22px;}
 
 /*────────────────────────────────────header────────────────────────────────────*/
-
-
-/*────────────────────────────────────contents────────────────────────────────────*/
-/*★필독★ contents 영역 안이 빌 경우, 푸터가 헤더에 달라붙으니 꼭 컨텐츠 영역을 감싸는 부분은 height:100%를 줄것 */
-
-
   
-  .content_wrapper{width: 900px; height: 700px; padding: 30px; margin: 80px 100px 200px 80px; background-color: rgb(255, 255, 255, 0.7);}
+/*────────────────────────────────────content─────────────────────────────*/
   
-  .c_box_sl{width: 100%; height: 28px; display: flex;}
-  .c_box_s{width: 5%; height: 27px; background-color: #A90000;}
-  .c_box_l{width: 80%; height: 27px; background-color: #A90000;}
+  .content_body { 
+     margin-top: 120px;
+	 margin-bottom: 100px; 
+	 
+	 }
+  .sub_body{
+	display: flex;
+  }	 
+  .search_result {
+     font-size: 30px;
+     margin:100px;
+     font-family: 'Oswald',sans-serif;
+     
+     }
+  .movie_info {
+  	 display:flex;
+  	 margin-bottom: 50px;
+  }
+  .poster_box{
   
-  .mov_info{text-align: center; width: 15%; font-size: 27px; font-family: 'Oswald',sans-serif; line-height: 27px;}
-
-
-  .poster_img{display: block; border: 1px solid black; line-height: 300px;
-              width: 260px; height: 310px; text-align: center; float: left; margin-top: 40px;}
-  .mov_title{display: block; width: 550px; height: 50px; border-bottom: 2px solid black; font-family: 'Oswald',sans-serif; 
-             float: right; margin-top: 40px; padding-left: 20px; font-size: 30px;}
-  .info_detail{display: block; width: 550px; height: 240px; float: right; margin-top: 20px; 
-               padding-left: 20px; line-height: 31px; text-align: right;}   
-
+  }
+  .poster_img {
+  	margin-left: 100px;
+  	display: block; 
+  	line-height: 300px; 
+  	left:0; 
+  	right:0;
+    width:320px; 
+    height: 450px;  
+    
+  }   		
+  .content_wrapper{
+  	display:inline-block;
+  }     
+  .info_detail{
+  	font-size: 20px;
+    margin-left: 150px;
+    
+  }
+  .mov_title{
+  }
+  .mov_year{
+  }
+  .ratings{
+  }
   
-  .movie_summary{display: block; width: 100%; height: 50px; border-bottom: 2px solid black; font-family: 'Oswald',sans-serif; 
-                float: right; margin-top: 25px; padding-left: 20px; font-size: 30px;}
-  .movie_summary_item{display: block; width: 100%; height: 170px; float: right; 
-                      margin-top: 10px; padding: 10px 20px 10px 20px;}
+  .staricon {width:15px;}
+  .related_terms{
+  text-align: center;
+  padding:10px;
+  width: 350px;
+  height: 600px;
+  border-radius:10px;
+  left: 500px;
+  position: relative;
+  border: 1px solid black;
+  }
+  .side_title{
+  font-weight: bold;
+  margin-bottom: 10px;
+  }
 
-
-/*────────────────────────────────────contents────────────────────────────────────*/
-
-
+/*────────────────────────────────────content─────────────────────────────*/
+  
 /*────────────────────────────────────footer────────────────────────────────────*/
 
   .footer-wrapper{color: #EDEDED; width: 100%; display: flex; bottom: 0; position: relative;
                   background-color: #0A0A0A; padding: 35px 80px 35px 80px; margin-top: auto;}
   
-  .lnb{padding-bottom: 20px; font-size: 18px;}
+  .lnb{padding-bottom: 20px;}
   
-  .btb{line-height: 25px; font-size: 12px;}
+  .btb{line-height: 25px;}
   
   .project{width: 260px; float: left; white-space: nowrap; padding-right: 60px;}
   
@@ -117,9 +147,12 @@
 <link rel="icon" type="image/x-icon" href="https://github.com/notlelis/img-url/blob/main/favicon1.png?raw=true">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
+
 <title>NORAJO</title>
 </head>
 <body>
+
+
 
 <!-- ===================================== header ===================================== -->
 <div class="wrapper">
@@ -255,9 +288,9 @@ function autocomplete(inp, arr) {
   });
 }
 
-const aL = ${actorList};
-const dL = ${directorList};
-const tL = ${titleList};
+const aL = ${listAct};
+const dL = ${listDir};
+const tL = ${listTit};
 console.log(aL);
 console.log(dL);
 console.log(tL);
@@ -287,129 +320,109 @@ champ.push(sub.concat(' ','title', ' ', id));
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 autocomplete(document.getElementById("myInput"), champ);
 </script>
-		
-		
-	</header>
-	
-	<!-- ===================================== header ===================================== -->
-	
-	
-	<!-- ===================================== contents ===================================== -->
 
-<c:forEach items="${poster}" var="genre">
+<!--==========================================content==============-->
+  <div class="content_body">
+	<div>
+ 	 <c:forEach items="${timeInfo}" var = "chronologie" >
+	   	 <div class="search_result">
+	   	 Search result for actor : ${chronologie.key}</div> 
+   	 </c:forEach>
+    </div>
+  <div class="sub_body">
+    <div class="content_wrapper">
+        <c:forEach items="${timeInfo}" var = "chronologie" >
+       <div>
+	     <c:forEach items="${chronologie.value}" var ="cv" >  
+		  <div class="movie_info">
+			<c:set value = "${pageContext.request.contextPath}/sixieme_?want=${cv.getId().substring(1, 10)}${req}" var = "href"/>
+			<div class="poster_box">	
+				<a href = ${href} ><img src = ${cv.getPoster()} alt = "image" class="poster_img"></a>
+	      	</div>
+	       <div class="info_detail">
+		      <div class="mov_title">Title : ${cv.getName()}<br></div>
+		        
+		      <div class="mov_year">Year : ${cv.getYear()}<br></div>
+		      
+		      <div class="ratings">Ratings : <img class="staricon" src ="https://github.com/hykim-king/NORAJO/blob/main/NORAJO/src/main/webapp/resources/img/redstar.png?raw=true"  alt="Red Star">${cv.getRating()}<br> </div>
+		    </div>
+		   </div> 
+	      </c:forEach>
+	      </div>
+	     </c:forEach>
+	    </div>
+	   
+	   
 
-<div class="horizontal-scroll">${genre.key}
-<c:forEach items="${genre.value}" var = "tranche">
-<div class="example"><c:set value = "sixieme_?want=${tranche.getId().substring(1, 10)}" var = "href"/>
-<a href = ${href}><image src = ${tranche.getPoster()} alt = "desk" class="img-fluid" ></a>
-<p><br>${tranche.getName()}
-<br>${tranche.getRating()}
-<br>${tranche.getYear()}
-<br></p>
+
+
+<!-- related search terms -->
+<div class="related_terms">
+<c:forEach items="${timeInfo}" var = "chronologie">
+<c:forEach items="${chronologie.value}" var ="cv">
+
+<c:set value = "${pageContext.request.contextPath}/sixieme_?want=${cv.getId().substring(1, 10)}${req}" var = "href"/>
+
+
+</c:forEach>
+
+</c:forEach>
+
+<p class="side_title">Related Search Terms</p>
+<div>
+<c:forEach items='${aC}' var = 'actCon'>
+<c:set value = "${actCon.getValue()}" var="valeur"/>
+<c:set value = "${actCon.getKey()}" var="cle"/>
+<c:set value ="${pageContext.request.contextPath}/actor/${cle}${id}" var = "href"/>
+<div>
+<a href = ${href}>${valeur}<br></a></div>
+</c:forEach></div>
 </div>
-</c:forEach> 
-</div>  
-</c:forEach> 
-<script src="<c:url value = "/js/jquery-3.4.1.min.js"/>" > </script>
-<script src="<c:url value = "/js/jquery-horizontal-scroll.min.js"/>" > </script>
-<script src="<c:url value = "/js/jquery-horizontal-scroll.js"/>" > </script>
-<script>
-$( document ).ready(function() {
-    
-    $( '.horizontal-scroll' ).horizontalScroll({
-      containerHeight: "300vh"
-    });
-    
-  });</script>
-	<div class="content_body">.
-		<div class="content_wrapper">
-		  
-		  <div class="c_box_sl">
-		    <div class="c_box_s"></div>
-		      <div class="mov_info">MOVIE INFO</div>
-		    <div class="c_box_l"></div>
-		  </div>
-		
-		  <div class="poster_img">img</div>
-		  
-		  <div class="mov_title">TITLE</div>
-		  
-		  <table class="info_detail">
-		    <tr class="r_date">
-		      <td>Release Date :</td>
-		        <td></td>
-		    </tr>
-		    <tr class="director">
-		      <td>Director :</td>
-		        <td></td>
-		    </tr>
-		    <tr class="actor">
-		      <td>Actor :</td>
-		        <td></td>
-		    </tr>
-		    <tr class="ratings">
-		      <td>Ratings :</td>
-		        <td></td>
-		    </tr>
-		    <tr class="genre">
-		      <td>Genre :</td>
-		        <td></td>
-		    </tr>
-		    <tr class="country">
-		      <td>Country :</td>
-		        <td></td>
-		    </tr>
-		    <tr class="runtime">
-		      <td>Runtime :</td>
-		        <td></td>
-		    </tr>
-		  </table>
-		  
-		  <div class="movie_summary">SUMMARY</div>
-		    <div class="movie_summary_item">Marvel Studios' "Shang-Chi and The Legend of The Ten Rings" stars Simu Liu as Shang-Chi, who must confront the past he thought he left behind when he is drawn into the web of the mysterious Ten Rings organization. The film also stars Tony Leung as Wenwu, Awkwafina as Shang-Chi's friend Katy and Michelle Yeoh as Jiang Nan, as well as Fala Chen, Meng'er Zhang, Florian Munteanu and Ronny Chieng.</div>
-		</div>
-	</div>
-  <!-- ===================================== contents ===================================== -->
+</div>
+</div>
+<!-- related search terms -->
+
+<!-- ===================================== contents ===================================== -->
   
   <!-- ===================================== footer ===================================== -->
 	<footer>
-		<div class="footer-wrapper">
-		  <div class="project">
-		    <p class="lnb">PROJECT NORAJO</p>
-		      <p class="btb">Jin Seo Kim</p>
-		      <p class="btb">Hyun Woo Ko</p>
-		      <p class="btb">Bo Seong Gwon</p>
-		      <p class="btb">Bo Sun Kim</p>
-		      <p class="btb">Chae Lynn Yoo</p>
-		  </div>
-		
-		  <div class="front-end">
-		    <p class="lnb">FRONT END</p>
-		      <p class="btb">JAVASCRIPT</p>
-		      <p class="btb">HTML</p>
-		      <p class="btb">CSS</p>
-		      <p class="btb">JQEURY</p>
-		  </div>
-		  
-		  <div class="was-data">
-		    <p class="lnb">WAS/DATABASE</p>
-		      <p class="btb">Apache Tomcat</p>
-		      <p class="btb">ORACLE SQL DEVELOPER</p>
-		  </div>  
-		  
-		  <div class="back-end">
-		    <p class="lnb">BACK END</p>
-		      <p class="btb">SPRING</p>
-		      <p class="btb">JAVA</p>
-		  </div>  
-		  
-		  <div class="contact-line">
-		    <p class="lnb" style="font-size: 18px">CONTACT</p>
-		      <p class="btb">E-Mail : korea@norajo.com</p>
-		      <p class="btb">Address : 53, Yangsan-ro, Yeongdeungpo-gu, Seoul, Republic of Korea</p>
-		      <p class="btb">Copyright © NORAJO Corp. All rights reserved.</p>
-		  </div>  
-		</div>
+	  <div class="footer-wrapper">
+	    <div class="project">
+	      <p class="lnb" style="font-size: 18px">PROJECT NORAJO</p>
+	        <p class="btb" style="font-size: 12px">Jin Seo Kim</p>
+	        <p class="btb" style="font-size: 12px">Hyun Woo Ko</p>
+	        <p class="btb" style="font-size: 12px">Bo Seong Gwon</p>
+	        <p class="btb" style="font-size: 12px">Bo Sun Kim</p>
+	        <p class="btb" style="font-size: 12px">Chae Lynn Yoo</p>
+	    </div>
+	  
+	    <div class="front-end">
+	      <p class="lnb" style="font-size: 18px">FRONT END</p>
+	        <p class="btb" style="font-size: 12px">JAVASCRIPT</p>
+	        <p class="btb" style="font-size: 12px">HTML</p>
+	        <p class="btb" style="font-size: 12px">CSS</p>
+	        <p class="btb" style="font-size: 12px">JQEURY</p>
+	    </div>
+	    
+	    <div class="was-data">
+	      <p class="lnb" style="font-size: 18px">WAS/DATABASE</p>
+	        <p class="btb" style="font-size: 12px">Apache Tomcat</p>
+	        <p class="btb" style="font-size: 12px">ORACLE SQL DEVELOPER</p>
+	    </div>  
+	    
+	    <div class="back-end">
+	      <p class="lnb" style="font-size: 18px">BACK END</p>
+	        <p class="btb" style="font-size: 12px">SPRING</p>
+	        <p class="btb" style="font-size: 12px">JAVA</p>
+	    </div>  
+	    
+	    <div class="contact-line">
+	      <p class="lnb" style="font-size: 18px">CONTACT</p>
+	        <p class="btb" style="font-size: 12px">E-Mail : korea@norajo.com</p>
+	        <p class="btb" style="font-size: 12px">Address : 53, Yangsan-ro, Yeongdeungpo-gu, Seoul, Republic of Korea</p>
+	        <p class="btb" style="font-size: 12px">Copyright © 2021 NORAJO Corp. All rights reserved.</p>
+	    </div>  
+	  </div>
 	</footer>
 	
 </div>

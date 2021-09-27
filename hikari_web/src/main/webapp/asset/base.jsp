@@ -19,7 +19,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/x-icon" href="https://github.com/notlelis/PCWK_MARKDOWN/blob/main/testfavicon.png?raw=true">
+<link rel="icon" type="image/x-icon" href="https://github.com/notlelis/img-url/blob/main/favicon1.png?raw=true">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
 <title>NORAJO</title>
 </head>
@@ -27,8 +27,6 @@
 
 <!-- ===================================== header ===================================== -->
 
-
-<img src="https://github.com/chaelynn1028/PCWK_MARKDOWN/blob/main/logowhite.png?raw=true" width="100px">
 <div class="summary-wrapper">
 	<div class="summary">
 	  <input class="button" type="submit">
